@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "react-app",
+    "react-app/jest"
+  ],
+  "rules": {
+    "semi": [
+      "warn",
+      "always"
+    ],
+    "no-unused-vars": "error",
+    "eqeqeq": "warn",
+    "quotes": [
+      "warn",
+      "single"
+    ]
+  }
+}
