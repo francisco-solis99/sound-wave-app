@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+:root {
+    --pink: #9A00A2;
+    --purple-blue: #3545D1;
+    --dark-blue: #212C3A;
+    --dark-grey: #283444;
+    --grey: #D2D3D5;
+    --white: #FFF;
+}
+
+/*
+Fonts
+    font-family: 'Bebas Neue', cursive;
+    font-family: 'Roboto Condensed', sans-serif;
+*/
+
+body {
+    margin: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.section {
+    height: 100vh;
+    width: 100vw;
+}
+
+.tops {
+    background-color: var(--dark-blue);
+}
+
+.songs {
+    background-image: linear-gradient(to right top, #9a00a2, #633198, #353880, #1d355f, #212c3a);
+}
+
+.artists {
+    background-color: var(--pink);
+}
+
+.genres {
+    background-image: linear-gradient(to left bottom, #9a00a2, #633198, #353880, #1d355f, #212c3a);
+}
