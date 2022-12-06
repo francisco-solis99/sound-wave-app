@@ -1,0 +1,84 @@
+.Home__main {
+  /* position: relative; */
+}
+
+.Home__CTA {
+  display: grid;
+  place-content: center;
+}
+
+.section {
+  min-height: 100vh;
+}
+
+.Home__copy {
+  max-width: 800px;
+  margin-bottom: 1em;
+  position: relative;
+  z-index: 2;
+  color: var(--white);
+}
+
+.Home__title {
+  padding: 0;
+  font-size: 2.5rem;
+}
+
+.Home__sub-copy {
+  font-size: 1rem;
+  margin-bottom: 1.25em;
+}
+
+.Home__button {
+  padding: 0.25em .75em;
+  border: 0;
+  color: var(--white);
+  background: transparent;
+  cursor: pointer;
+  border: 3px solid transparent;
+  border-image: linear-gradient(to left, var(--pink), var(--purple-blue)) 1;
+  transition: all 250ms ease-in;
+}
+
+.Home__button:hover {
+  transform: scale(1.02);
+}
+
+.Home__video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(45deg, rgba(33, 43, 56, 0.6) 0%, rgba(30, 52, 93, 0.6) 25%, rgba(52, 56, 127, 0.6) 50%, rgba(98, 49, 152, 0.6) 75%, rgba(154, 0, 162, 0.6) 100%);
+}
+
+
+@media screen and (min-width: 948px) {
+  .Home__CTA {
+    justify-content: start;
+  }
+
+  .Home__title {
+    font-size: 3rem;
+  }
+
+  .Home__sub-copy {
+    font-size: 1.5rem;
+  }
+
+  .Home__button {
+    font-size: 1.25rem;
+  }
+
+}
