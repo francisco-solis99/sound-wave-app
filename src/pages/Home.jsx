@@ -45,7 +45,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="section Home__tops" data-aos="fade-up">
+      <section className="section Home__tops">
         <div className="container">
           <h2 className="Home__title-section">Tops</h2>
           {
