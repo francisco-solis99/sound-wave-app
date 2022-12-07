@@ -7,8 +7,8 @@
     --dark-grey: #283444;
     --grey: #D2D3D5;
     --white: #FFF;
-    --font1: 'Roboto Condensed', sans-serif;
-    --font2: 'Bebas Neue', cursive;
+    --font-text: 'Roboto Condensed', sans-serif;
+    --font-title: 'Bebas Neue', cursive;
 }
 
 
@@ -20,7 +20,7 @@ Fonts
 
 body {
     margin: 0;
-    font-family: var(--font1)
+    font-family: var(--font-text)
 }
 
 .wrapper {
@@ -31,22 +31,4 @@ body {
 .container {
     width: 90%;
     margin: 0 auto;
-}
-
-
-
-.tops {
-    background-color: var(--dark-blue);
-}
-
-.songs {
-    background-image: linear-gradient(to right top, #9a00a2, #633198, #353880, #1d355f, #212c3a);
-}
-
-.artists {
-    background-color: var(--pink);
-}
-
-.genres {
-    background-image: linear-gradient(to left bottom, #9a00a2, #633198, #353880, #1d355f, #212c3a);
 }
