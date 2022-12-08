@@ -1,0 +1,55 @@
+.modal-img {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    min-height: 10rem;
+    color: white;
+    padding: 1rem 1rem 0 1rem;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#modalArtist .modal-img {
+    background-image: linear-gradient(to right top,
+            rgba(154, 0, 162, 0.6),
+            rgba(98, 49, 152, 0.6),
+            rgba(52, 56, 127, 0.6),
+            rgba(30, 52, 93, 0.6),
+            rgba(33, 43, 56, 0.6)), url(/src/assets/the-weeknd.jpeg);
+
+}
+
+#modalTop .modal-img {
+    background-image: linear-gradient(to right top,
+            rgba(154, 0, 162, 0.6),
+            rgba(98, 49, 152, 0.6),
+            rgba(52, 56, 127, 0.6),
+            rgba(30, 52, 93, 0.6),
+            rgba(33, 43, 56, 0.6)), url(/src/assets/tops-bg.jpg);
+
+}
+
+.modal-title {
+    display: inline-block;
+    align-self: center;
+    font-size: 3rem;
+}
+
+.modal-label {
+    font-weight: 700;
+    margin-right: 1rem;
+}
+
+.modal-input {
+    margin: 1rem 0;
+}
+
+.modal-song-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.modal-song {
+    width: 50%;
+    box-sizing: border-box;
+}
