@@ -4,13 +4,17 @@ import videoMobile from '../assets/soundwave-middle.mp4';
 import videoDesktop from '../assets/soundwave-full.mp4';
 
 import TopSongs from '../components/TopSongs';
+import Song from '../components/Song';
+import Loader from '../components/Loader';
 import { getSongsTops } from '../services/topSongs/topSongs';
+import { getSongsWithSample } from '../services/songs/songs';
 
 
 
 export default function Home() {
 
   const [topSongs, setTopSongs] = useState([]);
+  const [songs, setSongs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -26,6 +30,21 @@ export default function Home() {
         });
     }, 200);
 
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      getSongsWithSample()
+        .then(songsData => {
+          console.log(songsData);
+          setSongs(songsData);
+        })
+        .catch(err => console.log(err))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 200);
   }, []);
 
 
@@ -49,13 +68,16 @@ export default function Home() {
         <div className="container">
           <h2 className="Home__title-section">Tops</h2>
           {
-            !isLoading ? topSongs.map(top => <TopSongs key={top.id} topData={top} />) : <p>Loading...</p>
+            !isLoading ? topSongs.map(top => <TopSongs key={top.id} topData={top} />) : <Loader />
           }
         </div>
       </section>
       <section className="section Home__songs">
         <div className="container">
           <h2 className="Home__title-section">Songs</h2>
+          {
+            !isLoading ? songs.map(song => <Song key={song.id} songData={song} />) : <Loader />
+          }
         </div>
       </section>
       <section className="section Home__artists">
