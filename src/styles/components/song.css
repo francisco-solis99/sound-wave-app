@@ -1,0 +1,19 @@
+.Song__container {
+  min-width: 180px;
+  display: flex;
+  gap: 0.5em;
+}
+
+.Song__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Song__year {
+  margin: 0;
+}
+
+.Song__name {
+  margin: 0;
+}
