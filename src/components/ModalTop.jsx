@@ -1,33 +1,26 @@
 import React from 'react';
 import '../styles/components/modals.css';
 
-export default function ModalTop({props}) {
-
+export default function ModalTop({ topData }) {
   return (
     <div className="modal fade" id="modalTop" tabIndex={-1} aria-labelledby="modalTopLabel" aria-hidden="true">
       <div className="modal-dialog modal-dialog-scrollable">
         <div className="modal-content">
-
           <div className="modal-header modal-img">
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            <h1 className="modal-title" id="modalTopLabel">{props.topTitle}</h1>
+            <h1 className="modal-title" id="modalTopLabel">{topData.name}</h1>
           </div>
 
           <div className="modal-body">
-            
-          {props.songs.length > 0 && 
-          <div>
-            <ol className='modal-song-list'>
-              {
-                props.songs.map(song => 
-                  <li className='modal-song'>{song}</li>)
-              };
-            </ol>
-            
-          </div>}
-           
+            <p className='modal-top-description'>{topData.description}</p>
+            {typeof topData.songs !== 'undefined' && topData.songs.length > 0 &&
+              <ol>
+                {
+                  topData.songs.map(song =>
+                    <li>{song.name} - {song.artist.name}</li>)
+                }
+              </ol>}
           </div>
-
         </div>
       </div>
     </div>
