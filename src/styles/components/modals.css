@@ -9,16 +9,6 @@
     justify-content: space-between;
 }
 
-#modalArtist .modal-img {
-    background-image: linear-gradient(to right top,
-            rgba(154, 0, 162, 0.6),
-            rgba(98, 49, 152, 0.6),
-            rgba(52, 56, 127, 0.6),
-            rgba(30, 52, 93, 0.6),
-            rgba(33, 43, 56, 0.6)), url(/src/assets/the-weeknd.jpeg);
-
-}
-
 #modalTop .modal-img {
     background-image: linear-gradient(to right top,
             rgba(154, 0, 162, 0.6),
@@ -52,4 +42,13 @@
 .modal-song {
     width: 50%;
     box-sizing: border-box;
+}
+
+.modal-youtube {
+    text-decoration: none;
+    color: black;
+}
+
+.modal-youtube:hover {
+    color:rgba(154, 0, 162);
 }

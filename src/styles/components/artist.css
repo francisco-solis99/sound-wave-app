@@ -1,0 +1,32 @@
+.artist {
+    min-height: 25rem;
+    max-width: 30%;
+    /* background-image: linear-gradient(to right top,
+    rgba(154, 0, 162, 0.6),
+    rgba(98, 49, 152, 0.6),
+    rgba(52, 56, 127, 0.6),
+    rgba(30, 52, 93, 0.6),
+    rgba(33, 43, 56, 0.6)), url(/src/assets/the-weeknd.jpeg); */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.artist-title {
+    font-size: 3rem;
+}
+
+
+.artist-btn {
+    color: white;
+    border: 2px solid white;
+    border-radius: 0;
+}
+
+.artist-btn:hover {
+    color: white;
+}
