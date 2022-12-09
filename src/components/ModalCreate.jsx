@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import '../styles/components/modals.css';
 
+// TODO: Check genre and artist options
 const options = {
     'top': ['Name: ', 'Description: '],
     'genre': ['Name: '],
@@ -58,7 +59,7 @@ export default function ModalCreate(props) {
                     </div>
 
                     <div className="modal-footer">
-                        {/* Add buttons styles */}
+                        {/* TODO: Add buttons styles */}
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         {option === '' && <button type="button" className="btn btn-primary" disabled>Save</button>}
                         {option !== '' && <button type="button" className="btn btn-primary">Save</button>}

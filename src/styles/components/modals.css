@@ -1,26 +1,5 @@
-
-.modal-img {
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    min-height: 10rem;
-    color: white;
-    padding: 1rem 1rem 0 1rem;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-#modalTop .modal-img {
-    background-image: linear-gradient(to right top,
-            rgba(154, 0, 162, 0.6),
-            rgba(98, 49, 152, 0.6),
-            rgba(52, 56, 127, 0.6),
-            rgba(30, 52, 93, 0.6),
-            rgba(33, 43, 56, 0.6)), url(https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=800);
-
-}
-
-#modalArtist .modal-body {
+/* All modals styles */
+.modal-body {
     color: black;
 }
 
@@ -30,30 +9,49 @@
     font-size: 3rem;
 }
 
+/* MODALS: Artists and Create  */
 .modal-label {
     font-weight: 700;
     margin-right: 1rem;
 }
 
-.modal-input {
-    margin: 1rem 0;
+/* MODALS: Artists and Top  */
+.modal-img {
+    padding: 1rem 1rem 0 1rem;
+    height: 100%;
+    min-height: 15rem;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    background-size: cover;
+    background-position: center;
 }
 
-.modal-song-list {
-    display: flex;
-    flex-wrap: wrap;
+/* TOP MODAL  */
+#modalTop .modal-img {
+    background-image: linear-gradient(to right top,
+            rgba(154, 0, 162, 0.6),
+            rgba(98, 49, 152, 0.6),
+            rgba(52, 56, 127, 0.6),
+            rgba(30, 52, 93, 0.6),
+            rgba(33, 43, 56, 0.6)), url(https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=800);
 }
 
-.modal-song {
-    width: 50%;
-    box-sizing: border-box;
+.modal-top-description {
+    text-align: center;
 }
 
+/* ARTIST MODAL  */
 .modal-youtube {
     text-decoration: none;
     color: black;
 }
 
 .modal-youtube:hover {
-    color:rgba(154, 0, 162);
+    color: rgba(154, 0, 162);
+}
+
+/* CREATE MODAL  */
+.modal-input {
+    margin: 1rem 0;
 }
