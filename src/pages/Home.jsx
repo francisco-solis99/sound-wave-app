@@ -4,7 +4,7 @@ import videoMobile from '../assets/soundwave-middle.mp4';
 import videoDesktop from '../assets/soundwave-full.mp4';
 
 import TopSongs from '../components/TopSongs';
-import Song from '../components/Song';
+import SongsList from '../components/SongsList';
 import Loader from '../components/Loader';
 import { getSongsTops } from '../services/topSongs/topSongs';
 import { getSongsWithSample } from '../services/songs/songs';
@@ -35,10 +35,10 @@ export default function Home() {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      getSongsWithSample()
+      getSongsWithSample({ limit: 2 })
         .then(songsData => {
-          console.log(songsData);
-          setSongs(songsData);
+          const songListUI = songsData.map((song) => ({ ...song, playing: false }));
+          setSongs(songListUI);
         })
         .catch(err => console.log(err))
         .finally(() => {
@@ -75,9 +75,11 @@ export default function Home() {
       <section className="section Home__songs">
         <div className="container">
           <h2 className="Home__title-section">Songs</h2>
-          {
-            !isLoading ? songs.map(song => <Song key={song.id} songData={song} />) : <Loader />
-          }
+          <div className="Home__songs-list">
+            {
+              !isLoading ? <SongsList songs={songs} /> : <Loader />
+            }
+          </div>
         </div>
       </section>
       <section className="section Home__artists">
