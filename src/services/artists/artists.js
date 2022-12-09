@@ -1,6 +1,6 @@
 import configAPI from '../config';
 
-export const getArtists = async () => {
+const getArtists = async () => {
     try {
         const response = await fetch(`${configAPI.BASE_URL}/artists`);
         return await response.json();
@@ -9,3 +9,15 @@ export const getArtists = async () => {
         return [];
     }
 };
+
+export async function getAllArtists() {
+    try {
+      const data = await getArtists();
+      return Object.values(data.rows);
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  }
+  
+

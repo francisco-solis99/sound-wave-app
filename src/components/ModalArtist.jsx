@@ -8,13 +8,9 @@ export default function ModalArtist({ artistData }) {
     <div className="modal fade" id="modalArtist" tabIndex={-1} aria-labelledby="modalArtistLabel" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
-          <div className="modal-header modal-img" style={{
-            backgroundImage: 'linear-gradient(to right top, rgba(154, 0, 162, 0.6), rgba(98, 49, 152, 0.6), rgba(52, 56, 127, 0.6), rgba(30, 52, 93, 0.6), rgba(33, 43, 56, 0.6)), url(https://images.pexels.com/photos/144429/pexels-photo-144429.jpeg?auto=compress&cs=tinysrgb&w=800)'
-          }}>
-            {/* TODO: Use url from artistData
             <div className="modal-header modal-img" style={{
-              backgroundImage: 'linear-gradient(to right top, rgba(154, 0, 162, 0.6), rgba(98, 49, 152, 0.6), rgba(52, 56, 127, 0.6), rgba(30, 52, 93, 0.6), rgba(33, 43, 56, 0.6)), url(' + artistData.link + ')'
-            }}> */}
+              backgroundImage: 'linear-gradient(to right top, rgba(154, 0, 162, 0.6), rgba(98, 49, 152, 0.6), rgba(52, 56, 127, 0.6), rgba(30, 52, 93, 0.6), rgba(33, 43, 56, 0.6)), url(' + artistData.urlImage + ')'
+            }}> 
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             <h1 className="modal-title" id="modalArtistLabel"> {artistData.name} </h1>
           </div>
