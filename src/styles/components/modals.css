@@ -1,3 +1,4 @@
+
 .modal-img {
     height: 100%;
     background-size: cover;
@@ -15,8 +16,12 @@
             rgba(98, 49, 152, 0.6),
             rgba(52, 56, 127, 0.6),
             rgba(30, 52, 93, 0.6),
-            rgba(33, 43, 56, 0.6)), url(/src/assets/tops-bg.jpg);
+            rgba(33, 43, 56, 0.6)), url(https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=800);
 
+}
+
+#modalArtist .modal-body {
+    color: black;
 }
 
 .modal-title {

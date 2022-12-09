@@ -30,3 +30,8 @@
 .artist-btn:hover {
     color: white;
 }
+
+.artist h1 {
+    text-align: center;
+    padding: 1rem;
+}
