@@ -3,18 +3,21 @@ import '../styles/pages/home.css';
 import videoMobile from '../assets/soundwave-middle.mp4';
 import videoDesktop from '../assets/soundwave-full.mp4';
 
+import Loader from '../components/Loader';
 import TopSongs from '../components/TopSongs';
 import Song from '../components/Song';
-import Loader from '../components/Loader';
+import ArtistSlider from '../components/ArtistSlider';
+import ModalArtist from '../components/ModalArtist';
+
 import { getSongsTops } from '../services/topSongs/topSongs';
 import { getSongsWithSample } from '../services/songs/songs';
-
-
+import { getAllArtists } from '../services/artists/artists';
 
 export default function Home() {
-
   const [topSongs, setTopSongs] = useState([]);
   const [songs, setSongs] = useState([]);
+  const [artists, setArtists] = useState([]);
+  const [modalArtistData, setModalArtistData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -47,6 +50,34 @@ export default function Home() {
     }, 200);
   }, []);
 
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      getSongsTops()
+        .then(data => {
+          setTopSongs(data);
+        })
+        .catch(err => console.log(err))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 200);
+
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      getAllArtists()
+        .then(data => {
+          setArtists(data);
+        })
+        .catch(err => console.log(err))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 200);
+  }, []);
 
   return (
     <main className="Home__main">
@@ -83,6 +114,11 @@ export default function Home() {
       <section className="section Home__artists">
         <div className="container">
           <h2 className="Home__title-section">Artists</h2>
+          <ModalArtist artistData={modalArtistData} />
+
+          {
+            !isLoading ? <ArtistSlider artists={artists} setModalArtistData={setModalArtistData} /> : <Loader />
+          }
         </div>
       </section>
       <section className="section Home__genres">
