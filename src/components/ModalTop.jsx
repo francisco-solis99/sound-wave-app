@@ -14,6 +14,17 @@ export default function ModalTop({props}) {
           </div>
 
           <div className="modal-body">
+            
+          {props.songs.length > 0 && 
+          <div>
+            <ol className='modal-song-list'>
+              {
+                props.songs.map(song => 
+                  <li className='modal-song'>{song}</li>)
+              };
+            </ol>
+            
+          </div>}
            
           </div>
 
