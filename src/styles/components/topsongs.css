@@ -1,0 +1,26 @@
+
+
+.Top__songs-wrapper{
+  padding: 0.25em;
+  background-image: linear-gradient(180deg, var(--pink) 0%, var(--purple-blue) 100%);
+}
+
+.Top__songs-list {
+  padding: 2em 2.5em;
+  list-style-type: decimal-leading-zero;
+  background-color: var(--dark-blue);
+}
+
+.Tops__songs-title {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.Top__songs-item {
+  margin: 0;
+}
+
+
+@media screen and (min-width: 948px) {
+
+}
