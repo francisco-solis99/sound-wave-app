@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import '../styles/pages/home.css';
 import videoMobile from '../assets/soundwave-middle.mp4';
 import videoDesktop from '../assets/soundwave-full.mp4';
-import { useNavigate } from 'react-router-dom';
-
 
 import Loader from '../components/Loader';
 import TopSongs from '../components/TopSongs';
 import ArtistSlider from '../components/ArtistSlider';
 import ModalArtist from '../components/ModalArtist';
-
 import SongsList from '../components/SongsList';
 import Button from '../components/Button';
 import { getSongsTops } from '../services/topSongs/topSongs';
@@ -35,7 +34,7 @@ export default function Home() {
         .finally(() => {
           setIsLoading(false);
         });
-    }, 200);
+    }, 100);
 
   }, []);
 
@@ -51,7 +50,7 @@ export default function Home() {
         .finally(() => {
           setIsLoading(false);
         });
-    }, 200);
+    }, 100);
   }, []);
 
   useEffect(() => {
@@ -65,7 +64,7 @@ export default function Home() {
         .finally(() => {
           setIsLoading(false);
         });
-    }, 200);
+    }, 100);
 
   }, []);
 
@@ -80,12 +79,13 @@ export default function Home() {
         .finally(() => {
           setIsLoading(false);
         });
-    }, 200);
+    }, 100);
   }, []);
+
+
   const handleClickStarted = () => {
     navigate('/dashboard');
   };
-
 
   return (
     <main className="Home__main">

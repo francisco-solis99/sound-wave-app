@@ -1,4 +1,73 @@
 .Dashboard__main {
     color: var(--white);
     background-color: var(--dark-blue);
-  }
+}
+
+.dashboard__item {
+    display: flex;
+    gap: 0.5em;
+}
+
+.item__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 50px;
+    border: 1px solid #fff;
+}
+
+.item__info > p  {
+    margin: 0;
+}
+
+.Dashboard__list {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.75em;
+}
+
+
+/* Individual items sections */
+
+/* Tops */
+.Top__button-more {
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    color: var(--white);
+    cursor: pointer;
+    transition: all ease-in 250ms;
+}
+
+.Top__button-more:hover {
+    color: rgb(230, 101, 217);
+}
+
+/* Artists */
+.ArtistUser {
+    min-width: 120px;
+    padding: 0.25em;
+    background-image: linear-gradient(180deg, var(--pink) 0%, var(--purple-blue) 100%);
+}
+
+.ArtistUser .item__info {
+    padding: 0.25em;
+    width: 100%;
+    display: auto;
+    background-color: var(--dark-blue);
+}
+
+.ArtistUser__info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ArtistUser__info a {
+    color: var(--white);
+}
+
+/* Genres */
+.GenreUser {
+    min-width: 120px;
+}

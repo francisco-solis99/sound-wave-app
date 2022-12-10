@@ -1,73 +1,124 @@
 import React, { useState, useEffect } from 'react';
+
 import '../styles/pages/dashboard.css';
 import Loader from '../components/Loader';
 import ModalTop from '../components/ModalTop';
-import { getSongsTops } from '../services/topSongs/topSongs';
+import TopUser from '../components/TopUser';
+import ArtistUser from '../components/ArtistUser';
+import GenreUser from '../components/GenreUser';
 import ModalCreate from '../components/ModalCreate';
+import Button from '../components/Button';
+import { getSongsTopByUser } from '../services/topSongs/topSongs';
+import { getArtistsByUser } from '../services/artists/artists';
+import { getGenresByUser } from '../services/genres/genres';
 
 export default function Dashboard() {
 
   const [isLoading, setIsLoading] = useState(false);
-  const [topSongs, setTopSongs] = useState([]);
+  const [topsUser, setTopsUser] = useState([]);
+  const [artistsUser, setArtistsUser] = useState([]);
+  const [genresUser, setGenresUser] = useState([]);
   const [modalTopData, setModalTopData] = useState({});
+
+  const USER_ID = 2;
 
   useEffect(() => {
     setIsLoading(true);
-    setTimeout(() => {
-      getSongsTops()
-        .then(data => {
-          setTopSongs(data);
-        })
-        .catch(err => console.log(err))
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }, 200);
+    getSongsTopByUser(USER_ID)
+      .then(tops => setTopsUser(tops))
+      .catch(err => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
+  useEffect(() => {
+    setIsLoading(true);
+    getArtistsByUser(USER_ID)
+      .then(artists => {
+        setArtistsUser(artists);
+      })
+      .catch(err => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    getGenresByUser(USER_ID)
+      .then(genres => {
+        setGenresUser(genres);
+      })
+      .catch(err => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
+
+
+
+
   return (
-    <div className='Dashboard__main'>
+    <main className='Dashboard__main'>
+      <section className="Dashboard__profile">
+        <ModalCreate />
+        <span className="modal__actionable" aria-label="button" data-bs-toggle="modal" data-bs-target="#modalCreate">
+          <Button type="secundary">CREATE</Button>
+        </span>
+      </section>
 
-      <h2>Dashboard</h2>
-
-      <section className="section Home__tops">
+      <section className="Dashboard__tops">
         <div className="container">
-          <ModalCreate />
-          <button className='btn artist-btn' data-bs-toggle="modal" data-bs-target="#modalCreate">CREATE</button>
           <h2 className="Home__title-section">Tops</h2>
-          {
-            !isLoading ? topSongs.map(top => <button className='btn artist-btn' data-bs-toggle="modal" data-bs-target="#modalTop" onClick={() => { setModalTopData(top); }}>{top.name}</button>) : <Loader />
-          }
-          <ModalTop topData={modalTopData} />
+          <div className="Dashboard__list">
+            {
+              !isLoading
+                ?
+                topsUser.map(top =>
+                  <TopUser top={top} key={top.id} setModalTopData={setModalTopData} />
+                )
+                :
+                <Loader />
+            }
+            <ModalTop topData={modalTopData} />
+          </div>
         </div>
       </section>
-    </div>
 
-// import React, { useEffect } from 'react';
-// import { useState } from 'react';
+      <section className="Dashboard__artists">
+        <div className="container">
+          <h2 className="Home__title-section">Artists</h2>
+          <div className="Dashboard__list">
+            {
+              !isLoading
+                ?
+                artistsUser.map(artist => (
+                  <ArtistUser key={crypto.randomUUID()} artist={artist} />
+                ))
+                :
+                <Loader />
+            }
+          </div>
+        </div>
+      </section>
 
-// import Top from '../components/Top';
-// import { getTopsByUser } from '../services/tops/tops';
-
-
-
-// export default function Dashboard() {
-
-//   const [topsUser, setTopsUser] = useState([]);
-
-//   useEffect(() => {
-
-//     getTopsByUser(2).then(tops => setTopsUser(tops)).catch(err => console.log(err));
-
-//   }, []);
-
-
-//   return (
-//     <main className="Dashboard">
-//       <h2>Dashboard</h2>
-//       {
-//         topsUser.map(top => <Top key={top.id} top={top} />)
-//       }
-//     </main>
-//   );
-// }
+      <section className="Dashboard__artists">
+        <div className="container">
+          <h2 className="Home__title-section">Genres</h2>
+          <div className="Dashboard__list">
+            {
+              !isLoading
+                ?
+                genresUser.map(genre => (
+                  <GenreUser key={crypto.randomUUID()} genre={genre} />
+                ))
+                :
+                <Loader />
+            }
+          </div>
+        </div>
+      </section>
+    </main>);
+}
