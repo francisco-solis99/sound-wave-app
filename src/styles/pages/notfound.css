@@ -1,0 +1,26 @@
+a:link,
+a:visited {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.NotFound {
+    width: 100vw;
+    min-height: 100vh;
+    background-image: linear-gradient(to left bottom, #9a00a2, #633198, #353880, #1d355f, #212c3a);
+    font-size: 2rem;
+    padding: 0 15rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.NotFound__img {
+    height: 30rem;
+}
+
+.NotFound__return {
+    font-weight: 700;
+}
