@@ -1,8 +1,8 @@
-import React, { useRef, useEffect } from 'react';
-import { useCallback } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 
 import '../styles/components/audio.css';
-
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import StopIcon from '@mui/icons-material/Stop';
 
 export default function Audio({ song, playPause }) {
   const refAudio = useRef();
@@ -35,7 +35,7 @@ export default function Audio({ song, playPause }) {
   return (
     <div className="Audio">
       <button className="Audio__button" onClick={() => playPause(song.id)}>
-        {song.playing ? 'Stop' : 'Play'}
+        {song.playing ? <StopIcon /> : <PlayArrowIcon />}
       </button>
       <audio controls className="Audio__sample" ref={refAudio}>
         <source src={song.sample} type="audio/mp3" />
