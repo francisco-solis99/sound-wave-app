@@ -1,5 +1,5 @@
 .artist {
-    min-height: 25rem;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
