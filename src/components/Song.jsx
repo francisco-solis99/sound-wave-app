@@ -1,13 +1,16 @@
 import React from 'react';
+import Audio from './Audio';
+
+import '../styles/components/song.css';
 
 export default function Song(props) {
   return (
     <div className="Song__container">
-      <p className="Song__name">{props.songData.name}</p>
-      <p className="Song__year">{props.songData.year}</p>
-      <audio controls className="Song__sample">
-        <source src={props.songData.sample} type="audio/ogg" />
-      </audio>
+      <Audio song={props.songData} playPause={props.playPause} />
+      <div className="Song__info">
+        <p className="Song__name">{props.songData.name}</p>
+        <p className="Song__year">{props.songData.year}</p>
+      </div>
     </div>
   );
 }

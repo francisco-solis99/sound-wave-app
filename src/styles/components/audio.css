@@ -1,0 +1,25 @@
+.Audio {
+  display: flex;
+  gap: 5px;
+}
+
+.Audio__button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25em;
+  min-width: 50px;
+  border: 1px solid var(--white);
+  color: var(--white);
+  background: transparent;
+  cursor: pointer;
+  transition: all ease-in 200ms;
+}
+
+.Audio__button:active {
+  transform: scale(1.1);
+}
+
+.Audio__sample {
+  display: none;
+}

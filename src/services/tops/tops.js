@@ -9,3 +9,14 @@ export const getTops = async () => {
     return [];
   }
 };
+
+
+export const getTopsByUser = async (userId) => {
+  try {
+    const tops = await fetch(`${configAPI.BASE_URL}/tops/user/${userId}`);
+    return await tops.json();
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+};
