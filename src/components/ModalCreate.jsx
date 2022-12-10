@@ -19,12 +19,12 @@ function Input(props) {
     );
 };
 
-export default function ModalCreate(props) {
+export default function ModalCreate() {
     const [option, setOption] = useState('');
 
     return (
         <div className="modal fade" id="modalCreate" tabIndex={-1} aria-labelledby="modalCreateLabel" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-scrollable">
+            <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered">
                 <div className="modal-content">
 
                     <div className="modal-header">

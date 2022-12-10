@@ -3,6 +3,7 @@ import '../styles/pages/dashboard.css';
 import Loader from '../components/Loader';
 import ModalTop from '../components/ModalTop';
 import { getSongsTops } from '../services/topSongs/topSongs';
+import ModalCreate from '../components/ModalCreate';
 
 export default function Dashboard() {
 
@@ -22,7 +23,6 @@ export default function Dashboard() {
           setIsLoading(false);
         });
     }, 200);
-
   }, []);
 
   return (
@@ -32,6 +32,8 @@ export default function Dashboard() {
 
     <section className="section Home__tops">
     <div className="container">
+    <ModalCreate/>
+    <button className='btn artist-btn' data-bs-toggle="modal" data-bs-target="#modalCreate">CREATE</button>
       <h2 className="Home__title-section">Tops</h2>
       {
         !isLoading ? topSongs.map(top => <button className='btn artist-btn' data-bs-toggle="modal" data-bs-target="#modalTop" onClick={() => { setModalTopData(top); }}>{top.name}</button>) : <Loader />
