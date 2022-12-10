@@ -3,14 +3,12 @@
     font-family: var(--font-title);
     font-size: 1em;
     justify-content: space-between;
-    color: aliceblue;
     width: 100%;
-    margin: 20px auto;
-
 }
 
 .search__input{
-    width: 50%;
+    margin: auto;
+    width: 30%;
     padding: 0.25em .75em;
     border: none;
     border-bottom: 3px solid;
@@ -19,8 +17,13 @@
 }
 
 .search__button{
-    width: 45px;
     border: none;
     background-color: transparent;
 }
 
+@media screen and (max-width: 480px){
+    .search__input{
+        width: 100%;
+    }
+    
+}
