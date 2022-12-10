@@ -3,6 +3,10 @@
     background-color: var(--dark-blue);
 }
 
+.Dashboard__section {
+    min-height: 200px;
+}
+
 .dashboard__item {
     display: flex;
     gap: 0.5em;

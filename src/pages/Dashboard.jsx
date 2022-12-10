@@ -69,7 +69,7 @@ export default function Dashboard() {
         </span>
       </section>
 
-      <section className="Dashboard__tops">
+      <section className="Dashboard__section Dashboard__tops">
         <div className="container">
           <h2 className="Home__title-section">Tops</h2>
           <div className="Dashboard__list">
@@ -87,7 +87,7 @@ export default function Dashboard() {
         </div>
       </section>
 
-      <section className="Dashboard__artists">
+      <section className="Dashboard__section Dashboard__artists">
         <div className="container">
           <h2 className="Home__title-section">Artists</h2>
           <div className="Dashboard__list">
@@ -104,7 +104,7 @@ export default function Dashboard() {
         </div>
       </section>
 
-      <section className="Dashboard__artists">
+      <section className="Dashboard__section Dashboard__artists">
         <div className="container">
           <h2 className="Home__title-section">Genres</h2>
           <div className="Dashboard__list">
