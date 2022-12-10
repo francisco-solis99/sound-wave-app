@@ -1,0 +1,26 @@
+.artist {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-size: cover;
+    background-position: center;
+}
+
+.artist h1 {
+    padding: 1rem;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.artist-btn {
+    color: white;
+    border: 2px solid white;
+    border-radius: 0;
+}
+
+.artist-btn:hover {
+    color: white;
+}

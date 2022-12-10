@@ -11,16 +11,18 @@
     --font-title: 'Bebas Neue', cursive;
 }
 
-
-/*
-Fonts
-    font-family: 'Bebas Neue', cursive;
-    font-family: 'Roboto Condensed', sans-serif;
-*/
-
 body {
     margin: 0;
     font-family: var(--font-text)
+}
+
+.wrapper {
+    max-width: 1920px;
+    min-width: 320px;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Bebas Neue', cursive;
 }
 
 .wrapper {
