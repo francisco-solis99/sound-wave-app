@@ -1,0 +1,30 @@
+.Button {
+  padding: 0.25em .75em;
+  cursor: pointer;
+  transition: all 250ms ease-in;
+}
+
+.Button:hover {
+  transform: scale(1.02);
+}
+
+.Button.primary {
+  border: 0;
+  color: var(--white);
+  background: linear-gradient(to left, var(--pink), var(--purple-blue));
+}
+
+.Button.secundary {
+  color: var(--white);
+  background: transparent;
+  border: 3px solid transparent;
+  border-image: linear-gradient(to left, var(--pink), var(--purple-blue)) 1;
+}
+
+/* Media Queries */
+@media screen and (min-width: 948px) {
+  .Button {
+    font-size: 1.25rem;
+  }
+}
+

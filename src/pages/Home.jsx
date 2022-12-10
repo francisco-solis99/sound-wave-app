@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import '../styles/pages/home.css';
 import videoMobile from '../assets/soundwave-middle.mp4';
 import videoDesktop from '../assets/soundwave-full.mp4';
+import { useNavigate } from 'react-router-dom';
+
 
 import TopSongs from '../components/TopSongs';
 import SongsList from '../components/SongsList';
 import Loader from '../components/Loader';
+import Button from '../components/Button';
 import { getSongsTops } from '../services/topSongs/topSongs';
 import { getSongsWithSample } from '../services/songs/songs';
 
@@ -16,6 +19,7 @@ export default function Home() {
   const [topSongs, setTopSongs] = useState([]);
   const [songs, setSongs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -35,7 +39,7 @@ export default function Home() {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      getSongsWithSample({ limit: 2 })
+      getSongsWithSample({ limit: 4 })
         .then(songsData => {
           const songListUI = songsData.map((song) => ({ ...song, playing: false }));
           setSongs(songListUI);
@@ -46,6 +50,10 @@ export default function Home() {
         });
     }, 200);
   }, []);
+
+  const handleClickStarted = () => {
+    navigate('/dashboard');
+  };
 
 
   return (
@@ -60,7 +68,9 @@ export default function Home() {
           <div className="Home__copy">
             <h1 className="Home__title">SoundWave</h1>
             <p className="Home__sub-copy">Curabitur rhoncus ut magna sit amet fringilla. Nullam placerat lacus vel arcu volutpat, sed efficitur justo porta</p>
-            <button className="Home__button">Get Started</button>
+            <Button type="secundary" text="Get started" onClick={handleClickStarted}>
+              Get started
+            </Button>
           </div>
         </div>
       </section>

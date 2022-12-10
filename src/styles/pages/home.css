@@ -31,21 +31,6 @@
   margin-bottom: 1.25em;
 }
 
-.Home__button {
-  padding: 0.25em .75em;
-  border: 0;
-  color: var(--white);
-  background: transparent;
-  cursor: pointer;
-  border: 3px solid transparent;
-  border-image: linear-gradient(to left, var(--pink), var(--purple-blue)) 1;
-  transition: all 250ms ease-in;
-}
-
-.Home__button:hover {
-  transform: scale(1.02);
-}
-
 .Home__video {
   height: 100%;
   width: 100%;
@@ -124,9 +109,4 @@
   .Home__sub-copy {
     font-size: 1.5rem;
   }
-
-  .Home__button {
-    font-size: 1.25rem;
-  }
-
 }
