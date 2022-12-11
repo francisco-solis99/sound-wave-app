@@ -21,7 +21,7 @@
     background-position: center;
 }
 
-Form {
+.Form {
     background-color: var(--white);
     max-width: 286px;
     padding: 5%;
@@ -47,7 +47,7 @@ Form {
     margin-top: -3%;
 }
 
-Input {
+.Input {
     margin-top: 18%;
     background: transparent;
     border: none;
@@ -69,7 +69,7 @@ Input {
 
 /* Media Queries */
 @media screen and (min-width: 948px) {
-    Form {
+    .Form {
         max-width: 600px;
         height: 700px;
     }
@@ -82,7 +82,7 @@ Input {
         font-size: 2.5rem;
     }
 
-    Input {
+    .Input {
         font-size: 2rem;
         width: 30rem;
     }

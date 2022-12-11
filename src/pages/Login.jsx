@@ -10,11 +10,11 @@ export default function Login() {
   return (
     <main className='Login__page'>
       <div className='Login__background'></div>
-      <Form>
+      <Form className="Form">
         <h1 className="Login__title" >Soundwave</h1>
         <h2 className="Login__subtitle">Welcome back!</h2>
-        <Input type='text' placeholder='example@gmail.com' />
-        <Input type='password' placeholder='Password' />
+        <Input className="Input" type='text' placeholder='example@gmail.com' />
+        <Input className="Input" type='password' placeholder='Password' />
         <br></br>
         <Button type="primary">Login</Button>
         <p className="Last__line">

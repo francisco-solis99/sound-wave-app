@@ -11,12 +11,12 @@ export default function SignUp() {
   return (
     <main className='SignUp__page'>
       <div className='SignUp__background'></div>
-      <Form>
+      <Form className="Form">
         <h1 className="SignUp__title" >Soundwave</h1>
         <h2 className="SignUp__subtitle">Welcome!</h2>
-        <Input type='text' placeholder='example@gmail.com' />
-        <Input type='password' placeholder='Password' />
-        <Input type='text' placeholder='Confirm password' /><br></br>
+        <Input className="Input" type='text' placeholder='example@gmail.com' />
+        <Input className="Input" type='password' placeholder='Password' />
+        <Input className="Input" type='text' placeholder='Confirm password' /><br></br>
         <Button type="secundary">SIGN UP</Button>
         <p className="Last__line2">
           Already a user?
