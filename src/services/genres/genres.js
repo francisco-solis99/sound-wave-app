@@ -1,24 +1,23 @@
 import configAPI from '../config';
 
-export const getGenres = async ({ limit }) => {
+const getGenres = async ({ limit }) => {
     const limitQuery = limit ? `?limit=${limit}` : '';
-    try{
+    try {
         const urlToFetch = `${configAPI.BASE_URL}/genres${limitQuery}`;
-        const response = await fetch (urlToFetch);
+        const response = await fetch(urlToFetch);
         return await response.json();
-    }   catch (err){
+    } catch (err) {
         console.log(err);
         return [];
     }
 };
 
-
-export async function getAllGenres(){
+export async function getAllGenres() {
     try {
-        const data = await getGenres({ limit: 3});
-       return Object.values(data.rows);
+        const data = await getGenres({ limit: 10 });
+        return Object.values(data.rows);
     } catch (err) {
         console.log(err);
-        return[];
+        return [];
     }
 }

@@ -8,19 +8,19 @@ import TopSongs from '../components/TopSongs';
 import Song from '../components/Song';
 import ArtistSlider from '../components/ArtistSlider';
 import ModalArtist from '../components/ModalArtist';
-import Genre from '../components/Genres';
 
 import { getSongsTops } from '../services/topSongs/topSongs';
 import { getSongsWithSample } from '../services/songs/songs';
 import { getAllArtists } from '../services/artists/artists';
-import { getGenres } from '../services/genres/genres';
+import { getAllGenres } from '../services/genres/genres';
+import GenreSlider from '../components/GenreSlider';
 
 export default function Home() {
   const [topSongs, setTopSongs] = useState([]);
   const [songs, setSongs] = useState([]);
   const [artists, setArtists] = useState([]);
-  const [modalArtistData, setModalArtistData] = useState({});
   const [genres, setGenres] = useState([]);
+  const [modalArtistData, setModalArtistData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -43,7 +43,6 @@ export default function Home() {
     setTimeout(() => {
       getSongsWithSample()
         .then(songsData => {
-          console.log(songsData);
           setSongs(songsData);
         })
         .catch(err => console.log(err))
@@ -82,12 +81,14 @@ export default function Home() {
     }, 200);
   }, []);
 
-  useEffect(() =>{
+  useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      getGenres()
-        .then(data =>{
+      getAllGenres()
+        .then(data => {
+          console.log(data);
           setGenres(data);
+          console.log(genres);
         })
         .catch(err => console.log(err))
         .finally(() => {
@@ -142,7 +143,7 @@ export default function Home() {
         <div className="container">
           <h2 className="Home__title-section">Genres</h2>
           {
-            !isLoading ? genres.map(genre => <Genre key={genres.id} genreData={genre}/>): <Loader/>
+            !isLoading ? <GenreSlider genres={genres} /> : <Loader />
           }
         </div>
       </section>
