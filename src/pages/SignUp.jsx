@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import '../styles/pages/signup.css';
 import Form from '../components/Form';
 import Input from '../components/Input';
-import '../styles/pages/signup.css';
+import Button from '../components/Button';
+
 
 export default function SignUp() {
   return (
@@ -14,10 +17,10 @@ export default function SignUp() {
         <Input type='text' placeholder='example@gmail.com' />
         <Input type='password' placeholder='Password' />
         <Input type='text' placeholder='Confirm password' /><br></br>
-        <button className='SignUp__button'> Login</button>
+        <Button type="secundary">SIGN UP</Button>
         <p className="Last__line2">
           Already a user?
-          <Link to="/signup"><strong>Login</strong></Link>
+          <Link to="/login"><strong>Login</strong></Link>
         </p>
       </Form>
     </main>

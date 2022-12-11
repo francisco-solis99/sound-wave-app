@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import '../styles/pages/login.css';
 import Form from '../components/Form';
 import Input from '../components/Input';
-import '../styles/pages/login.css';
+import Button from '../components/Button';
 
 export default function Login() {
   return (
@@ -14,7 +16,7 @@ export default function Login() {
         <Input type='text' placeholder='example@gmail.com' />
         <Input type='password' placeholder='Password' />
         <br></br>
-        <button className='Login__button'> Login</button>
+        <Button type="primary">Login</Button>
         <p className="Last__line">
           New user?
           <Link to="/signup"><strong>Sign up</strong></Link>

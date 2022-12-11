@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/components/input.css';
 
 export default function Input(props) {
   return (
