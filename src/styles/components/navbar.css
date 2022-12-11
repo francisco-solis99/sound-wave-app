@@ -1,0 +1,10 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+.user__icon{
+    border: none;
+    background-color: transparent;
+}

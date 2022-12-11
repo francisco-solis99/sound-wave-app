@@ -14,11 +14,14 @@ import Button from '../components/Button';
 import { getSongsTops } from '../services/topSongs/topSongs';
 import { getSongsWithSample } from '../services/songs/songs';
 import { getAllArtists } from '../services/artists/artists';
+import { getAllGenres } from '../services/genres/genres';
+import GenreSlider from '../components/GenreSlider';
 
 export default function Home() {
   const [topSongs, setTopSongs] = useState([]);
   const [songs, setSongs] = useState([]);
   const [artists, setArtists] = useState([]);
+  const [genres, setGenres] = useState([]);
   const [modalArtistData, setModalArtistData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -86,6 +89,19 @@ export default function Home() {
   const handleClickStarted = () => {
     navigate('/dashboard');
   };
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      getAllGenres()
+        .then(data => {
+          setGenres(data);
+        })
+        .catch(err => console.log(err))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 200);
+  }, []);
 
   return (
     <main className="Home__main">
@@ -136,6 +152,9 @@ export default function Home() {
       <section className="section Home__genres">
         <div className="container">
           <h2 className="Home__title-section">Genres</h2>
+          {
+            !isLoading ? <GenreSlider genres={genres} /> : <Loader />
+          }
         </div>
       </section>
     </main>

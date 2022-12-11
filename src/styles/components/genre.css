@@ -1,0 +1,16 @@
+.genre {
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-size: cover;
+    background-position: center;
+}
+
+.genre h1 {
+    padding: 1rem;
+    font-size: 3rem;
+    text-align: center;
+}

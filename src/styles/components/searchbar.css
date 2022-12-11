@@ -1,0 +1,29 @@
+.search__bar {
+    display: flex;
+    font-family: var(--font-title);
+    font-size: 1em;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.search__input{
+    margin: auto;
+    width: 30%;
+    padding: 0.25em .75em;
+    border: none;
+    border-bottom: 3px solid;
+    border-image: linear-gradient(to left, var(--pink), var(--purple-blue)) 1;
+    letter-spacing: .05em;
+}
+
+.search__button{
+    border: none;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 480px){
+    .search__input{
+        width: 100%;
+    }
+    
+}
