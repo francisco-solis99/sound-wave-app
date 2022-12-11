@@ -1,0 +1,30 @@
+.Input {
+    margin-top: .8rem;
+        background: transparent;
+    border: none;
+    border-bottom: 3px solid #283444;
+    font-family: var(--font-text);
+    font-size: 1rem;
+    width: 13rem;
+}
+
+
+.Button.primary {
+    margin-top: 2.7rem;
+    letter-spacing: .1rem;
+    font-style: normal;
+}
+
+@media screen and (min-width: 948px) {
+    .Input {
+        font-size: 1.3rem;
+        width: 18rem;
+        margin-top: 2rem;
+    }
+
+    .Button.primary {
+        margin-top: 3.5rem;
+        width: 10rem;
+        font-size: 1.5rem;
+    }
+}

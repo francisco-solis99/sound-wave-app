@@ -1,0 +1,22 @@
+.Initial__page {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    display: grid;
+    place-content: center;
+}
+
+.Initial__background {
+    width: 100%;
+    min-height: 100vh;
+    background-image: linear-gradient(to right top,
+            rgba(154, 0, 162, 0.6),
+            rgba(98, 49, 152, 0.6),
+            rgba(52, 56, 127, 0.6),
+            rgba(30, 52, 93, 0.6),
+            rgba(33, 43, 56, 0.6)), url(../../assets/images/bckImage.png);
+    background-size: cover;
+    position: absolute;
+    z-index: -1;
+    background-position: center;
+}
