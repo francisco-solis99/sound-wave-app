@@ -7,12 +7,11 @@ export default class GenreSlider extends Component {
     var settings = {
       dots: true,
       infinite: true,
-      speed: 500,
+      speed: 1500,
       slidesToShow: 5,
       slidesToScroll: 5,
       autoplay: true,
-      autoplaySpeed: 2000,
-      pauseOnHover: true,
+      autoplaySpeed: 4000,
       initialSlide: 0,
       responsive: [
         {
