@@ -9,11 +9,9 @@ export default function NavBar(){
             <div>
                 <SearchBar/>
             </div>
-            {/* <div> */}
             <button className='user__icon'>
                 <PersonOutlineOutlinedIcon/>
             </button>   
-            {/* </div> */}
         </div>
     ); 
 }
