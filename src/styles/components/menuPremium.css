@@ -1,0 +1,30 @@
+.menu__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo__menu{
+    font-family: var(--font-formTitle);
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    background-clip: text;
+    background: linear-gradient(to right, #465263, #9D9D9D);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+.side__container{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-family: var(--font-text);
+}
+
+.exit__button{
+    color: var(--white);
+    border: none;
+    background-color: transparent;
+    margin-left: 1rem;
+}
+
