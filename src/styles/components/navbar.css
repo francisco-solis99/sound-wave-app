@@ -1,5 +1,7 @@
 .navbar{
-    display: flex;
+    display: grid;
+    grid-template-columns: 95% auto;
+    justify-content: center;
     align-items: center;
     margin: 20px;
 }
@@ -7,4 +9,11 @@
 .user__icon{
     border: none;
     background-color: transparent;
+}
+
+@media screen and (max-width: 770px){
+    .user__icon{
+        width: 2.5em;
+    }
+
 }

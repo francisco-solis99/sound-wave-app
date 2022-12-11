@@ -6,10 +6,14 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 export default function NavBar(){
     return(
         <div className='navbar'>
-            <SearchBar/>
+            <div>
+                <SearchBar/>
+            </div>
+            {/* <div> */}
             <button className='user__icon'>
-            <PersonOutlineOutlinedIcon/>
+                <PersonOutlineOutlinedIcon/>
             </button>   
+            {/* </div> */}
         </div>
     ); 
 }
