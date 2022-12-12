@@ -2,6 +2,7 @@
   min-width: 180px;
   display: flex;
   gap: 0.5em;
+  margin: 0.8rem;
 }
 
 .Song__info {

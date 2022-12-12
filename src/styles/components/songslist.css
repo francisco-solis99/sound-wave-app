@@ -1,13 +1,15 @@
 .SongsList {
+  max-width: 70%;
+  margin: auto;
   display: grid;
-  justify-items: center;
+  justify-items:first baseline;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.75em;
 }
 
-
 @media screen and (min-width: 768px) {
     .SongsList {
-      grid-template-columns: repeat(2, 1fr);
+      width: fit-content;
+      grid-template-columns: repeat(1, 1fr);
     }
 }
