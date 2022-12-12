@@ -13,6 +13,7 @@ export default class GenreSlider extends Component {
       autoplay: true,
       autoplaySpeed: 4000,
       initialSlide: 0,
+      swipeToSlide: true,
       responsive: [
         {
           breakpoint: 1024,

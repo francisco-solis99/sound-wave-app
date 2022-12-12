@@ -14,6 +14,7 @@ export default class ArtistSlider extends Component {
       autoplaySpeed: 2000,
       pauseOnHover: true,
       initialSlide: 0,
+      swipeToSlide: true,
       responsive: [
         {
           breakpoint: 1024,
