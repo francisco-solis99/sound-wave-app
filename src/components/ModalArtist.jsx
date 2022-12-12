@@ -19,7 +19,7 @@ export default function ModalArtist({ artistData }) {
             <p><span className='modal-label'>Country: </span> {artistData.country} </p>
 
             <a className='modal-youtube' href={artistData.ytchannel} target='_blank' rel="noreferrer">
-              <YouTubeIcon fontSize='large' />
+              <YouTubeIcon fontSize='large' style={{color: 'black'}}/>
             </a>
           </div>
 

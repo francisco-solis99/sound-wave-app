@@ -1,6 +1,36 @@
+.Home__section-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  scroll-behavior: smooth;
+  overflow: auto;
+  scroll-snap-type: y mandatory;
+
+}
+.section {
+  width: 100%;
+  min-height: 100vh;
+  background-size:  cover;
+  scroll-snap-align: start;
+}
+
+.Home__container {
+  position:relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 .Home__main {
   color: var(--white);
   background-color: var(--dark-blue);
+  width: 100%;
+  height: 100vh;
+  scroll-behavior: smooth;
+  overflow: auto;
+  scroll-snap-type: y mandatory;
 }
 
 
@@ -24,6 +54,11 @@
 .Home__title {
   padding: 0;
   font-size: 2.5rem;
+  font-family: var(--font-logo);
+  font-weight: 700;
+  background: -webkit-linear-gradient(#FFF, #929CB0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .Home__sub-copy {
@@ -57,8 +92,7 @@
 }
 
 .Home__title-section {
-  font-size: 2rem;
-  margin-bottom: 1.25em;
+  font-size: 3rem;
   font-weight: normal;
   letter-spacing: 0.1rem;
   font-family: var(--font-title);
@@ -87,14 +121,25 @@
   background-image: linear-gradient(to left bottom, #9a00a2, #633198, #353880, #1d355f, #212c3a);
 }
 
-.Home__tops,
+/* .Home__tops,
 .Home__songs,
 .Home__artists,
-.Home__genres
-{
+.Home__genres {
   padding: 8vh 0;
+} */
+
+.Home__more-link {
+  color: white;
+  text-align: center;
+  display: block;
+  font-size: 1.3rem;
 }
 
+.Home__more-link:hover {
+  font-weight: 700;
+  text-decoration: underline;
+  color: white;
+}
 
 /* Media Queries */
 @media screen and (min-width: 948px) {
@@ -103,7 +148,7 @@
   }
 
   .Home__title {
-    font-size: 3rem;
+    font-size: 5rem;
   }
 
   .Home__sub-copy {

@@ -10,7 +10,8 @@
     --white: #FFF;
     --font-text: 'Roboto Condensed', sans-serif;
     --font-title: 'Bebas Neue', cursive;
-    --font-formTitle:'Comfortaa',sans-serif;
+    --font-formTitle: 'Comfortaa', sans-serif;
+    --font-logo: 'Comfortaa', cursive;
 }
 
 body {
@@ -23,7 +24,11 @@ body {
     min-width: 320px;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     font-family: 'Bebas Neue', cursive;
 }
 

@@ -2,6 +2,7 @@
 
 .Top__songs-wrapper{
   padding: 0.25em;
+  margin: 1em;
   background-image: linear-gradient(180deg, var(--pink) 0%, var(--purple-blue) 100%);
 }
 
