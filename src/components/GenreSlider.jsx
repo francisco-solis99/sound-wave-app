@@ -4,7 +4,7 @@ import Genre from './Genre';
 
 export default class GenreSlider extends Component {
   render() {
-    var settings = {
+    const settings = {
       dots: true,
       infinite: true,
       speed: 1500,

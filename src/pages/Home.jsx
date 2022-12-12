@@ -86,9 +86,6 @@ export default function Home() {
   }, []);
 
 
-  const handleClickStarted = () => {
-    navigate('/dashboard');
-  };
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
@@ -102,6 +99,10 @@ export default function Home() {
         });
     }, 200);
   }, []);
+
+  const handleClickStarted = () => {
+    navigate('/dashboard');
+  };
 
   return (
     <main className="Home__main">
