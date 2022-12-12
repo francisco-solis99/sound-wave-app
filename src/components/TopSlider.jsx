@@ -9,8 +9,6 @@ export default function TopSlider({ topData }) {
 
   useEffect(() => {
     setTopSong(topData[0]);
-    let marks = [];
-    topData.map(top => marks.push({ value: top.id, label: top.name }));
   }, []);
 
   const handleOnChange = (value) => {
