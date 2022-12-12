@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import '../styles/pages/searchpage.css';
-import NavBar from '../components/Navbar';
 import Loader from '../components/Loader';
 import Genre from '../components/Genre';
 import { getAllGenres } from '../services/genres/genres';
@@ -31,9 +30,6 @@ export default function GenresPage() {
 
   return (
     <>
-      <header className='GenresPage__header'>
-        <NavBar />
-      </header>
 
       <main>
         <div className="container">

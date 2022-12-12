@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
+
 import '../styles/pages/searchpage.css';
-import NavBar from '../components/Navbar';
+import '../styles/pages/songspage.css';
+import SearchBar from '../components/SearchBar';
+import MenuPremium from '../components/MenuPremium';
 import Loader from '../components/Loader';
 import SongsList from '../components/SongsList';
 import { getSongsWithSample } from '../services/songs/songs';
@@ -29,8 +32,11 @@ export default function SongsPage() {
 
   return (
     <>
-      <header className='GenresPage__header'>
-        <NavBar />
+      <header className='songs__page'>
+        <nav>
+          <MenuPremium />
+          <SearchBar />
+        </nav>
       </header>
 
       <main>
@@ -44,4 +50,4 @@ export default function SongsPage() {
       </main>
     </>
   );
-};
+}

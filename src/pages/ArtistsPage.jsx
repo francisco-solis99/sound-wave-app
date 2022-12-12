@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import '../styles/pages/searchpage.css';
-import NavBar from '../components/Navbar';
+import '../styles/pages/songspage.css';
+import SearchBar from '../components/SearchBar';
+import MenuPremium from '../components/MenuPremium';
 import Loader from '../components/Loader';
 import Artist from '../components/Artist';
 import ModalArtist from '../components/ModalArtist';
@@ -29,10 +31,13 @@ export default function ArtistsPage() {
 
   return (
     <>
-      <header className='GenresPage__header'>
-        <NavBar />
+      <header className='songs__page'>
+        <nav>
+          <MenuPremium />
+        </nav>
       </header>
 
+      <SearchBar />
       <main>
         <div className="container">
           <section className="components__container GenresPage__genres">
