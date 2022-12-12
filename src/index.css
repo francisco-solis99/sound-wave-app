@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap'); 
 
 :root {
     --pink: #9A00A2;
@@ -8,9 +8,10 @@
     --dark-grey: #283444;
     --grey: #D2D3D5;
     --white: #FFF;
+    --black:#000;
     --font-text: 'Roboto Condensed', sans-serif;
     --font-title: 'Bebas Neue', cursive;
-    --font-formTitle:'Comfortaa',sans-serif;
+    --font-formTitle:'Comfortaa';
 }
 
 body {
