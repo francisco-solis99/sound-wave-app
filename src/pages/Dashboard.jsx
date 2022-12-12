@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import '../styles/pages/dashboard.css';
 import Loader from '../components/Loader';
@@ -62,6 +63,12 @@ export default function Dashboard() {
 
   return (
     <main className='Dashboard__main'>
+
+      <section className="Dashboard__header">
+        <h1 className="Dashboard__title">SoundWave</h1>
+        <LogoutIcon fontSize='large' />
+      </section>
+
       <section className="Dashboard__profile">
         <ModalCreate />
         <span className="modal__actionable" aria-label="button" data-bs-toggle="modal" data-bs-target="#modalCreate">
