@@ -11,17 +11,17 @@
     border: none;
     border-bottom: 3px solid;
     border-image: linear-gradient(to left, var(--pink), var(--purple-blue)) 1;
-    letter-spacing: .05em;
+    
     background-color: transparent;
 }
 
+.search__input::placeholder{
+    color: var(--white);
+    font-size: 1.1em;
+    letter-spacing: .05em;
+}
 .search__button{
     color: var(--white);
     border: none;
     background-color: transparent;
-}
-
-
-@media screen and (max-width:480px){
- 
 }
