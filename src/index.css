@@ -42,6 +42,12 @@ h5 {
     margin: 0 auto;
 }
 
+a:link,
+a:visited {
+    text-decoration: none;
+    cursor: pointer;
+} 
+
 @media screen and (min-width: 948px) {
     .container {
         width: 80%;
