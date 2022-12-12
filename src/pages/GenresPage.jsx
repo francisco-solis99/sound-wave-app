@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import '../styles/pages/searchpage.css';
 import NavBar from '../components/Navbar';
 import Loader from '../components/Loader';
 import Genre from '../components/Genre';
@@ -36,7 +37,7 @@ export default function GenresPage() {
 
       <main>
         <div className="container">
-          <section className="GenresPage__genres">
+          <section className="components__container GenresPage__genres">
             {
               !isLoading ? genres.map(genre => <Genre key={genre.id} genreData={genre} />) : <Loader />
             }

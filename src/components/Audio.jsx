@@ -38,7 +38,7 @@ export default function Audio({ song, playPause }) {
         {song.playing ? <StopIcon /> : <PlayArrowIcon />}
       </button>
       <audio controls className="Audio__sample" ref={refAudio}>
-        <source src={song.sample} type="audio/mp3" />
+        <source src={song.sample ?? ''} type="audio/mp3" />
       </audio>
     </div>
   );

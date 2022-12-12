@@ -31,6 +31,7 @@ export async function getSongsWithSample({ limit }) {
     const { rows: songs } = await getSongs({ limit });
     const songsWithSample = songs.map(async (song) => {
       const { data } = await getSampleSong(song.name);
+      if (!data.length) return song;
       const correctData = data.find(item => item.artist.name === song.artist.name);
       const {
         preview: sample,
