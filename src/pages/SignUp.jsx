@@ -14,7 +14,7 @@ export default function SignUp() {
         <h2 className="Subtitle">Welcome!</h2>
         <Input type='text' placeholder='example@gmail.com' />
         <Input type='password' placeholder='password' />
-        <Input type="confirm" placeholder='confirm password' />
+        <Input type="password" placeholder='confirm password' />
         <Button type="primary">SIGN UP</Button>
         <p className="Last__line">
           Already a user?
