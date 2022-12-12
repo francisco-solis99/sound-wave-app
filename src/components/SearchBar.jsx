@@ -10,5 +10,8 @@ export default function SearchBar(){
             <SearchIcon/> 
             </button>
         </div>
-    );   
+    );  
 }; 
+
+
+

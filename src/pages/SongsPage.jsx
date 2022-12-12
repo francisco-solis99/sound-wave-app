@@ -1,13 +1,15 @@
 import React from 'react';
-import NavBar from '../components/Navbar';
+import '../styles/pages/songspage.css';
+import SearchBar from '../components/SearchBar';
+import MenuPremium from '../components/MenuPremium';
 
 export default function SongsPage() {
   return (
     <main className='songs__page'>
-        <nav>
-            <NavBar/>
-        </nav>
+      <nav>
+      <MenuPremium/>
+      <SearchBar />
+      </nav>
     </main>
-
   );
 };

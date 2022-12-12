@@ -5,6 +5,11 @@
     padding: 20px;
 }
 
+
+.search__menu{
+    justify-content: center;
+    margin: auto;
+}
 .logo__menu{
     font-family: var(--font-formTitle);
     font-size: 2rem;
@@ -21,10 +26,15 @@
     font-family: var(--font-text);
 }
 
-.exit__button{
+.exit__button, .user__icon{
     color: var(--white);
     border: none;
     background-color: transparent;
     margin-left: 1rem;
 }
+
+/* .search__menu{
+    margin-right: 10em;
+} */
+
 
