@@ -18,7 +18,7 @@ export default function SignUp() {
         <Button type="primary">SIGN UP</Button>
         <p className="Last__line">
           Already a user?
-          <Link to="/login" id="inicio"><strong>Login</strong></Link>
+          <Link to="/login" id="inicio"><strong> Login</strong></Link>
         </p>
       </Form>
     </main>
