@@ -1,6 +1,25 @@
+.searchpage__wrapper {
+  min-height: 100vh;
+  background-color: var(--dark-blue);
+}
+
 .components__container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2em;
-  background-color: black;
+  min-height: 40vh;
+}
+
+.components__container.loading {
+  justify-items: center;
+}
+
+.searchpage__bar {
+  margin: 2.75em 0;
+}
+
+
+/* Individual styles for type page */
+.SongsPage__songs .Song__info {
+  color: var(--white);
 }

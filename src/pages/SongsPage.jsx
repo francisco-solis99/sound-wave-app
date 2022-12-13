@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 
 import '../styles/pages/searchpage.css';
-import '../styles/pages/songspage.css';
 import SearchBar from '../components/SearchBar';
-import MenuPremium from '../components/MenuPremium';
+import Menu from '../components/Menu';
 import Loader from '../components/Loader';
 import SongsList from '../components/SongsList';
 import { getSongsWithSample } from '../services/songs/songs';
+// import { searchQuery } from '../services/search/search';
+
 
 
 export default function SongsPage() {
 
   const [songs, setSongs] = useState([]);
+  const allSongs = useRef([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -21,6 +23,7 @@ export default function SongsPage() {
       getSongsWithSample({ limit: null })
         .then(songsData => {
           const songListUI = songsData.map((song) => ({ ...song, playing: false }));
+          allSongs.current.value = songListUI;
           setSongs(songListUI);
         })
         .catch(err => console.log(err))
@@ -30,24 +33,42 @@ export default function SongsPage() {
     }, 200);
   }, []);
 
+  const search = (query) => {
+    setIsLoading(true);
+    const queryLowerCase = query.toLowerCase();
+    const songsSearched = allSongs.current.value.filter(song => song.name.toLowerCase().includes(queryLowerCase));
+    setSongs(songsSearched);
+    setIsLoading(false);
+  };
+
+  const renderResults = () => {
+    if (!songs.length) return (<p className="search__no-results">No results for your search</p>);
+    return <SongsList songs={songs} />;
+  };
+
+
+
   return (
-    <>
-      <header className='songs__page'>
+    <div className="searchpage__wrapper">
+      <header className="searchpage__header">
         <nav>
-          <MenuPremium />
-          <SearchBar />
+          <Menu />
         </nav>
       </header>
 
-      <main>
+      <div className="searchpage__bar">
+        <SearchBar className="searchpage__bar" searchCallback={search} />
+      </div>
+
+      <main className="searchpage__results">
         <div className="container">
-          <section className="components__container GenresPage__genres">
+          <section className={`components__container SongsPage__songs ${isLoading ? 'loading' : ''}`}>
             {
-              !isLoading ? <SongsList songs={songs} /> : <Loader />
+              !isLoading ? renderResults() : <Loader />
             }
           </section>
         </div>
       </main>
-    </>
+    </div>
   );
 }

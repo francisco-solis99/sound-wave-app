@@ -1,11 +1,17 @@
-.SearchBar__input{
+.SearchBar {
+    display: flex;
+    justify-content: center;
+}
+
+.SearchBar__input {
     width: 30%;
     min-width: 280px;
     padding: 0.25em .75em;
+    color: var(--white);
     border: none;
     border-bottom: 3px solid;
-    border-image: linear-gradient(to left, var(--pink), var(--purple-blue)) 1;
     letter-spacing: .05em;
+    border-image: linear-gradient(to left, var(--pink), var(--purple-blue)) 1;
     background-color: transparent;
 }
 
@@ -16,7 +22,7 @@
     background-color: transparent;
 }
 
-
-@media screen and (max-width:480px){
-
+.SearchBar__input::placeholder{
+    color: var(--white);
+    font-size: 1.1em;
 }
