@@ -4,8 +4,8 @@ import { HashLink } from 'react-router-hash-link';
 import { useNavigate } from 'react-router-dom';
 
 import '../styles/pages/home.css';
-import videoMobile from '../assets/video1.mp4';
-import videoDesktop from '../assets/video1.mp4';
+import videoMobile from '../assets/soundwave-middle.mp4';
+import videoDesktop from '../assets/soundwave-full.mp4';
 
 import Loader from '../components/Loader';
 import Button from '../components/Button';
