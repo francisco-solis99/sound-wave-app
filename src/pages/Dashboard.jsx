@@ -11,13 +11,16 @@ import GenreUser from '../components/GenreUser';
 import ModalCreate from '../components/ModalCreate';
 import Button from '../components/Button';
 import { getSongsTopByUser } from '../services/topSongs/topSongs';
+import { getSongsByUser } from '../services/songs/songs';
 import { getArtistsByUser } from '../services/artists/artists';
 import { getGenresByUser } from '../services/genres/genres';
+import SongUser from '../components/SongUser';
 
 export default function Dashboard() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [topsUser, setTopsUser] = useState([]);
+  const [songsUser, setSongsUser] = useState([]);
   const [artistsUser, setArtistsUser] = useState([]);
   const [genresUser, setGenresUser] = useState([]);
   const [modalTopData, setModalTopData] = useState({});
@@ -28,6 +31,18 @@ export default function Dashboard() {
     setIsLoading(true);
     getSongsTopByUser(USER_ID)
       .then(tops => setTopsUser(tops))
+      .catch(err => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    getSongsByUser(USER_ID)
+      .then(songs => {
+        setSongsUser(songs);
+      })
       .catch(err => console.log(err))
       .finally(() => {
         setIsLoading(false);
@@ -166,7 +181,18 @@ export default function Dashboard() {
         <div className='container'>
 
           {isSelected.songs &&
-            <h2>Aqui van las canciones</h2>
+            <div className='Dashboard__list'>
+            {
+              !isLoading
+                ?
+                songsUser.map(song =>
+                  <SongUser songData={song} key={song.id}/>
+                )
+                :
+                <Loader />
+            }
+            <ModalTop topData={modalTopData} />
+          </div>
           }
         </div>
       </section>

@@ -123,6 +123,12 @@ display: none;
     color: rgb(230, 101, 217);
 }
 
+/* Songs */
+.SongUser {
+    min-width: 10em;
+    width: 100%;
+} 
+
 /* Artists */
 .ArtistUser {
     min-width: 10em;
