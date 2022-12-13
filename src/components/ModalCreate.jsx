@@ -1,84 +1,16 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import '../styles/components/modals.css';
-// import { createTop } from '../services/tops/tops';
-// import { createSong } from '../services/songs/songs';
-// import { createArtist } from '../services/artists/artists';
-// import { createGenre } from '../services/genres/genres';
 import { Alert, AlertTitle } from '@mui/material';
+import FormNewTop from './FormNewTop';
+import FormNewArtist from './FormNewArtist';
+import FormNewGenre from './FormNewGenre';
+import FormNewSong from './FormNewSong';
 
 export default function ModalCreate() {
-    // const USER_ID = 2;
-
-    const IMAGE_URL_DEFAULT =
-        'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
-
     const [option, setOption] = useState('');
-
-    const [topName, setTopName] = useState('');
-    const [topDescription, setTopDescription] = useState('');
-
-    const [songName, setSongName] = useState('');
-    const [songYear, setSongYear] = useState('');
-    const [songYoutube, setSongYoutube] = useState('');
-    const [songArtist, setSongArtist] = useState('');
-    const [songGenre, setSongGenre] = useState('');
-
-    const [artistName, setArtistName] = useState('');
-    const [artistCountry, setArtistCountry] = useState('');
-    const [artistYoutube, setArtistYoutube] = useState('');
-    const [artistImageURL, setArtistImageURL] = useState(IMAGE_URL_DEFAULT);
-
-    const [genreName, setGenreName] = useState('');
-    const [genreImageURL, setGenreImageURL] = useState(IMAGE_URL_DEFAULT);
     const [alert, setAlert] = useState(false);
     const [success, setSuccess] = useState(true);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        switch (option) {
-            case 'top':
-                console.log(topName, topDescription);
-                // createTop(e, topName, topDescription, USER_ID)
-                //     .then(response => setSuccess(response.ok));
-                setTopName('');
-                setTopDescription('');
-                setAlert(true);
-                break;
-            case 'song':
-                console.log(songName, songYear, songYoutube, songArtist, songGenre);
-                setSongName('');
-                setSongYear('');
-                setSongYoutube('');
-                setSongArtist('');
-                setSongGenre('');
-                setAlert(true);
-                setSuccess(true);
-                break;
-            case 'artist':
-                console.log(artistName, artistCountry, artistYoutube, artistImageURL);
-                // createArtist(e, artistName, artistCountry, artistYoutube, artistImageURL)
-                //     .then(response => setSuccess(response.ok));
-                setArtistName('');
-                setArtistCountry('');
-                setArtistYoutube('');
-                setArtistImageURL(IMAGE_URL_DEFAULT);
-                setAlert(true);
-                break;
-            case 'genre':
-                console.log(genreName, genreImageURL);
-                // createGenre(e, genreName, genreImageURL)
-                //     .then(response => setSuccess(response.ok));
-                setGenreName('');
-                setGenreImageURL(IMAGE_URL_DEFAULT);
-                setAlert(true);
-                setSuccess(false);
-                break;
-            default:
-                break;
-        }
-    };
+    const [message, setMessage] = useState('');
 
     return (
         <div
@@ -114,6 +46,7 @@ export default function ModalCreate() {
                             <select className='modal-input-field' name='select' onChange={(e) => {
                                 setOption(e.target.value);
                                 setAlert(false);
+                                setMessage('');
                             }}>
                                 <option value=''>Select an option</option>
                                 <option value='top'>Top</option>
@@ -130,213 +63,19 @@ export default function ModalCreate() {
                         )}
 
                         {option === 'top' && (
-                            <form onSubmit={handleSubmit}>
-                                <div className='modal-input'>
-                                    <label className='modal-label' htmlFor='topName'>
-                                        Name:
-                                        <input
-                                            className='modal-input-field'
-                                            type='text'
-                                            name='topName'
-                                            id='topName'
-                                            required
-                                            onChange={(e) => setTopName(e.target.value)}
-                                        ></input>
-                                    </label>
-                                </div>
-                                <div className='modal-input'>
-                                    <label className='modal-label' htmlFor='topDescription'>
-                                        Description:
-                                        <input
-                                            className='modal-input-field'
-                                            type='text'
-                                            name='topDescription'
-                                            id='topDescription'
-                                            required
-                                            onChange={(e) => setTopDescription(e.target.value)}
-                                        ></input>
-                                    </label>
-                                </div>
-
-                                <input
-                                    type='submit'
-                                    value='Submit'
-                                    className='btn btn-primary'
-                                />
-                            </form>
+                            <FormNewTop setAlert={setAlert} setSuccess={setSuccess} />
                         )}
 
                         {option === 'song' && (
-                            <form onSubmit={handleSubmit}>
-                                <div className='modal-input'>
-                                    <label className='modal-label' htmlFor='songName'>
-                                        Name:
-                                        <input
-                                            className='modal-input-field'
-                                            type='text'
-                                            name='songName'
-                                            id='songName'
-                                            required
-                                            onChange={(e) => setSongName(e.target.value)}
-                                        ></input>
-                                    </label>
-                                </div>
-                                <div className='modal-input'>
-                                    <label className='modal-label' htmlFor='songYear'>
-                                        Year:
-                                        <input
-                                            className='modal-input-field'
-                                            type='number'
-                                            min='1700'
-                                            max={new Date().getFullYear()}
-                                            step='1'
-                                            name='songYear'
-                                            id='songYear'
-                                            required
-                                            onChange={(e) => setSongYear(e.target.value)}
-                                        ></input>
-                                    </label>
-                                </div>
-                                <div className='modal-input'>
-                                    <label className='modal-label' htmlFor='songYoutube'>
-                                        Youtube:
-                                        <input
-                                            className='modal-input-field'
-                                            type='url'
-                                            name='songYoutube'
-                                            id='songYoutube'
-                                            required
-                                            onChange={(e) => setSongYoutube(e.target.value)}
-                                        ></input>
-                                    </label>
-                                </div>
-                                <div className='modal-input'>
-                                    <label className='modal-label' htmlFor='songArtist'>
-                                        Artist:
-                                        <input
-                                            className='modal-input-field'
-                                            name='songArtist'
-                                            id='songArtist'
-                                            required
-                                            onChange={(e) => setSongArtist(e.target.value)}
-                                        ></input>
-                                    </label>
-                                </div>
-                                <div className='modal-input'>
-                                    <label className='modal-label' htmlFor='songGenre'>
-                                        Genre:
-                                        <input
-                                            className='modal-input-field'
-                                            name='songGenre'
-                                            id='songGenre'
-                                            required
-                                            onChange={(e) => setSongGenre(e.target.value)}
-                                        ></input>
-                                    </label>
-                                </div>
-                                <input
-                                    type='submit'
-                                    value='Submit'
-                                    className='btn btn-primary'
-                                />
-                            </form>
+                            <FormNewSong setAlert={setAlert} setSuccess={setSuccess} message={message} setMessage={setMessage} />
                         )}
 
                         {option === 'artist' && (
-                            <form onSubmit={handleSubmit}>
-                                <div className='modal-input'>
-                                    <label className='modal-label' htmlFor='artistName'>
-                                        Name:
-                                        <input
-                                            className='modal-input-field'
-                                            type='text'
-                                            name='artistName'
-                                            id='artistName'
-                                            required
-                                            onChange={(e) => setArtistName(e.target.value)}
-                                        ></input>
-                                    </label>
-                                </div>
-                                <div className='modal-input'>
-                                    <label className='modal-label' htmlFor='artistCountry'>
-                                        Country:
-                                        <input
-                                            className='modal-input-field'
-                                            type='text'
-                                            name='artistCountry'
-                                            id='artistCountry'
-                                            required
-                                            onChange={(e) => setArtistCountry(e.target.value)}
-                                        ></input>
-                                    </label>
-                                </div>
-                                <div className='modal-input'>
-                                    <label className='modal-label' htmlFor='artistYoutube'>
-                                        Youtube:
-                                        <input
-                                            className='modal-input-field'
-                                            type='url'
-                                            name='artistYoutube'
-                                            id='artistYoutube'
-                                            required
-                                            onChange={(e) => setArtistYoutube(e.target.value)}
-                                        ></input>
-                                    </label>
-                                </div>
-                                <div className='modal-input'>
-                                    <label className='modal-label' htmlFor='artistImageURL'>
-                                        ImageURL:
-                                        <input
-                                            className='modal-input-field'
-                                            type='url'
-                                            name='artistImageURL'
-                                            id='artistImageURL'
-                                            onChange={(e) => setArtistImageURL(e.target.value)}
-                                        ></input>
-                                    </label>
-                                </div>
-
-                                <input
-                                    type='submit'
-                                    value='Submit'
-                                    className='btn btn-primary'
-                                />
-                            </form>
+                            <FormNewArtist setAlert={setAlert} setSuccess={setSuccess} />
                         )}
 
                         {option === 'genre' && (
-                            <form onSubmit={handleSubmit}>
-                                <div className='modal-input'>
-                                    <label className='modal-label' htmlFor='genreName'>
-                                        Name:
-                                        <input
-                                            className='modal-input-field'
-                                            type='text'
-                                            name='genreName'
-                                            id='genreName'
-                                            required
-                                            onChange={(e) => setGenreName(e.target.value)}
-                                        ></input>
-                                    </label>
-                                </div>
-                                <div className='modal-input'>
-                                    <label className='modal-label' htmlFor='genreImageURL'>
-                                        ImageURL:
-                                        <input
-                                            className='modal-input-field'
-                                            type='url'
-                                            name='genreImageURL'
-                                            id='genreImageURL'
-                                            onChange={(e) => setGenreImageURL(e.target.value)}
-                                        ></input>
-                                    </label>
-                                </div>
-                                <input
-                                    type='submit'
-                                    value='Submit'
-                                    className='btn btn-primary'
-                                />
-                            </form>
+                            <FormNewGenre setAlert={setAlert} setSuccess={setSuccess} />
                         )}
                     </div>
                 </div>
