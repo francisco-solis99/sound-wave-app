@@ -32,6 +32,12 @@ h5 {
     font-family: 'Bebas Neue', cursive;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 .wrapper {
     max-width: 1920px;
     min-width: 320px;
@@ -46,7 +52,7 @@ a:link,
 a:visited {
     text-decoration: none;
     cursor: pointer;
-} 
+}
 
 @media screen and (min-width: 948px) {
     .container {

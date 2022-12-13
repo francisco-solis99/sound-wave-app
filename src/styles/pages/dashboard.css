@@ -1,6 +1,8 @@
 .Dashboard__main {
+    min-height: 100vh;
     color: var(--white);
     background-color: var(--dark-blue);
+    padding-bottom: 2rem;
 }
 
 .Dashboard__header {
@@ -35,8 +37,33 @@
     justify-content: flex-end;
 }
 
-.Dashboard__section {
-    min-height: 200px;
+.Dashboard__nav-bar {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.Dashboard__nav-link {
+    font-size: 2.5rem;
+    letter-spacing: 0.1rem;
+    font-family: var(--font-title);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.Dashboard__nav-link:hover {
+    cursor: pointer;
+    text-shadow: 0 4px 3px var(--purple-blue);
+}
+
+.selected {
+    text-shadow: 0 4px 3px var(--pink);
+}
+
+.hide {
+    display: none;
 }
 
 .dashboard__item {
@@ -69,6 +96,11 @@
 /* Individual items sections */
 
 /* Tops */
+
+.TopUser {
+    min-width: 10em;
+}
+
 .Top__button-more {
     padding: 0;
     border: 0;
@@ -106,7 +138,7 @@
 
 /* Genres */
 .GenreUser {
-    min-width: 120px;
+    min-width: 10em;
     display: flex;
     align-items: center;
 }
