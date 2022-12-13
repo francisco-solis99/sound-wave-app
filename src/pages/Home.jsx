@@ -18,7 +18,7 @@ import GenreSlider from '../components/GenreSlider';
 import { getSongsTops } from '../services/topSongs/topSongs';
 import { getSongsWithSample } from '../services/songs/songs';
 import { getArtists } from '../services/artists/artists';
-import { getAllGenres } from '../services/genres/genres';
+import { getGenres } from '../services/genres/genres';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -76,7 +76,7 @@ export default function Home() {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      getAllGenres()
+      getGenres({ limit: 10 })
         .then(data => setGenres(data))
         .catch(err => console.log(err))
         .finally(() => setIsLoading(false));

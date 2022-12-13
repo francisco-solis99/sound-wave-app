@@ -5,7 +5,7 @@ import SearchBar from '../components/SearchBar';
 import Menu from '../components/Menu';
 import Loader from '../components/Loader';
 import Genre from '../components/Genre';
-import { getAllGenres } from '../services/genres/genres';
+import { getGenres } from '../services/genres/genres';
 import { searchQuery } from '../services/search/search';
 
 export default function GenresPage() {
@@ -15,7 +15,7 @@ export default function GenresPage() {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      getAllGenres()
+      getGenres({limit: null})
         .then(data => setGenres(data))
         .catch(err => console.log(err))
         .finally(() => setIsLoading(false));
