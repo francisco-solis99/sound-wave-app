@@ -55,3 +55,8 @@
 .modal-input {
     margin: 1rem 0;
 }
+
+.modal-input-field {
+    font-weight: 400;
+    margin-left: 1rem;
+}
