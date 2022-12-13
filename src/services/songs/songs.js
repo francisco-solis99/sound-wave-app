@@ -46,7 +46,6 @@ export async function getSongsWithSample({ limit }) {
     console.log(error);
     return [];
   }
-
 }
 
 export const getSongsByUser = async (idUser) => {
@@ -69,3 +68,24 @@ export const getSongsByUser = async (idUser) => {
     return [];
   }
 };
+
+export async function createSong(name, year, youtube, artistId, genreId) {
+  try {
+    const requestOptions = {
+      // TODO: check if song exists
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        year: year,
+        linkYT: youtube,
+        artistId: artistId,
+        genreId: genreId
+      })
+    };
+    // TODO: Update URL
+    return await fetch('http://localhost:4000/api/songs', requestOptions);
+  } catch (err) {
+    console.log(err);
+  }
+}
