@@ -108,10 +108,10 @@ export default function Dashboard() {
     <main className='Dashboard__main'>
 
       <section className='Dashboard__header'>
-        <Link to="/">
+        <Link to='/'>
           <h1 className='Dashboard__title'>SoundWave</h1>
         </Link>
-        <Link to="/" className='Dashboard__link'>
+        <Link to='/' className='Dashboard__link'>
           <LogoutIcon fontSize='large' />
         </Link>
       </section>
@@ -130,6 +130,15 @@ export default function Dashboard() {
           <li className={`Dashboard__nav-link ${isSelected.artists ? 'selected' : ''}`} onClick={(e) => handleOnClickNavBar(e.target.id)} id='dashboard_artists'>Artists |</li>
           <li className={`Dashboard__nav-link ${isSelected.genres ? 'selected' : ''}`} onClick={(e) => handleOnClickNavBar(e.target.id)} id='dashboard_genres'>Genres</li>
         </ul>
+      </section>
+
+      <section className='Dashboard__nav-bar-mobile'>
+        <select className='Dashboard__nav-bar-select Dashboard__nav-link' name='select' onChange={(e) => handleOnClickNavBar(e.target.value)} defaultValue='dashboard_tops'>
+          <option value='dashboard_tops'>Tops</option>
+          <option value='dashboard_songs'>Songs</option>
+          <option value='dashboard_artists'>Artists</option>
+          <option value='dashboard_genres'>Genres</option>
+        </select>
       </section>
 
       <section className='Dashboard__section Dashboard__tops'>
