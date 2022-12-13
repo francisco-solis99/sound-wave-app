@@ -33,6 +33,19 @@
   scroll-snap-type: y mandatory;
 }
 
+.Home__nav {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+
+.Home__nav a {
+  color: white;
+}
+
+.Home__nav a:hover {
+  text-shadow: 2px 2px 5px var(--pink);
+}
 
 /* CTA - HOME */
 .Home__CTA {

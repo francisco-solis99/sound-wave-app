@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import { useNavigate } from 'react-router-dom';
 
 import '../styles/pages/home.css';
@@ -97,6 +98,20 @@ export default function Home() {
 
             <div className="container Home__container">
               <div className="Home__copy">
+                <ul className="Home__nav">
+                  <li>
+                    <HashLink smooth to="/home#tops">Tops </HashLink> /
+                  </li>
+                  <li>
+                    <HashLink smooth to="/home#songs">Songs</HashLink> /
+                  </li>
+                  <li>
+                    <HashLink smooth to="/home#artists">Artists</HashLink> /
+                  </li>
+                  <li>
+                    <HashLink smooth to="/home#genres">Genres</HashLink>
+                  </li>
+                </ul>
                 <h1 className="Home__title">SoundWave</h1>
                 <p className="Home__sub-copy">This website will provide you with many songs, artists and genres included in the top lists over the years. Enjoy!</p>
                 <Button type="secundary" text="Get started" onClick={handleClickStarted}>
@@ -108,7 +123,7 @@ export default function Home() {
           {/* ----------------- END OF LANDING SECTION ----------------- */}
 
           {/* ----------------- START OF TOPS SECTION ----------------- */}
-          <section className="section Home__tops">
+          <section className="section Home__tops" id='tops'>
             <div className="container Home__container">
               <h2 className="Home__title-section">Tops</h2>
               {
@@ -119,7 +134,7 @@ export default function Home() {
           {/* ----------------- END OF TOPS SECTION ----------------- */}
 
           {/* ----------------- START OF SONGS SECTION ----------------- */}
-          <section className="section Home__songs">
+          <section className="section Home__songs" id='songs'>
             <div className="container Home__container">
               <h2 className="Home__title-section">Songs</h2>
               <div className="Home__songs-list">
@@ -134,7 +149,7 @@ export default function Home() {
 
 
           {/* ----------------- START OF ARTISTS SECTION ----------------- */}
-          <section className="section Home__artists">
+          <section className="section Home__artists" id='artists'>
             <div className="container Home__container">
               <h2 className="Home__title-section">Artists</h2>
               <ModalArtist artistData={modalArtistData} />
@@ -147,7 +162,7 @@ export default function Home() {
           {/* ----------------- END OF ARTISTS SECTION ----------------- */}
 
           {/* ----------------- START OF GENRES SECTION ----------------- */}
-          <section className="section Home__genres">
+          <section className="section Home__genres" id='genres'>
             <div className="container Home__container">
               <h2 className="Home__title-section">Genres</h2>
               {
