@@ -36,8 +36,7 @@ export const getArtistsByUser = async (idUser) => {
   }
 };
 
-export async function createArtist(e, name, country, youtube, imageURL) {
-  e.preventDefault();
+export async function createArtist(name, country, youtube, imageURL) {
   try {
     const requestOptions = {
       // TODO: check if artists exists

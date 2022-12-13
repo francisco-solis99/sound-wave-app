@@ -20,8 +20,7 @@ export const getTopsByUser = async (userId) => {
   }
 };
 
-export async function createTop(e, name, description, userid) {
-  e.preventDefault();
+export async function createTop(name, description, userid) {
   try {
     const requestOptions = {
       // TODO: check if name exists
