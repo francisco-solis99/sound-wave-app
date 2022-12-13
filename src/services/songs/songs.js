@@ -1,5 +1,7 @@
 import configAPI from '../config';
 import deezerAPI from '../deezer';
+import { getTopsByUser } from '../tops/tops';
+import { getSongsByTop } from '../topSongs/topSongs';
 
 export const getSongs = async ({ limit }) => {
   const limitQuery = limit ? `?limit=${limit}` : '';
@@ -13,7 +15,6 @@ export const getSongs = async ({ limit }) => {
   }
 };
 
-
 export async function getSampleSong(nameSong) {
   const urlToFetch = `${deezerAPI.baseURL}/search?q=${nameSong}`;
   try {
@@ -24,7 +25,6 @@ export async function getSampleSong(nameSong) {
     return [];
   }
 }
-
 
 export async function getSongsWithSample({ limit }) {
   try {
@@ -48,3 +48,24 @@ export async function getSongsWithSample({ limit }) {
   }
 
 }
+
+export const getSongsByUser = async (idUser) => {
+  try {
+    const tops = await getTopsByUser(idUser);
+    const songsByUserPromises = tops.map(async (top) => {
+      const { data } = await getSongsByTop({ topId: top.id });
+      const listSongs = data.map(item => item.song);
+      return listSongs;
+    });
+    
+    const songsByUser = await Promise.all(songsByUserPromises);
+    const allSongsByUser = songsByUser.flat(Infinity);
+    const allSongsByUserNoRepeated = allSongsByUser.filter((song, index, self) => {
+      return self.map(item => item.name).indexOf(song.name) === index;
+    });
+    return allSongsByUserNoRepeated;
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+};

@@ -3,9 +3,21 @@ import { getTopsByUser } from '../tops/tops';
 import { getSongsByTop } from '../topSongs/topSongs';
 
 
-const getArtists = async () => {
+// const getArtists = async () => {
+//   try {
+//     const response = await fetch(`${configAPI.BASE_URL}/artists`);
+//     return await response.json();
+//   } catch (err) {
+//     console.log(err);
+//     return [];
+//   }
+// };
+
+const getArtists = async ({ limit }) => {
+  const limitQuery = limit ? `?limit=${limit}` : '';
   try {
-    const response = await fetch(`${configAPI.BASE_URL}/artists`);
+    const urlToFetch = `${configAPI.BASE_URL}/artists${limitQuery}`;
+    const response = await fetch(urlToFetch);
     return await response.json();
   } catch (err) {
     console.log(err);
@@ -13,16 +25,16 @@ const getArtists = async () => {
   }
 };
 
+
 export async function getAllArtists() {
   try {
-    const data = await getArtists();
+    const data = await getArtists({ limit: 8 });
     return Object.values(data.rows);
   } catch (error) {
     console.log(error);
     return [];
   }
 }
-
 
 export const getArtistsByUser = async (idUser) => {
   try {

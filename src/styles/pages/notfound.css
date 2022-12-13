@@ -3,7 +3,6 @@
     min-height: 100vh;
     background-image: linear-gradient(to left bottom, #9a00a2, #633198, #353880, #1d355f, #212c3a);
     font-size: 2rem;
-    padding: 0 15rem;
     color: white;
     display: flex;
     flex-direction: column;
@@ -12,11 +11,11 @@
 }
 
 .NotFound__img {
-    max-width: 20rem;
+    max-width: 15rem;
 }
 
 .NotFound__text {
-    margin: 2rem 0;
+    margin: 2rem;
     color:white;
     font-size: 1.5rem;
 }
