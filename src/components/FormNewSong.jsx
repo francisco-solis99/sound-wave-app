@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import '../styles/components/modals.css';
 import { Alert } from '@mui/material';
 import { getArtists } from '../services/artists/artists';
-import { getAllGenres } from '../services/genres/genres';
+import { getGenres } from '../services/genres/genres';
 import { getArtistsByUser } from '../services/artists/artists';
 import { getGenresByUser } from '../services/genres/genres';
 // import { createSong } from '../services/songs/songs';
 
 export default function FormNewSong({ userData, setAlert, setSuccess, message, setMessage }) {
     const USER_ID = 2;
+
     const [isLoading, setIsLoading] = useState(true);
     const [artists, setArtists] = useState([]);
     const [genres, setGenres] = useState([]);
@@ -22,7 +23,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
     useEffect(() => {
         setIsLoading(true);
         setTimeout(() => {
-            getArtists({ limit: 8 })
+            getArtists({ limit: null })
                 .then(data => setArtists(data))
                 .catch(err => console.log(err))
                 .finally(() => setIsLoading(false));
@@ -32,7 +33,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
     useEffect(() => {
         setIsLoading(true);
         setTimeout(() => {
-            getAllGenres()
+            getGenres({ limit: null })
                 .then(data => setGenres(data))
                 .catch(err => console.log(err))
                 .finally(() => setIsLoading(false));
@@ -42,7 +43,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
     useEffect(() => {
         setIsLoading(true);
         getArtistsByUser(USER_ID)
-            .then(artistsUser => setArtists(prevArtists => [...prevArtists, artistsUser]))
+            .then(artistsUser => artistsUser.map(artistUser => artists.indexOf(artistUser) !== -1 ? setArtists(prevArtists => [...prevArtists, artistUser]) : ''))
             .catch(err => console.log(err))
             .finally(() => setIsLoading(false));
     }, []);
@@ -50,15 +51,19 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
     useEffect(() => {
         setIsLoading(true);
         getGenresByUser(USER_ID)
-            .then(genresUser => setGenres(prevGenres => [...prevGenres, genresUser]))
+            .then(genresUser => genresUser.map(genreUser => genres.indexOf(genreUser) !== -1 ? setGenres(prevGenres => [...prevGenres, genreUser]) : ''))
             .catch(err => console.log(err))
             .finally(() => setIsLoading(false));
     }, []);
 
     const handleSongSubmit = (e) => {
         e.preventDefault();
-        if (artistExists() && genreExists()) {
-            console.log(songName, songYear, songYoutube, songArtist, songGenre);
+        const artistId = getArtistId();
+        const genreId = getGenreId();
+
+        if (artistId !== -1 && genreId !== -1) {
+            // createSong(songName, songYear, songYoutube, artistId, genreId)
+            //     .then(response => setSuccess(response.ok));
             setAlert(true);
             setSuccess(true);
             setMessage('');
@@ -70,26 +75,14 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
         }
     };
 
-    const artistExists = () => {
+    const getArtistId = () => {
         const res = artists.filter(artist => artist.name.includes(songArtist));
-        if (res.length > 0) {
-            setSongArtist(res[0].id);
-            return true;
-        } else {
-            setMessage('We could not find the artist. Please create it first');
-            return false;
-        }
+        return res.length > 0 ? res[0].id : -1;
     };
 
-    const genreExists = () => {
+    const getGenreId = () => {
         const res = genres.filter(genre => genre.name.includes(songGenre));
-        if (res.length > 0) {
-            setSongGenre(res[0].id);
-            return true;
-        } else {
-            setMessage('We could not find the genre. Please create it first');
-            return false;
-        }
+        return res.length > 0 ? res[0].id : -1;
     };
 
     return (
@@ -103,6 +96,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                         name='songName'
                         id='songName'
                         required
+                        value={songName || ''}
                         onChange={(e) => setSongName(e.target.value)}>
                     </input>
                 </label>
@@ -119,6 +113,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                         name='songYear'
                         id='songYear'
                         required
+                        value={songYear || ''}
                         onChange={(e) => setSongYear(e.target.value)}>
                     </input>
                 </label>
@@ -132,6 +127,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                         name='songYoutube'
                         id='songYoutube'
                         required
+                        value={songYoutube || ''}
                         onChange={(e) => setSongYoutube(e.target.value)}>
                     </input>
                 </label>
@@ -145,11 +141,12 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                         name='songArtist'
                         id='songArtist'
                         required
+                        value={songArtist || ''}
                         onChange={(e) => setSongArtist(e.target.value)}>
                     </input>
                     <datalist id="song-artists">
                         {
-                            !isLoading && artists.map(artist => <option key={artist.id} data-value={artist.id} value={artist.name} />)
+                            !isLoading && artists.map(artist => <option key={artist.id} value={artist.name} />)
                         }
                     </datalist>
                 </label>
@@ -163,11 +160,12 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                         name='songGenre'
                         id='songGenre'
                         required
+                        value={songGenre || ''}
                         onChange={(e) => setSongGenre(e.target.value)}>
                     </input>
                     <datalist id="song-genres">
                         {
-                            !isLoading && genres.map(artist => <option key={artist.id} data-value={artist.id} value={artist.name} />)
+                            !isLoading && genres.map(genre => <option key={genre.id} value={genre.name} />)
                         }
                     </datalist>
                 </label>
