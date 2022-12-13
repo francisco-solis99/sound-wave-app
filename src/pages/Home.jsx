@@ -52,7 +52,7 @@ export default function Home() {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      getSongsWithSample({ limit: 4 })
+      getSongsWithSample({ limit: 6 })
         .then(songsData => {
           const songListUI = songsData.map((song) => ({ ...song, playing: false }));
           setSongs(songListUI);
