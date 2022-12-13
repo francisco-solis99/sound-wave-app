@@ -7,6 +7,7 @@ export default function FormNewTop({ userData, setAlert, setSuccess }) {
     const [topDescription, setTopDescription] = useState('');
 
     const handleTopSubmit = (e) => {
+        e.preventDefault();
         console.log(topName, topDescription);
         // createTop(e, topName, topDescription, userData.id)
         //     .then(response => setSuccess(response.ok));

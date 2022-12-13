@@ -10,6 +10,7 @@ export default function FormNewGenre({ userData, setAlert, setSuccess }) {
     const [genreImageURL, setGenreImageURL] = useState(IMAGE_URL_DEFAULT);
 
     const handleGenreSubmit = (e) => {
+        e.preventDefault();
         console.log(genreName, genreImageURL);
         // createGenre(e, genreName, genreImageURL)
         //     .then(response => setSuccess(response.ok));

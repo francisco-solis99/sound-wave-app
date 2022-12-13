@@ -13,6 +13,7 @@ export default function FormNewArtist({ userData, setAlert, setSuccess }) {
     const [artistImageURL, setArtistImageURL] = useState(IMAGE_URL_DEFAULT);
 
     const handleArtistSubmit = (e) => {
+        e.preventDefault();
         console.log(artistName, artistCountry, artistYoutube, artistImageURL);
         // createArtist(e, artistName, artistCountry, artistYoutube, artistImageURL)
         //     .then(response => setSuccess(response.ok));
