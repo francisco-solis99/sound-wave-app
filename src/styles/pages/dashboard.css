@@ -32,10 +32,18 @@
 }
 
 .Dashboard__profile {
-    margin: 2rem;
+    margin: 1rem 2rem;
     display: flex;
     justify-content: flex-end;
 }
+
+.Dashboard__link {
+    color: white;
+}
+
+.Dashboard__link:hover {
+    color: var(--pink);
+} 
 
 .Dashboard__nav-bar {
     margin-bottom: 2rem;

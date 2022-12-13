@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { Link } from 'react-router-dom';
 
 import '../styles/pages/dashboard.css';
 import Loader from '../components/Loader';
@@ -107,8 +108,12 @@ export default function Dashboard() {
     <main className='Dashboard__main'>
 
       <section className='Dashboard__header'>
-        <h1 className='Dashboard__title'>SoundWave</h1>
-        <LogoutIcon fontSize='large' />
+        <Link to="/">
+          <h1 className='Dashboard__title'>SoundWave</h1>
+        </Link>
+        <Link to="/" className='Dashboard__link'>
+          <LogoutIcon fontSize='large' />
+        </Link>
       </section>
 
       <section className='Dashboard__profile'>
