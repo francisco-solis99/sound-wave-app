@@ -15,14 +15,13 @@ export default function FormNewArtist({ userData, setAlert, setSuccess }) {
     const handleArtistSubmit = (e) => {
         e.preventDefault();
         console.log(artistName, artistCountry, artistYoutube, artistImageURL);
-        // createArtist(e, artistName, artistCountry, artistYoutube, artistImageURL)
+        // createArtist(artistName, artistCountry, artistYoutube, artistImageURL)
         //     .then(response => setSuccess(response.ok));
         setArtistName('');
         setArtistCountry('');
         setArtistYoutube('');
         setArtistImageURL(IMAGE_URL_DEFAULT);
         setAlert(true);
-
     };
 
     return (

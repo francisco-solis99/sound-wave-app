@@ -9,7 +9,7 @@ export default function FormNewTop({ userData, setAlert, setSuccess }) {
     const handleTopSubmit = (e) => {
         e.preventDefault();
         console.log(topName, topDescription);
-        // createTop(e, topName, topDescription, userData.id)
+        // createTop(topName, topDescription, userData.id)
         //     .then(response => setSuccess(response.ok));
         setTopName('');
         setTopDescription('');
