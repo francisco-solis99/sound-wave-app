@@ -1,40 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/components/modals.css';
 import { Alert } from '@mui/material';
+import { getArtists } from '../services/artists/artists';
+import { getAllGenres } from '../services/genres/genres';
+import { getArtistsByUser } from '../services/artists/artists';
+import { getGenresByUser } from '../services/genres/genres';
 // import { createSong } from '../services/songs/songs';
 
 export default function FormNewSong({ userData, setAlert, setSuccess, message, setMessage }) {
-    // const USER_ID = 2;
-
-    const artists = [{
-        name: 'Taylor Swift',
-        id: 1
-    }, {
-        name: 'Rihanna',
-        id: 2
-    },
-    {
-        name: 'Tini',
-        id: 3
-    }];
-
-    const genres = [{
-        name: 'Pop',
-        id: 1
-    }, {
-        name: 'Rock',
-        id: 2
-    },
-    {
-        name: 'Indie',
-        id: 3
-    }];
+    const USER_ID = 2;
+    const [isLoading, setIsLoading] = useState(true);
+    const [artists, setArtists] = useState([]);
+    const [genres, setGenres] = useState([]);
 
     const [songName, setSongName] = useState('');
     const [songYear, setSongYear] = useState('');
     const [songYoutube, setSongYoutube] = useState('');
     const [songArtist, setSongArtist] = useState('');
     const [songGenre, setSongGenre] = useState('');
+
+    useEffect(() => {
+        setIsLoading(true);
+        setTimeout(() => {
+            getArtists({ limit: 8 })
+                .then(data => setArtists(data))
+                .catch(err => console.log(err))
+                .finally(() => setIsLoading(false));
+        }, 100);
+    }, []);
+
+    useEffect(() => {
+        setIsLoading(true);
+        setTimeout(() => {
+            getAllGenres()
+                .then(data => setGenres(data))
+                .catch(err => console.log(err))
+                .finally(() => setIsLoading(false));
+        }, 100);
+    }, []);
+
+    useEffect(() => {
+        setIsLoading(true);
+        getArtistsByUser(USER_ID)
+            .then(artistsUser => setArtists(prevArtists => [...prevArtists, artistsUser]))
+            .catch(err => console.log(err))
+            .finally(() => setIsLoading(false));
+    }, []);
+
+    useEffect(() => {
+        setIsLoading(true);
+        getGenresByUser(USER_ID)
+            .then(genresUser => setGenres(prevGenres => [...prevGenres, genresUser]))
+            .catch(err => console.log(err))
+            .finally(() => setIsLoading(false));
+    }, []);
 
     const handleSongSubmit = (e) => {
         e.preventDefault();
@@ -52,7 +71,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
     };
 
     const artistExists = () => {
-        const res = artists.filter(artist => artist.name.includes(songArtist));// artist.name.includes
+        const res = artists.filter(artist => artist.name.includes(songArtist));
         if (res.length > 0) {
             setSongArtist(res[0].id);
             return true;
@@ -63,7 +82,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
     };
 
     const genreExists = () => {
-        const res = genres.filter(genre => genre.name.includes(songGenre));// artist.name.includes
+        const res = genres.filter(genre => genre.name.includes(songGenre));
         if (res.length > 0) {
             setSongGenre(res[0].id);
             return true;
@@ -84,8 +103,8 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                         name='songName'
                         id='songName'
                         required
-                        onChange={(e) => setSongName(e.target.value)}
-                    ></input>
+                        onChange={(e) => setSongName(e.target.value)}>
+                    </input>
                 </label>
             </div>
             <div className='modal-input'>
@@ -100,8 +119,8 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                         name='songYear'
                         id='songYear'
                         required
-                        onChange={(e) => setSongYear(e.target.value)}
-                    ></input>
+                        onChange={(e) => setSongYear(e.target.value)}>
+                    </input>
                 </label>
             </div>
             <div className='modal-input'>
@@ -113,8 +132,8 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                         name='songYoutube'
                         id='songYoutube'
                         required
-                        onChange={(e) => setSongYoutube(e.target.value)}
-                    ></input>
+                        onChange={(e) => setSongYoutube(e.target.value)}>
+                    </input>
                 </label>
             </div>
             <div className='modal-input'>
@@ -126,11 +145,11 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                         name='songArtist'
                         id='songArtist'
                         required
-                        onChange={(e) => setSongArtist(e.target.value)}
-                    ></input>
+                        onChange={(e) => setSongArtist(e.target.value)}>
+                    </input>
                     <datalist id="song-artists">
                         {
-                            artists.map(artist => <option key={artist.id} data-value={artist.id} value={artist.name} />)
+                            !isLoading && artists.map(artist => <option key={artist.id} data-value={artist.id} value={artist.name} />)
                         }
                     </datalist>
                 </label>
@@ -144,11 +163,11 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                         name='songGenre'
                         id='songGenre'
                         required
-                        onChange={(e) => setSongGenre(e.target.value)}
-                    ></input>
+                        onChange={(e) => setSongGenre(e.target.value)}>
+                    </input>
                     <datalist id="song-genres">
                         {
-                            genres.map(artist => <option key={artist.id} data-value={artist.id} value={artist.name} />)
+                            !isLoading && genres.map(artist => <option key={artist.id} data-value={artist.id} value={artist.name} />)
                         }
                     </datalist>
                 </label>
@@ -157,11 +176,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                 message.length > 0 ? <Alert severity="warning" style={{ margin: '1rem 0' }}> {message} </Alert> : ''
             }
 
-            <input
-                type='submit'
-                value='Submit'
-                className='btn btn-primary'
-            />
+            <input type='submit' value='Submit' className='btn btn-primary' />
         </form>
     );
 }
