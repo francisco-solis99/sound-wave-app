@@ -1,11 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
 import '../styles/components/modals.css';
-import { createTop } from '../services/tops/tops';
+// import { createTop } from '../services/tops/tops';
+// import { createSong } from '../services/songs/songs';
+// import { createArtist } from '../services/artists/artists';
+// import { createGenre } from '../services/genres/genres';
 import { Alert, AlertTitle } from '@mui/material';
 
 export default function ModalCreate() {
-    const USER_ID = 2;
+    // const USER_ID = 2;
 
     const IMAGE_URL_DEFAULT =
         'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
@@ -37,11 +40,11 @@ export default function ModalCreate() {
         switch (option) {
             case 'top':
                 console.log(topName, topDescription);
-                createTop(e, topName, topDescription, USER_ID);
+                // createTop(e, topName, topDescription, USER_ID)
+                //     .then(response => setSuccess(response.ok));
                 setTopName('');
                 setTopDescription('');
                 setAlert(true);
-                setSuccess(true);
                 break;
             case 'song':
                 console.log(songName, songYear, songYoutube, songArtist, songGenre);
@@ -55,15 +58,18 @@ export default function ModalCreate() {
                 break;
             case 'artist':
                 console.log(artistName, artistCountry, artistYoutube, artistImageURL);
+                // createArtist(e, artistName, artistCountry, artistYoutube, artistImageURL)
+                //     .then(response => setSuccess(response.ok));
                 setArtistName('');
                 setArtistCountry('');
                 setArtistYoutube('');
                 setArtistImageURL(IMAGE_URL_DEFAULT);
                 setAlert(true);
-                setSuccess(true);
                 break;
             case 'genre':
                 console.log(genreName, genreImageURL);
+                // createGenre(e, genreName, genreImageURL)
+                //     .then(response => setSuccess(response.ok));
                 setGenreName('');
                 setGenreImageURL(IMAGE_URL_DEFAULT);
                 setAlert(true);

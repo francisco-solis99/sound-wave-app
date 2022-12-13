@@ -35,3 +35,24 @@ export const getArtistsByUser = async (idUser) => {
     return [];
   }
 };
+
+export async function createArtist(e, name, country, youtube, imageURL) {
+  e.preventDefault();
+  try {
+    const requestOptions = {
+      // TODO: check if artists exists
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        country: country,
+        ytchannel: youtube,
+        urlImage: imageURL
+      })
+    };
+    // TODO: Update URL
+    return await fetch('http://localhost:4000/api/artists', requestOptions);
+  } catch (err) {
+    console.log(err);
+  }
+}

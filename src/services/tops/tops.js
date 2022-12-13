@@ -20,29 +20,22 @@ export const getTopsByUser = async (userId) => {
   }
 };
 
-export const createTop = async (e, name, description, userid) => {
+export async function createTop(e, name, description, userid) {
   e.preventDefault();
   try {
-    let res = await fetch(`${configAPI.BASE_URL}/tops`, {
+    const requestOptions = {
+      // TODO: check if name exists
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: name,
         description: description,
-        userID: userid
-      }),
-    });
-    await res.json();
-
-    console.log(res);
-
-    // if (res.status === 200) {
-    //   setName("");
-    //   setEmail("");
-    //   setMessage("User created successfully");
-    // } else {
-    //   setMessage("Some error occured");
-    // }
+        userId: userid
+      })
+    };
+    // TODO: Update URL
+    return await fetch('http://localhost:4000/api/tops', requestOptions);
   } catch (err) {
     console.log(err);
   }
-};
+}

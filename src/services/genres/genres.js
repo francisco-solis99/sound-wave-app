@@ -44,3 +44,22 @@ export async function getAllGenres() {
     return [];
   }
 }
+
+export async function createGenre(e, name, imageURL) {
+  e.preventDefault();
+  try {
+    const requestOptions = {
+      // TODO: check if genre exists
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        urlImage: imageURL
+      })
+    };
+    // TODO: Update URL
+    return await fetch('http://localhost:4000/api/genres', requestOptions);
+  } catch (err) {
+    console.log(err);
+  }
+}
