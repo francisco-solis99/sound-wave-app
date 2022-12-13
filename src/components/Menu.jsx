@@ -20,7 +20,7 @@ export default function Menu() {
             setShowBar(!showBar);
           }}
         >
-          <MenuIcon />
+          <MenuIcon fontSize='medium'/>
         </button>
         <div className="nav__menu" id={showBar ? 'hidden' : ''}>
           <ul className="list__menu">
@@ -37,12 +37,12 @@ export default function Menu() {
         </div>
         <button className="user__icon">
           <Link to="/signup">
-            <PersonOutlineOutlinedIcon />
+            <PersonOutlineOutlinedIcon fontSize='medium'/>
           </Link>
         </button>
         <button className="exit__button">
           <Link to="/dashboard">
-            <LogoutOutlinedIcon />
+            <LogoutOutlinedIcon fontSize='medium'/>
           </Link>
         </button>
       </div>
