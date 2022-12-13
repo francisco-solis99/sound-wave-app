@@ -41,6 +41,7 @@ export default class GenreSlider extends Component {
         }
       ]
     };
+    
     return (
       <div>
         <Slider {...settings}>

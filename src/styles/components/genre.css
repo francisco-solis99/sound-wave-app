@@ -1,4 +1,4 @@
-.genre {
+.Genre {
     min-height: 30vh;
     display: flex;
     flex-direction: column;
@@ -9,7 +9,7 @@
     background-position: center;
 }
 
-.genre h1 {
+.Genre h1 {
     padding: 1rem;
     font-size: 2rem;
     text-align: center;

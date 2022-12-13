@@ -1,18 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-
 import '../styles/pages/searchpage.css';
 import SearchBar from '../components/SearchBar';
 import Menu from '../components/Menu';
 import Loader from '../components/Loader';
 import SongsList from '../components/SongsList';
 import { getSongsWithSample } from '../services/songs/songs';
-// import { searchQuery } from '../services/search/search';
-
-
 
 export default function SongsPage() {
-
   const [songs, setSongs] = useState([]);
   const allSongs = useRef([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -45,8 +40,6 @@ export default function SongsPage() {
     if (!songs.length) return (<p className="search__no-results">No results for your search</p>);
     return <SongsList songs={songs} />;
   };
-
-
 
   return (
     <div className="searchpage__wrapper">

@@ -14,13 +14,8 @@ export default function Menu() {
         <Link to="/">Soundwave</Link>
       </h1>
       <div className="side__container">
-        <button
-          className="nav__toggle"
-          onClick={() => {
-            setShowBar(!showBar);
-          }}
-        >
-          <MenuIcon fontSize='medium'/>
+        <button className="nav__toggle" onClick={() => setShowBar(!showBar)}>
+          <MenuIcon fontSize='medium' />
         </button>
         <div className="nav__menu" id={showBar ? 'hidden' : ''}>
           <ul className="list__menu">
@@ -37,12 +32,12 @@ export default function Menu() {
         </div>
         <button className="user__icon">
           <Link to="/signup">
-            <PersonOutlineOutlinedIcon fontSize='medium'/>
+            <PersonOutlineOutlinedIcon fontSize='medium' />
           </Link>
         </button>
         <button className="exit__button">
           <Link to="/dashboard">
-            <LogoutOutlinedIcon fontSize='medium'/>
+            <LogoutOutlinedIcon fontSize='medium' />
           </Link>
         </button>
       </div>

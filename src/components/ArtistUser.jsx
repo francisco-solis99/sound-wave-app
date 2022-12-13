@@ -1,7 +1,6 @@
 import React from 'react';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 
-
 export default function ArtistUser({ artist }) {
   return (
     <div className="dashboard__item ArtistUser">

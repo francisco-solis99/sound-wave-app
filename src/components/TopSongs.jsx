@@ -2,7 +2,6 @@ import React from 'react';
 import '../styles/components/topsongs.css';
 
 export default function TopSongs(props) {
-
   return (
     <article className="Top__songs">
       <h3 className="Tops__songs-title">{props.topData.name}</h3>

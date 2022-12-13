@@ -1,6 +1,5 @@
 import configAPI from '../config';
 
-
 export const searchQuery = async ({ query, toSearch }) => {
   const searchQuery = query ? `?query=${query}` : '';
   try {

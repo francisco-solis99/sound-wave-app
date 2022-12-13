@@ -32,7 +32,6 @@
     font-family: var(--font-text);
     font-size: 1rem;
     margin-top: .5rem;
-
 }
 
 /* Media Queries */
@@ -52,6 +51,5 @@
 
     .Last__line {
         font-size: 1.2rem;
-
     }
 }

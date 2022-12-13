@@ -2,17 +2,6 @@ import configAPI from '../config';
 import { getTopsByUser } from '../tops/tops';
 import { getSongsByTop } from '../topSongs/topSongs';
 
-
-// const getArtists = async () => {
-//   try {
-//     const response = await fetch(`${configAPI.BASE_URL}/artists`);
-//     return await response.json();
-//   } catch (err) {
-//     console.log(err);
-//     return [];
-//   }
-// };
-
 export const getArtists = async ({ limit }) => {
   const limitQuery = limit ? `?limit=${limit}` : '';
   try {
@@ -46,4 +35,3 @@ export const getArtistsByUser = async (idUser) => {
     return [];
   }
 };
-

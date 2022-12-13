@@ -5,11 +5,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
-import NotFound from '../pages/NotFound';
-import Dashboard from '../pages/Dashboard';
 import SongsPage from '../pages/SongsPage';
 import ArtistsPage from '../pages/ArtistsPage';
 import GenresPage from '../pages/GenresPage';
+import Dashboard from '../pages/Dashboard';
+import NotFound from '../pages/NotFound';
 
 function App() {
   return (
@@ -25,7 +25,6 @@ function App() {
         {/* Protected route */}
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/*' element={<NotFound />} />
-
       </Routes>
     </div>
   );

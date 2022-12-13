@@ -42,6 +42,7 @@ export default class ArtistSlider extends Component {
         }
       ]
     };
+
     return (
       <div>
         <Slider {...settings}>

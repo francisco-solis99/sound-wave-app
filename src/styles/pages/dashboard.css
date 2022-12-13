@@ -43,10 +43,10 @@
 
 .Dashboard__link:hover {
     color: var(--pink);
-} 
+}
 
 .Dashboard__nav-bar {
-display: none;
+    display: none;
 }
 
 .Dashboard__nav-link {
@@ -101,7 +101,6 @@ display: none;
     gap: 2em;
 }
 
-
 /* Individual items sections */
 
 /* Tops */
@@ -127,7 +126,7 @@ display: none;
 .SongUser {
     min-width: 15em;
     width: 100%;
-} 
+}
 
 /* Artists */
 .ArtistUser {
@@ -158,13 +157,6 @@ display: none;
     align-items: center;
 }
 
-
-@media (min-width:320px)  { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ }
-@media (min-width:480px)  { /* smartphones, Android phones, landscape iPhone */ }
-@media (max-width:600px)  { 
-
-}
-
 @media screen and (min-width: 600px) {
     .Dashboard__nav-bar-mobile {
         display: none;
@@ -176,5 +168,5 @@ display: none;
         gap: 1em;
         justify-content: center;
         flex-wrap: wrap;
-    }    
-  }
+    }
+}

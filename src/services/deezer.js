@@ -9,7 +9,4 @@ export const deezerAPI = {
   }
 };
 
-
-
 export default deezerAPI;
-

@@ -147,7 +147,6 @@ export default function Home() {
           </section>
           {/* ----------------- END OF SONGS SECTION ----------------- */}
 
-
           {/* ----------------- START OF ARTISTS SECTION ----------------- */}
           <section className="section Home__artists" id='artists'>
             <div className="container Home__container">
@@ -172,7 +171,6 @@ export default function Home() {
             </div>
           </section>
           {/* ----------------- END OF GENRES SECTION ----------------- */}
-
         </div>
       </main>
     </div>

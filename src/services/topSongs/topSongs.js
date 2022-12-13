@@ -30,7 +30,6 @@ export const getSongsTops = async () => {
   }
 };
 
-
 export const getSongsTopByUser = async (idUser) => {
   try {
     const tops = await getTopsByUser(idUser);

@@ -4,7 +4,6 @@ import { Slider } from '@mui/material';
 import TopSongs from './TopSongs';
 
 export default function TopSlider({ topData }) {
-
   const [topSong, setTopSong] = useState({});
 
   useEffect(() => {

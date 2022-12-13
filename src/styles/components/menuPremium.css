@@ -5,7 +5,7 @@
     padding: 20px;
 }
 
-.logo__menu{
+.logo__menu {
     padding: 0;
     font-size: 2.5rem;
     font-family: var(--font-logo);
@@ -15,7 +15,7 @@
     -webkit-text-fill-color: transparent;
 }
 
-.side__container{
+.side__container {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -23,71 +23,78 @@
     position: relative;
 }
 
-.list__menu{
+.list__menu {
     list-style: none;
     color: var(--white);
     display: flex;
     font-size: 1.2em;
 }
 
-.list__menu li{
+.list__menu li {
     margin-top: 15px;
     margin-left: 20px;
 }
 
-.menu__container a{
+.menu__container a {
     color: white;
 }
 
-.list__menu li:hover{
+.list__menu li:hover {
     text-shadow: 1px 1px var(--pink);
 }
-.nav__toggle, .exit__button, .user__icon{
+
+.nav__toggle,
+.exit__button,
+.user__icon {
     color: var(--white);
     border: none;
     background-color: transparent;
     margin-left: 1rem;
 }
 
-.nav__toggle{
+.nav__toggle {
     display: none;
 }
 
-@media screen and (max-width: 948px){
-    .logo__menu{   
+@media screen and (max-width: 948px) {
+    .logo__menu {
         font-size: 1.3em;
     }
-    .list__menu li{
-        margin:0;
+
+    .list__menu li {
+        margin: 0;
     }
 
- .list__menu{
-      display: none;
+    .list__menu {
+        display: none;
     }
 
-    #hidden .list__menu{
+    #hidden .list__menu {
         display: flex;
         align-items: center;
         background-color: var(--dark-grey);
         flex-direction: column;
         position: relative;
-        font-size: 1em; 
+        font-size: 1em;
         padding: 1em;
         gap: 1.2em
     }
-    #hidden { 
+
+    #hidden {
         position: absolute;
         top: 75%;
         left: -65%;
-        width: 80%; 
+        width: 80%;
     }
-    
-    .nav__toggle, .exit__button, .user__icon{
+
+    .nav__toggle,
+    .exit__button,
+    .user__icon {
         margin-left: .4rem;
         min-width: 30px;
     }
-    .nav__toggle{
+
+    .nav__toggle {
         display: flex;
     }
 }
-

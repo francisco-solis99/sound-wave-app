@@ -17,7 +17,7 @@ export default function ModalTop({ topData }) {
               <ol>
                 {
                   topData.songs.map(song =>
-                    <li>{song.name} - {song.artist.name}</li>)
+                    <li key={song.name}> {song.name} - {song.artist.name}</li>)
                 }
               </ol>}
           </div>

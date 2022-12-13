@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import Song from './Song';
-
+import React, { useState, useEffect } from 'react';
 import '../styles/components/songslist.css';
+import Song from './Song';
 
 export default function SongsList({ songs }) {
   const [songsList, setSongsList] = useState([]);

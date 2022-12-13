@@ -1,12 +1,10 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-
 import '../styles/components/audio.css';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
 
 export default function Audio({ song, playPause }) {
   const refAudio = useRef();
-
 
   const managePlayPause = useCallback(() => {
     if (song.playing) {
@@ -30,7 +28,6 @@ export default function Audio({ song, playPause }) {
   useEffect(() => {
     managePlayPause();
   }, [managePlayPause]);
-
 
   return (
     <div className="Audio">

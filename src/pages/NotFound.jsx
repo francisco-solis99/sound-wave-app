@@ -8,7 +8,6 @@ export default function NotFound() {
     <div className='NotFound'>
       <img src={NotFoundImg} alt="Not found icon" className='NotFound__img' />
       <p className='NotFound__text'>Please don't stop the music, <Link to="/" className='NotFound__link'>go back home</Link> .</p>
-
     </div>
   );
 }

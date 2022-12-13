@@ -15,14 +15,13 @@
     background-color: transparent;
 }
 
-
-.SearchBar__button{
+.SearchBar__button {
     color: var(--white);
     border: none;
     background-color: transparent;
 }
 
-.SearchBar__input::placeholder{
+.SearchBar__input::placeholder {
     color: var(--white);
     font-size: 1.1em;
 }

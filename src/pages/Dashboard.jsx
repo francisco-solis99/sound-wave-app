@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
-
 import '../styles/pages/dashboard.css';
 import Loader from '../components/Loader';
 import ModalTop from '../components/ModalTop';
@@ -17,7 +16,6 @@ import { getGenresByUser } from '../services/genres/genres';
 import SongUser from '../components/SongUser';
 
 export default function Dashboard() {
-
   const [isLoading, setIsLoading] = useState(false);
   const [topsUser, setTopsUser] = useState([]);
   const [songsUser, setSongsUser] = useState([]);
@@ -32,45 +30,31 @@ export default function Dashboard() {
     getSongsTopByUser(USER_ID)
       .then(tops => setTopsUser(tops))
       .catch(err => console.log(err))
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .finally(() => setIsLoading(false));
   }, []);
 
   useEffect(() => {
     setIsLoading(true);
     getSongsByUser(USER_ID)
-      .then(songs => {
-        setSongsUser(songs);
-      })
+      .then(songs => setSongsUser(songs))
       .catch(err => console.log(err))
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .finally(() => setIsLoading(false));
   }, []);
 
   useEffect(() => {
     setIsLoading(true);
     getArtistsByUser(USER_ID)
-      .then(artists => {
-        setArtistsUser(artists);
-      })
+      .then(artists => setArtistsUser(artists))
       .catch(err => console.log(err))
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .finally(() => setIsLoading(false));
   }, []);
 
   useEffect(() => {
     setIsLoading(true);
     getGenresByUser(USER_ID)
-      .then(genres => {
-        setGenresUser(genres);
-      })
+      .then(genres => setGenresUser(genres))
       .catch(err => console.log(err))
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .finally(() => setIsLoading(false));
   }, []);
 
   const [isSelected, setIsSelected] = useState({
@@ -182,17 +166,17 @@ export default function Dashboard() {
 
           {isSelected.songs &&
             <div className='Dashboard__list'>
-            {
-              !isLoading
-                ?
-                songsUser.map(song =>
-                  <SongUser songData={song} key={song.id}/>
-                )
-                :
-                <Loader />
-            }
-            <ModalTop topData={modalTopData} />
-          </div>
+              {
+                !isLoading
+                  ?
+                  songsUser.map(song =>
+                    <SongUser songData={song} key={song.id} />
+                  )
+                  :
+                  <Loader />
+              }
+              <ModalTop topData={modalTopData} />
+            </div>
           }
         </div>
       </section>

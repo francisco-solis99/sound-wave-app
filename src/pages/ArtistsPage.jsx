@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import '../styles/pages/searchpage.css';
 import SearchBar from '../components/SearchBar';
 import Menu from '../components/Menu';
@@ -10,7 +9,6 @@ import { getArtists } from '../services/artists/artists';
 import { searchQuery } from '../services/search/search';
 
 export default function ArtistsPage() {
-
   const [artists, setArtists] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [modalArtistData, setModalArtistData] = useState({});
@@ -19,14 +17,9 @@ export default function ArtistsPage() {
     setIsLoading(true);
     setTimeout(() => {
       getArtists({ limit: null })
-        .then(data => {
-          console.log(data);
-          setArtists(data);
-        })
+        .then(data => setArtists(data))
         .catch(err => console.log(err))
-        .finally(() => {
-          setIsLoading(false);
-        });
+        .finally(() => setIsLoading(false));
     }, 100);
   }, []);
 
@@ -35,13 +28,9 @@ export default function ArtistsPage() {
     const toSearch = 'artists';
     setIsLoading(true);
     searchQuery({ query, toSearch })
-      .then(data => {
-        setArtists(data);
-      })
+      .then(data => setArtists(data))
       .catch(err => console.log(err))
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .finally(() => setIsLoading(false));
   };
 
   const renderResults = () => {
@@ -50,7 +39,6 @@ export default function ArtistsPage() {
       artists.map(artist => <Artist key={artist.id} artistData={artist} setModalArtistData={setModalArtistData} />)
     );
   };
-
 
   return (
     <div className="searchpage__wrapper">

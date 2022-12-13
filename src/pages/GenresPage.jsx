@@ -8,24 +8,17 @@ import Genre from '../components/Genre';
 import { getAllGenres } from '../services/genres/genres';
 import { searchQuery } from '../services/search/search';
 
-
 export default function GenresPage() {
-
   const [genres, setGenres] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
 
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
       getAllGenres()
-        .then(data => {
-          setGenres(data);
-        })
+        .then(data => setGenres(data))
         .catch(err => console.log(err))
-        .finally(() => {
-          setIsLoading(false);
-        });
+        .finally(() => setIsLoading(false));
     }, 200);
   }, []);
 
@@ -33,13 +26,9 @@ export default function GenresPage() {
     const toSearch = 'genres';
     setIsLoading(true);
     searchQuery({ query, toSearch })
-      .then(data => {
-        setGenres(data);
-      })
+      .then(data => setGenres(data))
       .catch(err => console.log(err))
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .finally(() => setIsLoading(false));
   };
 
   const renderResults = () => {
@@ -60,8 +49,6 @@ export default function GenresPage() {
       <div className="searchpage__bar">
         <SearchBar className="searchpage__bar" searchCallback={search} />
       </div>
-
-
 
       <main>
         <div className="container">

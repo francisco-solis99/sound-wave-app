@@ -1,7 +1,6 @@
 import React from 'react';
-import Audio from './Audio';
-
 import '../styles/components/song.css';
+import Audio from './Audio';
 
 export default function Song(props) {
   return (

@@ -57,7 +57,7 @@ export const getSongsByUser = async (idUser) => {
       const listSongs = data.map(item => item.song);
       return listSongs;
     });
-    
+
     const songsByUser = await Promise.all(songsByUserPromises);
     const allSongsByUser = songsByUser.flat(Infinity);
     const allSongsByUserNoRepeated = allSongsByUser.filter((song, index, self) => {

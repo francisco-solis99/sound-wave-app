@@ -2,14 +2,14 @@
   max-width: 70%;
   margin: auto;
   display: grid;
-  justify-items:first baseline;
+  justify-items: first baseline;
   gap: 1.75em;
   grid-template-columns: repeat(1, 1fr);
 }
 
 @media screen and (min-width: 768px) {
   .SongsList {
-      width: fit-content;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
+    width: fit-content;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }
