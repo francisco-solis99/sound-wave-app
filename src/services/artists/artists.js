@@ -13,28 +13,18 @@ import { getSongsByTop } from '../topSongs/topSongs';
 //   }
 // };
 
-const getArtists = async ({ limit }) => {
+export const getArtists = async ({ limit }) => {
   const limitQuery = limit ? `?limit=${limit}` : '';
   try {
     const urlToFetch = `${configAPI.BASE_URL}/artists${limitQuery}`;
     const response = await fetch(urlToFetch);
-    return await response.json();
+    const { rows } = await response.json();
+    return rows;
   } catch (err) {
     console.log(err);
     return [];
   }
 };
-
-
-export async function getAllArtists() {
-  try {
-    const data = await getArtists({ limit: 8 });
-    return Object.values(data.rows);
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
-}
 
 export const getArtistsByUser = async (idUser) => {
   try {

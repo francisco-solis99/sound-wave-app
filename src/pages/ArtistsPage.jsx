@@ -6,7 +6,7 @@ import Menu from '../components/Menu';
 import Loader from '../components/Loader';
 import Artist from '../components/Artist';
 import ModalArtist from '../components/ModalArtist';
-import { getAllArtists } from '../services/artists/artists';
+import { getArtists } from '../services/artists/artists';
 import { searchQuery } from '../services/search/search';
 
 export default function ArtistsPage() {
@@ -18,8 +18,9 @@ export default function ArtistsPage() {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      getAllArtists()
+      getArtists({ limit: null })
         .then(data => {
+          console.log(data);
           setArtists(data);
         })
         .catch(err => console.log(err))
