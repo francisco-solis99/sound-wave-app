@@ -4,7 +4,7 @@ import { createArtist } from '../services/artists/artists';
 
 // Display the form for creating a new Artist
 // Handle the POST method to create a new Artist
-export default function FormNewArtist({ setAlert, setSuccess }) {
+export default function FormNewArtist({ setAlert, setSuccess, handlerChangeUserArtists }) {
     const IMAGE_URL_DEFAULT =
         'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
 
@@ -17,7 +17,14 @@ export default function FormNewArtist({ setAlert, setSuccess }) {
         e.preventDefault();
         console.log(artistName, artistCountry, artistYoutube, artistImageURL);
         createArtist(artistName, artistCountry, artistYoutube, artistImageURL)
-            .then(response => {
+            .then(async (response) => {
+                // const { data: newArtist } = await response.json();
+                // handlerChangeUserArtists((prev) => {
+                //     return [
+                //         ...prev,
+                //         newArtist
+                //     ];
+                // });
                 setSuccess(response.ok);
             })
             .catch(err => console.log(err))

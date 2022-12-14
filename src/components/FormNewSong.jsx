@@ -10,7 +10,7 @@ import { getUser } from '../services/auth/auth';
 
 // Display the form for creating a new Song
 // Handle the POST method to create a new Song
-export default function FormNewSong({ setAlert, setSuccess, message, setMessage }) {
+export default function FormNewSong({ setAlert, setSuccess, message, setMessage, handlerChangeUserSongs }) {
     const USER_ID = JSON.parse(getUser()).userId;
 
 
@@ -72,7 +72,18 @@ export default function FormNewSong({ setAlert, setSuccess, message, setMessage 
 
         if (artistId !== -1 && genreId !== -1) {
             createSong(songName, songYear, songYoutube, artistId, genreId)
-                .then(response => setSuccess(response.ok))
+                .then(async (response) => {
+                    const { data: newSong } = await response.json();
+                    console.log(newSong);
+                    handlerChangeUserSongs((prev) => {
+                        console.log(prev);
+                        return [
+                            ...prev,
+                            newSong
+                        ];
+                    });
+                    setSuccess(response.ok);
+                })
                 .catch((err) => console.log(err))
                 .finally(() => {
                     setAlert(true);

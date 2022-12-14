@@ -1,5 +1,7 @@
 import configAPI from '../config';
 import { getTops, getTopsByUser } from '../tops/tops';
+import { getToken } from '../auth/auth';
+
 
 export const getSongsByTop = async ({ topId }) => {
   try {
@@ -11,9 +13,9 @@ export const getSongsByTop = async ({ topId }) => {
   }
 };
 
-export const getSongsTops = async () => {
+export const getSongsTops = async (limit = null) => {
   try {
-    const { rows: tops } = await getTops();
+    const { rows: tops } = await getTops({ limit });
     const songsByTop = tops.map(async (top) => {
       const { data } = await getSongsByTop({ topId: top.id });
       const listSongs = data.map(item => item.song);
@@ -46,5 +48,26 @@ export const getSongsTopByUser = async (idUser) => {
   } catch (err) {
     console.log(err);
     return [];
+  }
+};
+
+
+// Add a song to a top
+export const createSongTop = async (topId, songId) => {
+  try {
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': getToken()
+      },
+      body: JSON.stringify({
+        topId,
+        songId
+      })
+    };
+    return await fetch(`${configAPI.BASE_URL}/topList`, requestOptions);
+  } catch (err) {
+    console.log(err);
   }
 };

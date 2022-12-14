@@ -36,7 +36,7 @@ export default function Home() {
   useEffect(() => {
     setIsTopDataLoading(true);
     setTimeout(() => {
-      getSongsTops()
+      getSongsTops(3)
         .then(data => setTopSongs(data))
         .catch(err => console.log(err))
         .finally(() => setIsTopDataLoading(false));

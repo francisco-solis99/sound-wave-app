@@ -20,7 +20,6 @@ import { getGenresByUser } from '../services/genres/genres';
 import { getUser, logout } from '../services/auth/auth';
 
 
-// const getUserId = () => JSON.parse(window.localStorage.getItem('loggedSoundwaveApp'));
 
 export default function Dashboard({ handlerChangeUser }) {
   const navigate = useNavigate();
@@ -41,7 +40,9 @@ export default function Dashboard({ handlerChangeUser }) {
     setIsLoading(true);
     setTimeout(() => {
       getSongsTopByUser(userId.current)
-        .then(tops => setTopsUser(tops))
+        .then(tops => {
+          setTopsUser(tops);
+        })
         .catch(err => console.log(err))
         .finally(() => {
           setIsLoading(false);
@@ -160,7 +161,11 @@ export default function Dashboard({ handlerChangeUser }) {
         </section>
 
         <section className='Dashboard__profile'>
-          <ModalCreate />
+          <ModalCreate
+            handlerChangeUserTops={setTopsUser}
+            handlerChangeUserGenres={setGenresUser}
+            handlerChangeUserSongs={setSongsUser}
+            handlerChangeUserArtists={setArtistsUser} />
           <span className='modal__actionable' aria-label='button' data-bs-toggle='modal' data-bs-target='#modalCreate'>
             <Button typeStyle='secundary' type="button">CREATE</Button>
           </span>
@@ -242,7 +247,7 @@ export default function Dashboard({ handlerChangeUser }) {
                         artistsUser.map(artist =>
                           <ArtistUser key={crypto.randomUUID()} artist={artist} />
                         ) :
-                        <p>No artists have been created.</p>
+                        <p>No artists have been created. Please add songs to your tops in order to visualize your artists</p>
                   }
                 </div>
               </AnimatedComponent>
@@ -263,7 +268,7 @@ export default function Dashboard({ handlerChangeUser }) {
                         genresUser.map(genre =>
                           <GenreUser key={crypto.randomUUID()} genre={genre} />
                         ) :
-                        <p>No genres have been created.</p>
+                        <p>No genres have been created. Please add songs to your tops in order to visualize your genres</p>
                   }
                 </div>
               </AnimatedComponent>

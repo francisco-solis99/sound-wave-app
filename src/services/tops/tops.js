@@ -5,9 +5,10 @@ import { getToken } from '../auth/auth';
  * Get all tops
  * @return  {Promise} response of request.
  */
-export const getTops = async () => {
+export const getTops = async ({ limit }) => {
+  const limitQuery = limit ? `?limit=${limit}` : '';
   try {
-    const response = await fetch(`${configAPI.BASE_URL}/tops`);
+    const response = await fetch(`${configAPI.BASE_URL}/tops${limitQuery}`);
     return await response.json();
   } catch (err) {
     console.log(err);

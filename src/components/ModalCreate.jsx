@@ -7,7 +7,7 @@ import FormNewGenre from './FormNewGenre';
 import FormNewSong from './FormNewSong';
 
 // Bootstrap component modal for displaying create forms
-export default function ModalCreate() {
+export default function ModalCreate({ handlerChangeUserTops, handlerChangeUserGenres, handlerChangeUserArtists, handlerChangeUserSongs }) {
     const [option, setOption] = useState('');
     const [alert, setAlert] = useState(false);
     const [success, setSuccess] = useState(true);
@@ -64,19 +64,19 @@ export default function ModalCreate() {
                         )}
 
                         {option === 'top' && (
-                            <FormNewTop setAlert={setAlert} setSuccess={setSuccess} />
+                            <FormNewTop handlerChangeUserTops={handlerChangeUserTops} setAlert={setAlert} setSuccess={setSuccess} />
                         )}
 
                         {option === 'song' && (
-                            <FormNewSong setAlert={setAlert} setSuccess={setSuccess} message={message} setMessage={setMessage} />
+                            <FormNewSong handlerChangeUserSongs={handlerChangeUserSongs} setAlert={setAlert} setSuccess={setSuccess} message={message} setMessage={setMessage} />
                         )}
 
                         {option === 'artist' && (
-                            <FormNewArtist setAlert={setAlert} setSuccess={setSuccess} />
+                            <FormNewArtist handlerChangeUserArtists={handlerChangeUserArtists} setAlert={setAlert} setSuccess={setSuccess} />
                         )}
 
                         {option === 'genre' && (
-                            <FormNewGenre setAlert={setAlert} setSuccess={setSuccess} />
+                            <FormNewGenre handlerChangeUserGenres={handlerChangeUserGenres} setAlert={setAlert} setSuccess={setSuccess} />
                         )}
                     </div>
                 </div>

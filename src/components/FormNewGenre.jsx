@@ -4,7 +4,7 @@ import { createGenre } from '../services/genres/genres';
 
 // Display the form for creating a new Genre
 // Handle the POST method to create a new Genre
-export default function FormNewGenre({ setAlert, setSuccess }) {
+export default function FormNewGenre({ setAlert, setSuccess, handlerChangeUserGenres }) {
     const IMAGE_URL_DEFAULT =
         'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
 
@@ -15,7 +15,16 @@ export default function FormNewGenre({ setAlert, setSuccess }) {
         e.preventDefault();
         console.log(genreName, genreImageURL);
         createGenre(genreName, genreImageURL)
-            .then(response => setSuccess(response.ok))
+            .then(async (response) => {
+                // const { data: newGenre } = await response.json();
+                // handlerChangeUserGenres((prev) => {
+                //     return [
+                //         ...prev,
+                //         newGenre
+                //     ];
+                // });
+                setSuccess(response.ok);
+            })
             .catch(err => console.log(err))
             .finally(() => {
                 setGenreName('');

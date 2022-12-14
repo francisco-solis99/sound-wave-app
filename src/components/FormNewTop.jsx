@@ -5,7 +5,7 @@ import { getUser } from '../services/auth/auth';
 
 // Display the form for creating a new Top
 // Handle the POST method to create a new Top
-export default function FormNewTop({ setAlert, setSuccess }) {
+export default function FormNewTop({ setAlert, setSuccess, handlerChangeUserTops }) {
     const [topName, setTopName] = useState('');
     const [topDescription, setTopDescription] = useState('');
 
@@ -14,10 +14,23 @@ export default function FormNewTop({ setAlert, setSuccess }) {
         const { userId } = JSON.parse(getUser());
         console.log(topName, topDescription);
         createTop(topName, topDescription, userId)
-            .then(response => setSuccess(response.ok));
-        setTopName('');
-        setTopDescription('');
-        setAlert(true);
+            .then(async (response) => {
+                const { data: newTop } = await response.json();
+                handlerChangeUserTops((prev) => {
+                    return [
+                        ...prev,
+                        newTop
+                    ];
+                });
+                setSuccess(response.ok);
+            })
+            .catch(err => console.log(err))
+            .finally(() => {
+                setTopName('');
+                setTopDescription('');
+                setAlert(true);
+            });
+
     };
 
     return (
