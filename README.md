@@ -101,10 +101,6 @@ Check the following video to see what features you'll find!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<div align="center">
- <h3 align="center">Thanks for visiting! :notes:</h3>
-</div>
-
 ## Contributing
 If you want to contribute to the project, follow the guidelines for [Contributing](.github/contributing.md).
 
