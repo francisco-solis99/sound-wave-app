@@ -18,6 +18,12 @@
   margin-bottom: 2em;
 }
 
+.search__no-results {
+  font-size: 1.75rem;
+  text-align: center;
+  color: var(--white);
+}
+
 /* Individual styles for type page */
 .SongsPage__songs .Song__info {
   color: var(--white);

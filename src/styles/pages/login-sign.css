@@ -1,6 +1,6 @@
 .Initial__page {
-    min-height: 100vh;
     width: 100%;
+    min-height: 100vh;
     position: relative;
     display: grid;
     place-content: center;
@@ -8,7 +8,7 @@
 
 .Initial__background {
     width: 100%;
-    min-height: 100vh;
+    height: 100%;
     background-image: linear-gradient(to right top,
             rgba(154, 0, 162, 0.6),
             rgba(98, 49, 152, 0.6),
@@ -19,4 +19,61 @@
     position: absolute;
     z-index: -1;
     background-position: center;
+}
+
+
+.Title {
+    margin: 0;
+    font-family: var(--font-logo);
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    background-clip: text;
+    background: linear-gradient(to right, #465263, #9D9D9D);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.Subtitle {
+    font-family: var(--font-text);
+    font-size: 1.5rem;
+    color: #212C3A;
+}
+
+.link-to {
+    color: var(--black);
+    transition: all 200ms ease-in;
+}
+
+.Last__line {
+    font-family: var(--font-text);
+    font-size: 1rem;
+    margin-top: .5rem;
+}
+
+.Button.primary {
+    display: inline-block;
+    margin-top: 1em;
+    letter-spacing: .1rem;
+    font-style: normal;
+}
+
+/* Media Queries */
+@media screen and (min-width: 948px) {
+    .Title {
+        font-size: 3rem;
+    }
+
+    .Subtitle {
+        font-size: 2rem;
+    }
+
+    .Last__line {
+        font-size: 1.2rem;
+
+    }
+
+    .Button.primary {
+        margin-top: 1em;
+        font-size: 1.25rem;
+    }
 }

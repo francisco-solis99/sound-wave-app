@@ -89,11 +89,11 @@ export default function Home() {
               <source src={videoDesktop} type='video/mp4' media='all and (min-width: 768px)' />
             </video>
 
-            <div className='container Home__container'>
-              <div className='Home__copy'>
-                <h1 className='Home__title'>SoundWave</h1>
-                <p className='Home__sub-copy'>This website will provide you with many songs, artists and genres included in the top lists over the years. Enjoy!</p>
-                <Button type='secundary' text='Get started' onClick={handleClickStarted}>
+            <div className="container Home__container">
+              <div className="Home__copy">
+                <h1 className="Home__title">SoundWave</h1>
+                <p className="Home__sub-copy">This website will provide you with many songs, artists and genres included in the top lists over the years. Enjoy!</p>
+                <Button typeStyle="secundary" type="button" onClick={handleClickStarted}>
                   Get started
                 </Button>
               </div>
