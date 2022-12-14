@@ -16,7 +16,8 @@
 
 body {
     margin: 0;
-    font-family: var(--font-text)
+    font-family: var(--font-text);
+    background-color: var(--dark-blue);
 }
 
 .wrapper {
