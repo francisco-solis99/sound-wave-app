@@ -2,6 +2,11 @@ import configAPI from '../config';
 import { getTopsByUser } from '../tops/tops';
 import { getSongsByTop } from '../topSongs/topSongs';
 
+/**
+ * Get artists with a limit query
+ * @param   {int}   limit number of artists to fetch, if null gets all.
+ * @return  {array} list of artists.
+ */
 export const getArtists = async ({ limit }) => {
   const limitQuery = limit ? `?limit=${limit}` : '';
   try {
@@ -15,6 +20,11 @@ export const getArtists = async ({ limit }) => {
   }
 };
 
+/**
+ * Get artists by user id
+ * @param   {int}   idUser is of the user logged.
+ * @return  {array} list of artists.
+ */
 export const getArtistsByUser = async (idUser) => {
   try {
     const tops = await getTopsByUser(idUser);
@@ -23,7 +33,6 @@ export const getArtistsByUser = async (idUser) => {
       const listArtists = data.map(item => item.song.artist);
       return listArtists;
     });
-
     const artistsByUser = await Promise.all(artistsByUserPromises);
     const allArtistsByUser = artistsByUser.flat(Infinity);
     const allArtistsByUserNoRepeated = allArtistsByUser.filter((artist, index, self) => {
@@ -36,6 +45,14 @@ export const getArtistsByUser = async (idUser) => {
   }
 };
 
+/**
+ * Create new artist
+ * @param   {string}    name     name of the artist
+ * @param   {string}    country  country of the artist
+ * @param   {string}    youtube  youtube url 
+ * @param   {string}    imageURL image url 
+ * @return  {Promise}   response of the request
+ */
 export async function createArtist(name, country, youtube, imageURL) {
   try {
     const requestOptions = {

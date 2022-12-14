@@ -1,5 +1,11 @@
 import configAPI from '../config';
 
+/**
+ * Search query
+ * @param   {string}   query    search query
+ * @param   {string}   toSearch what to search
+ * @return  {array}     list of results.
+ */
 export const searchQuery = async ({ query, toSearch }) => {
   const searchQuery = query ? `?query=${query}` : '';
   try {
