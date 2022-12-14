@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import '../styles/pages/dashboard.css';
 
@@ -144,9 +144,6 @@ export default function Dashboard({ handlerChangeUser }) {
     logout();
     navigate('/');
   };
-
-
-  if (!getUser()) return <Navigate to="/" />;
 
   return (
     <AnimatedComponent>
