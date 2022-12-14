@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import '../styles/pages/dashboard.css';
 import Loader from '../components/Loader';
@@ -10,67 +10,84 @@ import ArtistUser from '../components/ArtistUser';
 import GenreUser from '../components/GenreUser';
 import ModalCreate from '../components/ModalCreate';
 import Button from '../components/Button';
+import SongUser from '../components/SongUser';
 import { getSongsTopByUser } from '../services/topSongs/topSongs';
 import { getSongsByUser } from '../services/songs/songs';
 import { getArtistsByUser } from '../services/artists/artists';
 import { getGenresByUser } from '../services/genres/genres';
-import SongUser from '../components/SongUser';
+import { getUser, logout } from '../services/auth/auth';
 
-export default function Dashboard() {
 
+// const getUserId = () => JSON.parse(window.localStorage.getItem('loggedSoundwaveApp'));
+
+export default function Dashboard({ handlerChangeUser }) {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [topsUser, setTopsUser] = useState([]);
   const [songsUser, setSongsUser] = useState([]);
   const [artistsUser, setArtistsUser] = useState([]);
   const [genresUser, setGenresUser] = useState([]);
   const [modalTopData, setModalTopData] = useState({});
-
-  const USER_ID = 2;
+  const userId = useRef(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    getSongsTopByUser(USER_ID)
-      .then(tops => setTopsUser(tops))
-      .catch(err => console.log(err))
-      .finally(() => {
-        setIsLoading(false);
-      });
+    const { userId: id } = JSON.parse(getUser());
+    userId.current = id;
   }, []);
 
   useEffect(() => {
     setIsLoading(true);
-    getSongsByUser(USER_ID)
-      .then(songs => {
-        setSongsUser(songs);
-      })
-      .catch(err => console.log(err))
-      .finally(() => {
-        setIsLoading(false);
-      });
+    setTimeout(() => {
+      getSongsTopByUser(userId.current)
+        .then(tops => setTopsUser(tops))
+        .catch(err => console.log(err))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 200);
+
   }, []);
 
   useEffect(() => {
     setIsLoading(true);
-    getArtistsByUser(USER_ID)
-      .then(artists => {
-        setArtistsUser(artists);
-      })
-      .catch(err => console.log(err))
-      .finally(() => {
-        setIsLoading(false);
-      });
+    setTimeout(() => {
+      getSongsByUser(userId.current)
+        .then(songs => {
+          setSongsUser(songs);
+        })
+        .catch(err => console.log(err))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 200);
   }, []);
 
   useEffect(() => {
     setIsLoading(true);
-    getGenresByUser(USER_ID)
-      .then(genres => {
-        setGenresUser(genres);
-      })
-      .catch(err => console.log(err))
-      .finally(() => {
-        setIsLoading(false);
-      });
+    setTimeout(() => {
+      getArtistsByUser(userId.current)
+        .then(artists => {
+          setArtistsUser(artists);
+        })
+        .catch(err => console.log(err))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 200);
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      getGenresByUser(userId.current)
+        .then(genres => {
+          setGenresUser(genres);
+        })
+        .catch(err => console.log(err))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 200);
   }, []);
 
   const [isSelected, setIsSelected] = useState({
@@ -119,6 +136,15 @@ export default function Dashboard() {
     }
   };
 
+  const handlerClickLogOut = () => {
+    handlerChangeUser(null);
+    logout();
+    navigate('/');
+  };
+
+
+  if (!getUser()) return <Navigate to="/" />;
+
   return (
     <main className='Dashboard__main'>
 
@@ -126,15 +152,15 @@ export default function Dashboard() {
         <Link to='/'>
           <h1 className='Dashboard__title'>SoundWave</h1>
         </Link>
-        <Link to='/' className='Dashboard__link'>
+        <div className='Dashboard__link' onClick={handlerClickLogOut}>
           <LogoutIcon fontSize='large' />
-        </Link>
+        </div>
       </section>
 
       <section className='Dashboard__profile'>
         <ModalCreate />
         <span className='modal__actionable' aria-label='button' data-bs-toggle='modal' data-bs-target='#modalCreate'>
-          <Button type='secundary'>CREATE</Button>
+          <Button typeStyle='secundary' type="button">CREATE</Button>
         </span>
       </section>
 
@@ -182,17 +208,17 @@ export default function Dashboard() {
 
           {isSelected.songs &&
             <div className='Dashboard__list'>
-            {
-              !isLoading
-                ?
-                songsUser.map(song =>
-                  <SongUser songData={song} key={song.id}/>
-                )
-                :
-                <Loader />
-            }
-            <ModalTop topData={modalTopData} />
-          </div>
+              {
+                !isLoading
+                  ?
+                  songsUser.map(song =>
+                    <SongUser songData={song} key={song.id} />
+                  )
+                  :
+                  <Loader />
+              }
+              <ModalTop topData={modalTopData} />
+            </div>
           }
         </div>
       </section>
