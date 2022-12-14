@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/pages/searchpage.css';
+import AnimatedComponent from '../components/AnimatedComponent';
 import SearchBar from '../components/SearchBar';
 import Menu from '../components/Menu';
 import Loader from '../components/Loader';
@@ -7,7 +8,6 @@ import Artist from '../components/Artist';
 import ModalArtist from '../components/ModalArtist';
 import { getArtists } from '../services/artists/artists';
 import { searchQuery } from '../services/search/search';
-import AnimatedComponent from '../components/AnimatedComponent';
 
 export default function ArtistsPage() {
   const [artists, setArtists] = useState([]);
@@ -23,7 +23,6 @@ export default function ArtistsPage() {
         .finally(() => setIsLoading(false));
     }, 100);
   }, []);
-
 
   const search = (query) => {
     const toSearch = 'artists';

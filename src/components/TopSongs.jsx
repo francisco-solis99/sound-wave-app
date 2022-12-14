@@ -10,8 +10,7 @@ export default function TopSongs(props) {
         <ol className='Top__songs-list'>
           {
             props.topData.songs.map(song =>
-              <li className="Top__songs-item" key={crypto.randomUUID()}>{song.name} - {song.artist.name}</li>
-            )
+              <li className="Top__songs-item" key={crypto.randomUUID()}>{song.name} - {song.artist.name}</li>)
           }
         </ol>
       </div>

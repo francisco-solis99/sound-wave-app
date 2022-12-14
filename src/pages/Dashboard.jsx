@@ -2,19 +2,21 @@ import React, { useState, useEffect } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
 import '../styles/pages/dashboard.css';
+
 import Loader from '../components/Loader';
+import AnimatedComponent from '../components/AnimatedComponent';
 import ModalTop from '../components/ModalTop';
 import TopUser from '../components/TopUser';
+import SongUser from '../components/SongUser';
 import ArtistUser from '../components/ArtistUser';
 import GenreUser from '../components/GenreUser';
 import ModalCreate from '../components/ModalCreate';
 import Button from '../components/Button';
+
 import { getSongsTopByUser } from '../services/topSongs/topSongs';
 import { getSongsByUser } from '../services/songs/songs';
 import { getArtistsByUser } from '../services/artists/artists';
 import { getGenresByUser } from '../services/genres/genres';
-import SongUser from '../components/SongUser';
-import AnimatedComponent from '../components/AnimatedComponent';
 
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
@@ -143,7 +145,6 @@ export default function Dashboard() {
 
         <section className='Dashboard__section Dashboard__tops'>
           <div className='container'>
-
             {isSelected.tops &&
               <AnimatedComponent>
                 <div className='Dashboard__list'>
@@ -161,13 +162,11 @@ export default function Dashboard() {
                 </div>
               </AnimatedComponent>
             }
-
           </div>
         </section>
 
-        <section className='Dashboard__section Dashboard__artists'>
+        <section className='Dashboard__section Dashboard__songs'>
           <div className='container'>
-
             {isSelected.songs &&
               <AnimatedComponent>
                 <div className='Dashboard__list'>
@@ -176,9 +175,9 @@ export default function Dashboard() {
                     isLoading ?
                       <Loader />
                       : songsUser.length > 0 ?
-                      songsUser.map(song =>
-                        <SongUser songData={song} key={song.id} />
-                      ) :
+                        songsUser.map(song =>
+                          <SongUser songData={song} key={song.id} />
+                        ) :
                         <p>No songs have been created.</p>
                   }
                   <ModalTop topData={modalTopData} />
@@ -190,18 +189,17 @@ export default function Dashboard() {
 
         <section className='Dashboard__section Dashboard__artists'>
           <div className='container'>
-
             {isSelected.artists &&
               <AnimatedComponent>
                 <div className='Dashboard__list'>
-                   {/* If isLoading, show Loader, if not check if artistsUser is not empy */}
-                   {
+                  {/* If isLoading, show Loader, if not check if artistsUser is not empy */}
+                  {
                     isLoading ?
                       <Loader />
                       : artistsUser.length > 0 ?
-                      artistsUser.map(artist =>
-                        <ArtistUser key={crypto.randomUUID()} artist={artist} />
-                      ) :
+                        artistsUser.map(artist =>
+                          <ArtistUser key={crypto.randomUUID()} artist={artist} />
+                        ) :
                         <p>No artists have been created.</p>
                   }
                 </div>
@@ -210,9 +208,8 @@ export default function Dashboard() {
           </div>
         </section>
 
-        <section className='Dashboard__section Dashboard__artists'>
+        <section className='Dashboard__section Dashboard__genres'>
           <div className='container'>
-
             {isSelected.genres &&
               <AnimatedComponent>
                 <div className='Dashboard__list'>
@@ -221,9 +218,9 @@ export default function Dashboard() {
                     isLoading ?
                       <Loader />
                       : genresUser.length > 0 ?
-                      genresUser.map(genre =>
-                        <GenreUser key={crypto.randomUUID()} genre={genre} />
-                      ) :
+                        genresUser.map(genre =>
+                          <GenreUser key={crypto.randomUUID()} genre={genre} />
+                        ) :
                         <p>No genres have been created.</p>
                   }
                 </div>
@@ -233,6 +230,5 @@ export default function Dashboard() {
         </section>
       </main>
     </AnimatedComponent>
-
   );
 }

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-
 import '../styles/pages/searchpage.css';
+
 import SearchBar from '../components/SearchBar';
 import Menu from '../components/Menu';
 import Loader from '../components/Loader';
 import Genre from '../components/Genre';
 import AnimatedComponent from '../components/AnimatedComponent';
+
 import { getGenres } from '../services/genres/genres';
 import { searchQuery } from '../services/search/search';
 

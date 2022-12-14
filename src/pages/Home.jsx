@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-// import { HashLink } from 'react-router-hash-link';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import '../styles/pages/home.css';
 import videoMobile from '../assets/soundwave-middle.mp4';
@@ -22,13 +20,8 @@ import { getGenres } from '../services/genres/genres';
 
 export default function Home() {
   const navigate = useNavigate();
-  // TODO: Check bug when try it with others
-  const [isDataLoading, setIsDataLoading] = useState({
-    'topSongs': true,
-    'songs': true,
-    'artists': true,
-    'genres': true
-  });
+
+  const [isTopDataLoading, setIsTopDataLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [topSongs, setTopSongs] = useState([]);
   const [songs, setSongs] = useState([]);
@@ -41,12 +34,12 @@ export default function Home() {
   };
 
   useEffect(() => {
-    setIsDataLoading({ ...isDataLoading, topSongs: true });
+    setIsTopDataLoading(true);
     setTimeout(() => {
       getSongsTops()
         .then(data => setTopSongs(data))
         .catch(err => console.log(err))
-        .finally(() => setIsDataLoading({ ...isDataLoading, topSongs: false }));
+        .finally(() => setIsTopDataLoading(false));
     }, 100);
   }, []);
 
@@ -113,7 +106,7 @@ export default function Home() {
             <div className="container Home__container">
               <h2 className="Home__title-section">Tops</h2>
               {
-                !isDataLoading.topSongs ? <TopSlider topData={topSongs} /> : <Loader />
+                !isTopDataLoading ? <TopSlider topData={topSongs} /> : <Loader />
               }
             </div>
           </section>

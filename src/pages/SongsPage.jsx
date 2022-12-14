@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-
 import '../styles/pages/searchpage.css';
 import SearchBar from '../components/SearchBar';
 import Menu from '../components/Menu';

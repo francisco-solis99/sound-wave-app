@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { AnimatePresence } from 'framer-motion';
 
 import Home from '../pages/Home';
 import Login from '../pages/Login';
@@ -26,7 +26,7 @@ function App() {
           <Route path='/songs' element={<SongsPage />} />
           <Route path='/artists' element={<ArtistsPage />} />
           <Route path='/genres' element={<GenresPage />} />
-          {/* Protected route */}
+          {/* Protected routes */}
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/*' element={<NotFound />} />
         </Routes>
