@@ -1,10 +1,10 @@
 import React from 'react';
 import '../styles/components/button.css';
 
-export default function Button({ type, onClick, children }) {
+export default function Button({ typeStyle, onClick, children, type = 'button' }) {
 
   const buttonConf = {
-    types: {
+    typesStyles: {
       primary: 'primary',
       secundary: 'secundary'
     }
@@ -12,7 +12,7 @@ export default function Button({ type, onClick, children }) {
 
 
   return (
-    <button className={`Button ${buttonConf.types[type] ?? ''}`} type="button" onClick={onClick}>
+    <button className={`Button ${buttonConf.typesStyles[typeStyle] ?? ''}`} type={type} onClick={onClick}>
       {children}
     </button>
   );
