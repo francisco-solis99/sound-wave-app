@@ -147,14 +147,15 @@ export default function Dashboard() {
             {isSelected.tops &&
               <AnimatedComponent>
                 <div className='Dashboard__list'>
+                  {/* If isLoading, show Loader, if not check if topUser is not empy */}
                   {
-                    !isLoading
-                      ?
-                      topsUser.map(top =>
-                        <TopUser top={top} key={top.id} setModalTopData={setModalTopData} />
-                      )
-                      :
+                    isLoading ?
                       <Loader />
+                      : topsUser.length > 0 ?
+                        topsUser.map(top =>
+                          <TopUser top={top} key={top.id} setModalTopData={setModalTopData} />
+                        ) :
+                        <p>No tops have been created.</p>
                   }
                   <ModalTop topData={modalTopData} />
                 </div>
@@ -170,14 +171,15 @@ export default function Dashboard() {
             {isSelected.songs &&
               <AnimatedComponent>
                 <div className='Dashboard__list'>
+                  {/* If isLoading, show Loader, if not check if songsUser is not empy */}
                   {
-                    !isLoading
-                      ?
+                    isLoading ?
+                      <Loader />
+                      : songsUser.length > 0 ?
                       songsUser.map(song =>
                         <SongUser songData={song} key={song.id} />
-                      )
-                      :
-                      <Loader />
+                      ) :
+                        <p>No songs have been created.</p>
                   }
                   <ModalTop topData={modalTopData} />
                 </div>
@@ -192,14 +194,15 @@ export default function Dashboard() {
             {isSelected.artists &&
               <AnimatedComponent>
                 <div className='Dashboard__list'>
-                  {
-                    !isLoading
-                      ?
-                      artistsUser.map(artist => (
-                        <ArtistUser key={crypto.randomUUID()} artist={artist} />
-                      ))
-                      :
+                   {/* If isLoading, show Loader, if not check if artistsUser is not empy */}
+                   {
+                    isLoading ?
                       <Loader />
+                      : artistsUser.length > 0 ?
+                      artistsUser.map(artist =>
+                        <ArtistUser key={crypto.randomUUID()} artist={artist} />
+                      ) :
+                        <p>No artists have been created.</p>
                   }
                 </div>
               </AnimatedComponent>
@@ -213,14 +216,15 @@ export default function Dashboard() {
             {isSelected.genres &&
               <AnimatedComponent>
                 <div className='Dashboard__list'>
+                  {/* If isLoading, show Loader, if not check if genresUser is not empy */}
                   {
-                    !isLoading
-                      ?
-                      genresUser.map(genre => (
-                        <GenreUser key={crypto.randomUUID()} genre={genre} />
-                      ))
-                      :
+                    isLoading ?
                       <Loader />
+                      : genresUser.length > 0 ?
+                      genresUser.map(genre =>
+                        <GenreUser key={crypto.randomUUID()} genre={genre} />
+                      ) :
+                        <p>No genres have been created.</p>
                   }
                 </div>
               </AnimatedComponent>
