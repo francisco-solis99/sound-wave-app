@@ -44,7 +44,6 @@
 }
 
 .Nav__toggle,
-.Exit__button,
 .User__icon {
     color: var(--white);
     border: none;
@@ -88,7 +87,6 @@
     }
 
     .Nav__toggle,
-    .Exit__button,
     .User__icon {
         margin-left: .4rem;
         min-width: 30px;
