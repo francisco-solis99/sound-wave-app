@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/components/modals.css';
-// import { createGenre } from '../services/genres/genres';
+import { createGenre } from '../services/genres/genres';
 
 // Display the form for creating a new Genre
 // Handle the POST method to create a new Genre
@@ -14,12 +14,15 @@ export default function FormNewGenre({ setAlert, setSuccess }) {
     const handleGenreSubmit = (e) => {
         e.preventDefault();
         console.log(genreName, genreImageURL);
-        // createGenre(genreName, genreImageURL)
-        //     .then(response => setSuccess(response.ok));
-        setGenreName('');
-        setGenreImageURL(IMAGE_URL_DEFAULT);
-        setAlert(true);
-        setSuccess(false);
+        createGenre(genreName, genreImageURL)
+            .then(response => setSuccess(response.ok))
+            .catch(err => console.log(err))
+            .finally(() => {
+                setGenreName('');
+                setGenreImageURL(IMAGE_URL_DEFAULT);
+                setAlert(true);
+                setSuccess(false);
+            });
     };
 
     return (

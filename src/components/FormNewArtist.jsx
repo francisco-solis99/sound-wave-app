@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/components/modals.css';
-// import { createArtist } from '../services/artists/artists';
+import { createArtist } from '../services/artists/artists';
 
 // Display the form for creating a new Artist
 // Handle the POST method to create a new Artist
@@ -16,13 +16,18 @@ export default function FormNewArtist({ setAlert, setSuccess }) {
     const handleArtistSubmit = (e) => {
         e.preventDefault();
         console.log(artistName, artistCountry, artistYoutube, artistImageURL);
-        // createArtist(artistName, artistCountry, artistYoutube, artistImageURL)
-        //     .then(response => setSuccess(response.ok));
-        setArtistName('');
-        setArtistCountry('');
-        setArtistYoutube('');
-        setArtistImageURL(IMAGE_URL_DEFAULT);
-        setAlert(true);
+        createArtist(artistName, artistCountry, artistYoutube, artistImageURL)
+            .then(response => {
+                setSuccess(response.ok);
+            })
+            .catch(err => console.log(err))
+            .finally(() => {
+                setArtistName('');
+                setArtistCountry('');
+                setArtistYoutube('');
+                setArtistImageURL(IMAGE_URL_DEFAULT);
+                setAlert(true);
+            });
     };
 
     return (

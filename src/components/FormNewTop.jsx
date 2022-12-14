@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/components/modals.css';
-// import { createTop } from '../services/tops/tops';
+import { createTop } from '../services/tops/tops';
+import { getUser } from '../services/auth/auth';
 
 // Display the form for creating a new Top
 // Handle the POST method to create a new Top
@@ -10,9 +11,10 @@ export default function FormNewTop({ setAlert, setSuccess }) {
 
     const handleTopSubmit = (e) => {
         e.preventDefault();
+        const { userId } = JSON.parse(getUser());
         console.log(topName, topDescription);
-        // createTop(topName, topDescription, userData.id)
-        //     .then(response => setSuccess(response.ok));
+        createTop(topName, topDescription, userId)
+            .then(response => setSuccess(response.ok));
         setTopName('');
         setTopDescription('');
         setAlert(true);

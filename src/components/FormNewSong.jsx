@@ -5,12 +5,14 @@ import { getArtists } from '../services/artists/artists';
 import { getGenres } from '../services/genres/genres';
 import { getArtistsByUser } from '../services/artists/artists';
 import { getGenresByUser } from '../services/genres/genres';
-// import { createSong } from '../services/songs/songs';
+import { createSong } from '../services/songs/songs';
+import { getUser } from '../services/auth/auth';
 
 // Display the form for creating a new Song
 // Handle the POST method to create a new Song
 export default function FormNewSong({ setAlert, setSuccess, message, setMessage }) {
-    const USER_ID = 2;
+    const USER_ID = JSON.parse(getUser()).userId;
+
 
     const [isLoading, setIsLoading] = useState(true);
     const [artists, setArtists] = useState([]);
@@ -69,16 +71,19 @@ export default function FormNewSong({ setAlert, setSuccess, message, setMessage 
         const genreId = getGenreId();
 
         if (artistId !== -1 && genreId !== -1) {
-            // createSong(songName, songYear, songYoutube, artistId, genreId)
-            //     .then(response => setSuccess(response.ok));
-            setAlert(true);
-            setSuccess(true);
-            setMessage('');
-            setSongName('');
-            setSongYear('');
-            setSongYoutube('');
-            setSongArtist('');
-            setSongGenre('');
+            createSong(songName, songYear, songYoutube, artistId, genreId)
+                .then(response => setSuccess(response.ok))
+                .catch((err) => console.log(err))
+                .finally(() => {
+                    setAlert(true);
+                    setSuccess(true);
+                    setMessage('');
+                    setSongName('');
+                    setSongYear('');
+                    setSongYoutube('');
+                    setSongArtist('');
+                    setSongGenre('');
+                });
         }
     };
 

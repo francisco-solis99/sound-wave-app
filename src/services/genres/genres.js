@@ -1,6 +1,7 @@
 import configAPI from '../config';
 import { getTopsByUser } from '../tops/tops';
 import { getSongsByTop } from '../topSongs/topSongs';
+import { getToken } from '../auth/auth';
 
 /**
  * Get genres with a limit query
@@ -48,7 +49,7 @@ export const getGenresByUser = async (idUser) => {
 /**
  * Create new genre
  * @param   {string}    name     name of the genre
- * @param   {string}    imageURL image url 
+ * @param   {string}    imageURL image url
  * @return  {Promise}   response of the request
  */
 export async function createGenre(name, imageURL) {
@@ -57,7 +58,7 @@ export async function createGenre(name, imageURL) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'authorization': 'token'
+        'authorization': getToken()
       },
       body: JSON.stringify({
         name: name,

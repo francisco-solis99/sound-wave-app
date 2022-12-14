@@ -1,6 +1,7 @@
 import configAPI from '../config';
 import { getTopsByUser } from '../tops/tops';
 import { getSongsByTop } from '../topSongs/topSongs';
+import { getToken } from '../auth/auth';
 
 /**
  * Get artists with a limit query
@@ -49,8 +50,8 @@ export const getArtistsByUser = async (idUser) => {
  * Create new artist
  * @param   {string}    name     name of the artist
  * @param   {string}    country  country of the artist
- * @param   {string}    youtube  youtube url 
- * @param   {string}    imageURL image url 
+ * @param   {string}    youtube  youtube url
+ * @param   {string}    imageURL image url
  * @return  {Promise}   response of the request
  */
 export async function createArtist(name, country, youtube, imageURL) {
@@ -59,7 +60,7 @@ export async function createArtist(name, country, youtube, imageURL) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'authorization': 'token'
+        'authorization': getToken()
       },
       body: JSON.stringify({
         name: name,

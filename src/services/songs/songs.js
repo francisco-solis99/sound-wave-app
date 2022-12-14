@@ -2,6 +2,7 @@ import configAPI from '../config';
 import deezerAPI from '../deezer';
 import { getTopsByUser } from '../tops/tops';
 import { getSongsByTop } from '../topSongs/topSongs';
+import { getToken } from '../auth/auth';
 
 /**
  * Get songs with a limit query
@@ -48,7 +49,7 @@ export const getSongsByUser = async (idUser) => {
 /**
  * Get songs sample by song name
  * @param   {string}   nameSong name of the song.
- * @return  {Promise}  
+ * @return  {Promise}
  */
 export async function getSampleSong(nameSong) {
   const urlToFetch = `${deezerAPI.baseURL}/search?q=${nameSong}`;
@@ -64,7 +65,7 @@ export async function getSampleSong(nameSong) {
 /**
  * Get a limit songs with samples
  * @param   {int}   limit number of songs to fetch, if null gets all.
- * @return  {Promise}  
+ * @return  {Promise}
  */
 export async function getSongsWithSample({ limit }) {
   try {
@@ -92,7 +93,7 @@ export async function getSongsWithSample({ limit }) {
  * Create new song
  * @param   {string}    name      name of the song
  * @param   {string}    year      year
- * @param   {string}    youtube   youtube url 
+ * @param   {string}    youtube   youtube url
  * @param   {string}    artistId  artist unique id
  * @param   {string}    genreId   genre unique id
  * @return  {Promise}   response of the request
@@ -103,7 +104,7 @@ export async function createSong(name, year, youtube, artistId, genreId) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'authorization': 'token'
+        'authorization': getToken()
       },
       body: JSON.stringify({
         name: name,

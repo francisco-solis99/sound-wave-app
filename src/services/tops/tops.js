@@ -1,4 +1,5 @@
 import configAPI from '../config';
+import { getToken } from '../auth/auth';
 
 /**
  * Get all tops
@@ -42,7 +43,7 @@ export async function createTop(name, description, userid) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'authorization': 'token'
+        'authorization': getToken()
       },
       body: JSON.stringify({
         name: name,
