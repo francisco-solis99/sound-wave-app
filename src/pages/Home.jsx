@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { HashLink } from 'react-router-hash-link';
+// import { HashLink } from 'react-router-hash-link';
 import { useNavigate } from 'react-router-dom';
 
 import '../styles/pages/home.css';
@@ -98,7 +98,7 @@ export default function Home() {
 
             <div className="container Home__container">
               <div className="Home__copy">
-                <ul className="Home__nav">
+                {/* <ul className="Home__nav">
                   <li>
                     <HashLink smooth to="/home#tops">Tops </HashLink> /
                   </li>
@@ -111,7 +111,7 @@ export default function Home() {
                   <li>
                     <HashLink smooth to="/home#genres">Genres</HashLink>
                   </li>
-                </ul>
+                </ul> */}
                 <h1 className="Home__title">SoundWave</h1>
                 <p className="Home__sub-copy">This website will provide you with many songs, artists and genres included in the top lists over the years. Enjoy!</p>
                 <Button type="secundary" text="Get started" onClick={handleClickStarted}>

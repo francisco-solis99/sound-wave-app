@@ -7,6 +7,7 @@ import Artist from '../components/Artist';
 import ModalArtist from '../components/ModalArtist';
 import { getArtists } from '../services/artists/artists';
 import { searchQuery } from '../services/search/search';
+import AnimatedComponent from '../components/AnimatedComponent';
 
 export default function ArtistsPage() {
   const [artists, setArtists] = useState([]);
@@ -41,27 +42,29 @@ export default function ArtistsPage() {
   };
 
   return (
-    <div className="searchpage__wrapper">
-      <header className="searchpage__header">
-        <nav>
-          <Menu />
-        </nav>
-      </header>
+    <AnimatedComponent>
+      <div className="searchpage__wrapper">
+        <header className="searchpage__header">
+          <nav>
+            <Menu />
+          </nav>
+        </header>
 
-      <div className="searchpage__bar">
-        <SearchBar className="searchpage__bar" searchCallback={search} />
-      </div>
-
-      <main className="searchpage__results">
-        <div className="container">
-          <section className={`components__container ArtistsPage__artists ${isLoading ? 'loading' : ''}`}>
-            <ModalArtist artistData={modalArtistData} />
-            {
-              !isLoading ? renderResults() : <Loader />
-            }
-          </section>
+        <div className="searchpage__bar">
+          <SearchBar className="searchpage__bar" searchCallback={search} />
         </div>
-      </main>
-    </div>
+
+        <main className="searchpage__results">
+          <div className="container">
+            <section className={`components__container ArtistsPage__artists ${isLoading ? 'loading' : ''}`}>
+              <ModalArtist artistData={modalArtistData} />
+              {
+                !isLoading ? renderResults() : <Loader />
+              }
+            </section>
+          </div>
+        </main>
+      </div>
+    </AnimatedComponent>
   );
 };

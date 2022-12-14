@@ -5,6 +5,7 @@ import SearchBar from '../components/SearchBar';
 import Menu from '../components/Menu';
 import Loader from '../components/Loader';
 import SongsList from '../components/SongsList';
+import AnimatedComponent from '../components/AnimatedComponent';
 import { getSongsWithSample } from '../services/songs/songs';
 
 export default function SongsPage() {
@@ -42,26 +43,28 @@ export default function SongsPage() {
   };
 
   return (
-    <div className="searchpage__wrapper">
-      <header className="searchpage__header">
-        <nav>
-          <Menu />
-        </nav>
-      </header>
+    <AnimatedComponent>
+      <div className="searchpage__wrapper">
+        <header className="searchpage__header">
+          <nav>
+            <Menu />
+          </nav>
+        </header>
 
-      <div className="searchpage__bar">
-        <SearchBar className="searchpage__bar" searchCallback={search} />
-      </div>
-
-      <main className="searchpage__results">
-        <div className="container">
-          <section className={`components__container SongsPage__songs ${isLoading ? 'loading' : ''}`}>
-            {
-              !isLoading ? renderResults() : <Loader />
-            }
-          </section>
+        <div className="searchpage__bar">
+          <SearchBar className="searchpage__bar" searchCallback={search} />
         </div>
-      </main>
-    </div>
+
+        <main className="searchpage__results">
+          <div className="container">
+            <section className={`components__container SongsPage__songs ${isLoading ? 'loading' : ''}`}>
+              {
+                !isLoading ? renderResults() : <Loader />
+              }
+            </section>
+          </div>
+        </main>
+      </div>
+    </AnimatedComponent>
   );
 }

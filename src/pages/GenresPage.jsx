@@ -5,6 +5,7 @@ import SearchBar from '../components/SearchBar';
 import Menu from '../components/Menu';
 import Loader from '../components/Loader';
 import Genre from '../components/Genre';
+import AnimatedComponent from '../components/AnimatedComponent';
 import { getGenres } from '../services/genres/genres';
 import { searchQuery } from '../services/search/search';
 
@@ -15,7 +16,7 @@ export default function GenresPage() {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      getGenres({limit: null})
+      getGenres({ limit: null })
         .then(data => setGenres(data))
         .catch(err => console.log(err))
         .finally(() => setIsLoading(false));
@@ -39,26 +40,28 @@ export default function GenresPage() {
   };
 
   return (
-    <div className="searchpage__wrapper">
-      <header className="searchpage__header">
-        <nav>
-          <Menu />
-        </nav>
-      </header>
+    <AnimatedComponent>
+      <div className="searchpage__wrapper">
+        <header className="searchpage__header">
+          <nav>
+            <Menu />
+          </nav>
+        </header>
 
-      <div className="searchpage__bar">
-        <SearchBar className="searchpage__bar" searchCallback={search} />
-      </div>
-
-      <main>
-        <div className="container">
-          <section className={`components__container GenresPage__genres ${isLoading ? 'loading' : ''}`} >
-            {
-              !isLoading ? renderResults() : <Loader />
-            }
-          </section>
+        <div className="searchpage__bar">
+          <SearchBar className="searchpage__bar" searchCallback={search} />
         </div>
-      </main >
-    </div >
+
+        <main>
+          <div className="container">
+            <section className={`components__container GenresPage__genres ${isLoading ? 'loading' : ''}`} >
+              {
+                !isLoading ? renderResults() : <Loader />
+              }
+            </section>
+          </div>
+        </main >
+      </div >
+    </AnimatedComponent>
   );
 };

@@ -14,6 +14,7 @@ import { getSongsByUser } from '../services/songs/songs';
 import { getArtistsByUser } from '../services/artists/artists';
 import { getGenresByUser } from '../services/genres/genres';
 import SongUser from '../components/SongUser';
+import AnimatedComponent from '../components/AnimatedComponent';
 
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
@@ -104,119 +105,130 @@ export default function Dashboard() {
   };
 
   return (
-    <main className='Dashboard__main'>
+    <AnimatedComponent>
+      <main className='Dashboard__main'>
+        <section className='Dashboard__header'>
+          <Link to='/'>
+            <h1 className='Dashboard__title'>SoundWave</h1>
+          </Link>
+          <Link to='/' className='Dashboard__link'>
+            <LogoutIcon fontSize='large' />
+          </Link>
+        </section>
 
-      <section className='Dashboard__header'>
-        <Link to='/'>
-          <h1 className='Dashboard__title'>SoundWave</h1>
-        </Link>
-        <Link to='/' className='Dashboard__link'>
-          <LogoutIcon fontSize='large' />
-        </Link>
-      </section>
+        <section className='Dashboard__profile'>
+          <ModalCreate />
+          <span className='modal__actionable' aria-label='button' data-bs-toggle='modal' data-bs-target='#modalCreate'>
+            <Button type='secundary'>CREATE</Button>
+          </span>
+        </section>
 
-      <section className='Dashboard__profile'>
-        <ModalCreate />
-        <span className='modal__actionable' aria-label='button' data-bs-toggle='modal' data-bs-target='#modalCreate'>
-          <Button type='secundary'>CREATE</Button>
-        </span>
-      </section>
+        <section>
+          <ul className='Dashboard__nav-bar'>
+            <li className={`Dashboard__nav-link ${isSelected.tops ? 'selected' : ''}`} onClick={(e) => handleOnClickNavBar(e.target.id)} id='dashboard_tops'>Tops |</li>
+            <li className={`Dashboard__nav-link ${isSelected.songs ? 'selected' : ''}`} onClick={(e) => handleOnClickNavBar(e.target.id)} id='dashboard_songs'>Songs |</li>
+            <li className={`Dashboard__nav-link ${isSelected.artists ? 'selected' : ''}`} onClick={(e) => handleOnClickNavBar(e.target.id)} id='dashboard_artists'>Artists |</li>
+            <li className={`Dashboard__nav-link ${isSelected.genres ? 'selected' : ''}`} onClick={(e) => handleOnClickNavBar(e.target.id)} id='dashboard_genres'>Genres</li>
+          </ul>
+        </section>
 
-      <section>
-        <ul className='Dashboard__nav-bar'>
-          <li className={`Dashboard__nav-link ${isSelected.tops ? 'selected' : ''}`} onClick={(e) => handleOnClickNavBar(e.target.id)} id='dashboard_tops'>Tops |</li>
-          <li className={`Dashboard__nav-link ${isSelected.songs ? 'selected' : ''}`} onClick={(e) => handleOnClickNavBar(e.target.id)} id='dashboard_songs'>Songs |</li>
-          <li className={`Dashboard__nav-link ${isSelected.artists ? 'selected' : ''}`} onClick={(e) => handleOnClickNavBar(e.target.id)} id='dashboard_artists'>Artists |</li>
-          <li className={`Dashboard__nav-link ${isSelected.genres ? 'selected' : ''}`} onClick={(e) => handleOnClickNavBar(e.target.id)} id='dashboard_genres'>Genres</li>
-        </ul>
-      </section>
+        <section className='Dashboard__nav-bar-mobile'>
+          <select className='Dashboard__nav-bar-select Dashboard__nav-link' name='select' onChange={(e) => handleOnClickNavBar(e.target.value)} defaultValue='dashboard_tops'>
+            <option value='dashboard_tops'>Tops</option>
+            <option value='dashboard_songs'>Songs</option>
+            <option value='dashboard_artists'>Artists</option>
+            <option value='dashboard_genres'>Genres</option>
+          </select>
+        </section>
 
-      <section className='Dashboard__nav-bar-mobile'>
-        <select className='Dashboard__nav-bar-select Dashboard__nav-link' name='select' onChange={(e) => handleOnClickNavBar(e.target.value)} defaultValue='dashboard_tops'>
-          <option value='dashboard_tops'>Tops</option>
-          <option value='dashboard_songs'>Songs</option>
-          <option value='dashboard_artists'>Artists</option>
-          <option value='dashboard_genres'>Genres</option>
-        </select>
-      </section>
+        <section className='Dashboard__section Dashboard__tops'>
+          <div className='container'>
 
-      <section className='Dashboard__section Dashboard__tops'>
-        <div className='container'>
+            {isSelected.tops &&
+              <AnimatedComponent>
+                <div className='Dashboard__list'>
+                  {
+                    !isLoading
+                      ?
+                      topsUser.map(top =>
+                        <TopUser top={top} key={top.id} setModalTopData={setModalTopData} />
+                      )
+                      :
+                      <Loader />
+                  }
+                  <ModalTop topData={modalTopData} />
+                </div>
+              </AnimatedComponent>
+            }
 
-          {isSelected.tops &&
-            <div className='Dashboard__list'>
-              {
-                !isLoading
-                  ?
-                  topsUser.map(top =>
-                    <TopUser top={top} key={top.id} setModalTopData={setModalTopData} />
-                  )
-                  :
-                  <Loader />
-              }
-              <ModalTop topData={modalTopData} />
-            </div>
-          }
+          </div>
+        </section>
 
-        </div>
-      </section>
+        <section className='Dashboard__section Dashboard__artists'>
+          <div className='container'>
 
-      <section className='Dashboard__section Dashboard__artists'>
-        <div className='container'>
+            {isSelected.songs &&
+              <AnimatedComponent>
+                <div className='Dashboard__list'>
+                  {
+                    !isLoading
+                      ?
+                      songsUser.map(song =>
+                        <SongUser songData={song} key={song.id} />
+                      )
+                      :
+                      <Loader />
+                  }
+                  <ModalTop topData={modalTopData} />
+                </div>
+              </AnimatedComponent>
+            }
+          </div>
+        </section>
 
-          {isSelected.songs &&
-            <div className='Dashboard__list'>
-              {
-                !isLoading
-                  ?
-                  songsUser.map(song =>
-                    <SongUser songData={song} key={song.id} />
-                  )
-                  :
-                  <Loader />
-              }
-              <ModalTop topData={modalTopData} />
-            </div>
-          }
-        </div>
-      </section>
+        <section className='Dashboard__section Dashboard__artists'>
+          <div className='container'>
 
-      <section className='Dashboard__section Dashboard__artists'>
-        <div className='container'>
+            {isSelected.artists &&
+              <AnimatedComponent>
+                <div className='Dashboard__list'>
+                  {
+                    !isLoading
+                      ?
+                      artistsUser.map(artist => (
+                        <ArtistUser key={crypto.randomUUID()} artist={artist} />
+                      ))
+                      :
+                      <Loader />
+                  }
+                </div>
+              </AnimatedComponent>
+            }
+          </div>
+        </section>
 
-          {isSelected.artists &&
-            <div className='Dashboard__list'>
-              {
-                !isLoading
-                  ?
-                  artistsUser.map(artist => (
-                    <ArtistUser key={crypto.randomUUID()} artist={artist} />
-                  ))
-                  :
-                  <Loader />
-              }
-            </div>
-          }
-        </div>
-      </section>
+        <section className='Dashboard__section Dashboard__artists'>
+          <div className='container'>
 
-      <section className='Dashboard__section Dashboard__artists'>
-        <div className='container'>
+            {isSelected.genres &&
+              <AnimatedComponent>
+                <div className='Dashboard__list'>
+                  {
+                    !isLoading
+                      ?
+                      genresUser.map(genre => (
+                        <GenreUser key={crypto.randomUUID()} genre={genre} />
+                      ))
+                      :
+                      <Loader />
+                  }
+                </div>
+              </AnimatedComponent>
+            }
+          </div>
+        </section>
+      </main>
+    </AnimatedComponent>
 
-          {isSelected.genres &&
-            <div className='Dashboard__list'>
-              {
-                !isLoading
-                  ?
-                  genresUser.map(genre => (
-                    <GenreUser key={crypto.randomUUID()} genre={genre} />
-                  ))
-                  :
-                  <Loader />
-              }
-            </div>
-          }
-        </div>
-      </section>
-    </main>);
+  );
 }
