@@ -23,17 +23,18 @@ export const getTopsByUser = async (userId) => {
 export async function createTop(name, description, userid) {
   try {
     const requestOptions = {
-      // TODO: check if name exists
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': 'token'
+      },
       body: JSON.stringify({
         name: name,
         description: description,
         userId: userid
       })
     };
-    // TODO: Update URL
-    return await fetch('http://localhost:4000/api/tops', requestOptions);
+    return await fetch(`${configAPI.BASE_URL}/tops`, requestOptions);
   } catch (err) {
     console.log(err);
   }

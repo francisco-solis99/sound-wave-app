@@ -71,10 +71,13 @@ export const getSongsByUser = async (idUser) => {
 
 export async function createSong(name, year, youtube, artistId, genreId) {
   try {
+    // TODO: Import token
     const requestOptions = {
-      // TODO: check if song exists
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': 'token'
+      },
       body: JSON.stringify({
         name: name,
         year: year,
@@ -83,8 +86,7 @@ export async function createSong(name, year, youtube, artistId, genreId) {
         genreId: genreId
       })
     };
-    // TODO: Update URL
-    return await fetch('http://localhost:4000/api/songs', requestOptions);
+    return await fetch(`${configAPI.BASE_URL}/songs`, requestOptions);
   } catch (err) {
     console.log(err);
   }

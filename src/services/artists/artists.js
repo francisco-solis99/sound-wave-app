@@ -39,9 +39,11 @@ export const getArtistsByUser = async (idUser) => {
 export async function createArtist(name, country, youtube, imageURL) {
   try {
     const requestOptions = {
-      // TODO: check if artists exists
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': 'token'
+      },
       body: JSON.stringify({
         name: name,
         country: country,
@@ -49,8 +51,7 @@ export async function createArtist(name, country, youtube, imageURL) {
         urlImage: imageURL
       })
     };
-    // TODO: Update URL
-    return await fetch('http://localhost:4000/api/artists', requestOptions);
+    return await fetch(`${configAPI.BASE_URL}/artists`, requestOptions);
   } catch (err) {
     console.log(err);
   }

@@ -41,16 +41,17 @@ export async function createGenre(e, name, imageURL) {
   e.preventDefault();
   try {
     const requestOptions = {
-      // TODO: check if genre exists
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': 'token'
+      },
       body: JSON.stringify({
         name: name,
         urlImage: imageURL
       })
     };
-    // TODO: Update URL
-    return await fetch('http://localhost:4000/api/genres', requestOptions);
+    return await fetch(`${configAPI.BASE_URL}/genres`, requestOptions);
   } catch (err) {
     console.log(err);
   }
