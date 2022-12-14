@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import '../styles/components/menuPremium.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 export default function Menu() {
   const [showBar, setShowBar] = useState(false);
@@ -31,13 +30,8 @@ export default function Menu() {
           </ul>
         </div>
         <button className='User__icon'>
-          <Link to='/signup'>
-            <PersonOutlineOutlinedIcon fontSize='medium' />
-          </Link>
-        </button>
-        <button className='Exit__button'>
           <Link to='/dashboard'>
-            <LogoutOutlinedIcon fontSize='medium' />
+            <PersonOutlineOutlinedIcon fontSize='medium' />
           </Link>
         </button>
       </div>
