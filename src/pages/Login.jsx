@@ -6,6 +6,8 @@ import Form from '../components/Form';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import AnimatedComponent from '../components/AnimatedComponent';
+import { Alert } from '@mui/material';
+import Collapse from '@mui/material/Collapse';
 
 import { login, setToken } from '../services/auth/auth';
 
@@ -13,7 +15,16 @@ export default function Login({ handlerChangeUser }) {
   const navigate = useNavigate();
   const email = useRef();
   const password = useRef();
-  const [error, setError] = useState('');
+  const [alert, setAlert] = useState(false);
+  const [message, setMessage] = useState('');
+  const [severityClass, setSeverityClass] = useState('info');
+
+
+  const launchAlert = (msg, severityValue) => {
+    setMessage(msg);
+    setSeverityClass(severityValue);
+    setAlert(true);
+  };
 
   const handlerLogin = () => {
     const credentials = {
@@ -24,16 +35,26 @@ export default function Login({ handlerChangeUser }) {
     login(credentials)
       .then(response => {
         const { ok, user } = response;
-        if (!ok) throw new Error(user.message);
+        if (!ok) return Promise.reject(new Error(user.message));
         console.log('succesfully');
+        launchAlert(user.message, 'success');
         window.localStorage.setItem('loggedSoundwaveApp', JSON.stringify(user));
         setToken(user.token);
         handlerChangeUser(user);
-        navigate('/dashboard');
+        setTimeout(() => {
+          setAlert(false);
+          setMessage('');
+          setSeverityClass('');
+          navigate('/dashboard');
+        }, 1500);
       })
       .catch(err => {
-        setError(err.message);
-        console.log(error);
+        launchAlert(err.message, 'error');
+        setTimeout(() => {
+          setAlert(false);
+          setMessage('');
+          setSeverityClass('');
+        }, 2000);
       })
       .finally(() => {
         email.current.value = '';
@@ -44,6 +65,11 @@ export default function Login({ handlerChangeUser }) {
 
   return (
     <AnimatedComponent>
+
+      <Collapse in={alert}>
+        <Alert severity={severityClass}>{message}</Alert>
+      </Collapse>
+
       <main className='Initial__page'>
         <div className='Initial__background'></div>
         <Form callbackSubmit={handlerLogin}>

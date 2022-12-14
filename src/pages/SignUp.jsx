@@ -6,6 +6,8 @@ import Form from '../components/Form';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import AnimatedComponent from '../components/AnimatedComponent';
+import { Alert } from '@mui/material';
+import Collapse from '@mui/material/Collapse';
 
 import { signUp } from '../services/auth/auth';
 
@@ -18,7 +20,10 @@ export default function SignUp() {
   const surname = useRef('');
   const nickName = useRef('');
   const confirmPassword = useRef('');
-  const [error, setError] = useState('');
+
+  const [alert, setAlert] = useState(false);
+  const [message, setMessage] = useState('');
+  const [severityClass, setSeverityClass] = useState('info');
 
   const cleanFields = () => {
     name.current.value = '';
@@ -27,6 +32,12 @@ export default function SignUp() {
     email.current.value = '';
     password.current.value = '';
     confirmPassword.current.value = '';
+  };
+
+  const launchAlert = (msg, severityValue) => {
+    setMessage(msg);
+    setSeverityClass(severityValue);
+    setAlert(true);
   };
 
   const handlerSignUp = () => {
@@ -44,13 +55,22 @@ export default function SignUp() {
     signUp(newUser)
       .then(response => {
         const { ok, result } = response;
-        if (!ok) throw new Error(result.message);
-        console.log(response);
-        navigate('/login');
+        if (!ok) return Promise.reject(result.message);
+        launchAlert(result.message, 'success');
+        setTimeout(() => {
+          setAlert(false);
+          setMessage('');
+          setSeverityClass('');
+          navigate('/login');
+        }, 1500);
       })
       .catch(err => {
-        setError(err.message);
-        console.log(error);
+        launchAlert(err.message, 'error');
+        setTimeout(() => {
+          setAlert(false);
+          setMessage('');
+          setSeverityClass('');
+        }, 2000);
       })
       .finally(() => {
         cleanFields();
@@ -61,6 +81,9 @@ export default function SignUp() {
 
   return (
     <AnimatedComponent>
+      <Collapse in={alert}>
+        <Alert severity={severityClass}>{message}</Alert>
+      </Collapse>
       <main className='Initial__page SignUp'>
         <div className='Initial__background'></div>
         <Form callbackSubmit={handlerSignUp}>
