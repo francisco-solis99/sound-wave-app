@@ -12,7 +12,7 @@ export default function Login() {
       <main className='Initial__page'>
         <div className='Initial__background'></div>
         <Form>
-          <h1 className="Title" >Soundwave</h1>
+          <Link to="/" id="inicio"><h1 className="Title" >Soundwave</h1></Link>
           <h2 className="Subtitle">Welcome back!</h2>
           <Input type='text' placeholder='example@gmail.com' />
           <Input type='password' placeholder='password' />
