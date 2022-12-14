@@ -1,11 +1,15 @@
-.menu__container {
+.Menu__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
 }
 
-.logo__menu {
+.Menu__container a {
+    color: white;
+}
+
+.Logo__menu {
     padding: 0;
     font-size: 2.5rem;
     font-family: var(--font-logo);
@@ -15,7 +19,7 @@
     -webkit-text-fill-color: transparent;
 }
 
-.side__container {
+.Side__container {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -23,53 +27,49 @@
     position: relative;
 }
 
-.list__menu {
+.List__menu {
     list-style: none;
     color: var(--white);
     display: flex;
     font-size: 1.2em;
 }
 
-.list__menu li {
+.List__menu li {
     margin-top: 15px;
     margin-left: 20px;
 }
 
-.menu__container a {
-    color: white;
-}
-
-.list__menu li:hover {
+.List__menu li:hover {
     text-shadow: 1px 1px var(--pink);
 }
 
-.nav__toggle,
-.exit__button,
-.user__icon {
+.Nav__toggle,
+.Exit__button,
+.User__icon {
     color: var(--white);
     border: none;
     background-color: transparent;
     margin-left: 1rem;
 }
 
-.nav__toggle {
+.Nav__toggle {
     display: none;
 }
 
 @media screen and (max-width: 948px) {
-    .logo__menu {
+    .Logo__menu {
         font-size: 1.3em;
     }
 
-    .list__menu li {
+    .List__menu li {
         margin: 0;
     }
 
-    .list__menu {
+    .List__menu {
         display: none;
     }
 
-    #hidden .list__menu {
+    #hidden .List__menu {
         display: flex;
         align-items: center;
         background-color: var(--dark-grey);
@@ -87,14 +87,14 @@
         width: 80%;
     }
 
-    .nav__toggle,
-    .exit__button,
-    .user__icon {
+    .Nav__toggle,
+    .Exit__button,
+    .User__icon {
         margin-left: .4rem;
         min-width: 30px;
     }
 
-    .nav__toggle {
+    .Nav__toggle {
         display: flex;
     }
 }

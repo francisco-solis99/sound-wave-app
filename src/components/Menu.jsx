@@ -9,16 +9,16 @@ export default function Menu() {
   const [showBar, setShowBar] = useState(false);
 
   return (
-    <div className='menu__container'>
-      <h1 className='logo__menu'>
+    <div className='Menu__container'>
+      <h1 className='Logo__menu'>
         <Link to='/'>Soundwave</Link>
       </h1>
-      <div className='side__container'>
-        <button className='nav__toggle' onClick={() => setShowBar(!showBar)}>
+      <div className='Side__container'>
+        <button className='Nav__toggle' onClick={() => setShowBar(!showBar)}>
           <MenuIcon fontSize='medium' />
         </button>
-        <div className='nav__menu' id={showBar ? 'hidden' : ''}>
-          <ul className='list__menu'>
+        <div className='Nav__menu' id={showBar ? 'hidden' : ''}>
+          <ul className='List__menu'>
             <li>
               <Link to='/songs'>Songs</Link>
             </li>
@@ -30,12 +30,12 @@ export default function Menu() {
             </li>
           </ul>
         </div>
-        <button className='user__icon'>
+        <button className='User__icon'>
           <Link to='/signup'>
             <PersonOutlineOutlinedIcon fontSize='medium' />
           </Link>
         </button>
-        <button className='exit__button'>
+        <button className='Exit__button'>
           <Link to='/dashboard'>
             <LogoutOutlinedIcon fontSize='medium' />
           </Link>

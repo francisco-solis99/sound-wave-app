@@ -6,7 +6,6 @@
   scroll-behavior: smooth;
   overflow: auto;
   scroll-snap-type: y mandatory;
-
 }
 
 .section {
@@ -97,9 +96,7 @@
   height: 100%;
   z-index: 2;
   background: linear-gradient(to right top, rgba(55, 70, 91, 0.7), rgba(55, 70, 91, 0.7));
-  /* background: linear-gradient(45deg, rgba(33, 43, 56, 0.6) 0%, rgba(30, 52, 93, 0.6) 25%, rgba(52, 56, 127, 0.6) 50%, rgba(98, 49, 152, 0.6) 75%, rgba(154, 0, 162, 0.6) 100%); */
 }
-
 
 /* TOPS - HOME */
 .Home__tops {
@@ -135,13 +132,6 @@
 .Home__genres {
   background-image: linear-gradient(to left bottom, #9a00a2, #633198, #353880, #1d355f, #212c3a);
 }
-
-/* .Home__tops,
-.Home__songs,
-.Home__artists,
-.Home__genres {
-  padding: 8vh 0;
-} */
 
 .Home__more-link {
   color: white;

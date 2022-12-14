@@ -3,12 +3,6 @@
     color: black;
 }
 
-.modal-title {
-    display: inline-block;
-    align-self: center;
-    font-size: 3rem;
-}
-
 /* MODALS: Artists and Create  */
 .modal-label {
     font-weight: 700;
