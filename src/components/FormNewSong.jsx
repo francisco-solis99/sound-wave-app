@@ -7,7 +7,9 @@ import { getArtistsByUser } from '../services/artists/artists';
 import { getGenresByUser } from '../services/genres/genres';
 // import { createSong } from '../services/songs/songs';
 
-export default function FormNewSong({ userData, setAlert, setSuccess, message, setMessage }) {
+// Display the form for creating a new Song
+// Handle the POST method to create a new Song
+export default function FormNewSong({ setAlert, setSuccess, message, setMessage }) {
     const USER_ID = 2;
 
     const [isLoading, setIsLoading] = useState(true);
@@ -43,7 +45,9 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
     useEffect(() => {
         setIsLoading(true);
         getArtistsByUser(USER_ID)
-            .then(artistsUser => artistsUser.map(artistUser => artists.indexOf(artistUser) !== -1 ? setArtists(prevArtists => [...prevArtists, artistUser]) : ''))
+            .then(artistsUser =>
+                artistsUser.map(artistUser =>
+                    artists.indexOf(artistUser) !== -1 ? setArtists(prevArtists => [...prevArtists, artistUser]) : ''))
             .catch(err => console.log(err))
             .finally(() => setIsLoading(false));
     }, []);
@@ -51,7 +55,10 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
     useEffect(() => {
         setIsLoading(true);
         getGenresByUser(USER_ID)
-            .then(genresUser => genresUser.map(genreUser => genres.indexOf(genreUser) !== -1 ? setGenres(prevGenres => [...prevGenres, genreUser]) : ''))
+            .then(genresUser =>
+                // Add unique genres
+                genresUser.map(genreUser =>
+                    genres.indexOf(genreUser) !== -1 ? setGenres(prevGenres => [...prevGenres, genreUser]) : ''))
             .catch(err => console.log(err))
             .finally(() => setIsLoading(false));
     }, []);
@@ -87,6 +94,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
 
     return (
         <form onSubmit={handleSongSubmit}>
+
             <div className='modal-input'>
                 <label className='modal-label' htmlFor='songName'>
                     Name:
@@ -101,6 +109,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                     </input>
                 </label>
             </div>
+
             <div className='modal-input'>
                 <label className='modal-label' htmlFor='songYear'>
                     Year:
@@ -118,6 +127,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                     </input>
                 </label>
             </div>
+
             <div className='modal-input'>
                 <label className='modal-label' htmlFor='songYoutube'>
                     Youtube:
@@ -132,6 +142,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                     </input>
                 </label>
             </div>
+
             <div className='modal-input'>
                 <label className='modal-label' htmlFor='songArtist'>
                     Artist:
@@ -151,6 +162,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                     </datalist>
                 </label>
             </div>
+
             <div className='modal-input'>
                 <label className='modal-label' htmlFor='songGenre'>
                     Genre:
@@ -170,6 +182,7 @@ export default function FormNewSong({ userData, setAlert, setSuccess, message, s
                     </datalist>
                 </label>
             </div>
+
             {
                 message.length > 0 ? <Alert severity="warning" style={{ margin: '1rem 0' }}> {message} </Alert> : ''
             }

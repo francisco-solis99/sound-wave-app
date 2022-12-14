@@ -6,6 +6,7 @@ import FormNewArtist from './FormNewArtist';
 import FormNewGenre from './FormNewGenre';
 import FormNewSong from './FormNewSong';
 
+// Bootstrap component modal for displaying create forms
 export default function ModalCreate() {
     const [option, setOption] = useState('');
     const [alert, setAlert] = useState(false);

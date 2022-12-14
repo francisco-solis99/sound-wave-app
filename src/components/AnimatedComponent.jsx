@@ -7,6 +7,7 @@ const animations = {
     exit: { opacity: 0, x: 100 }
 };
 
+// Add animation to pages and components with this component
 export default function AnimatedComponent({ children }) {
     return (
         <motion.div
@@ -14,10 +15,9 @@ export default function AnimatedComponent({ children }) {
             initial='initial'
             animate='animate'
             exit='exit'
-            transition={{duration: 0.8}}
-            >
+            transition={{ duration: 0.8 }}
+        >
             {children}
         </motion.div>
-
     );
 }

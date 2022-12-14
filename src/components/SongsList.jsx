@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/components/songslist.css';
 import Song from './Song';
 
+// Display list of songs and controlle playing and pausing
 export default function SongsList({ songs }) {
   const [songsList, setSongsList] = useState([]);
 

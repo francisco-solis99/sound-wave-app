@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import '../styles/components/modals.css';
 // import { createArtist } from '../services/artists/artists';
 
-export default function FormNewArtist({ userData, setAlert, setSuccess }) {
-
+// Display the form for creating a new Artist
+// Handle the POST method to create a new Artist
+export default function FormNewArtist({ setAlert, setSuccess }) {
     const IMAGE_URL_DEFAULT =
         'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
 
@@ -39,6 +40,7 @@ export default function FormNewArtist({ userData, setAlert, setSuccess }) {
                     ></input>
                 </label>
             </div>
+
             <div className='modal-input'>
                 <label className='modal-label' htmlFor='artistCountry'>
                     Country:
@@ -52,6 +54,7 @@ export default function FormNewArtist({ userData, setAlert, setSuccess }) {
                     ></input>
                 </label>
             </div>
+
             <div className='modal-input'>
                 <label className='modal-label' htmlFor='artistYoutube'>
                     Youtube:
@@ -65,6 +68,7 @@ export default function FormNewArtist({ userData, setAlert, setSuccess }) {
                     ></input>
                 </label>
             </div>
+
             <div className='modal-input'>
                 <label className='modal-label' htmlFor='artistImageURL'>
                     ImageURL:

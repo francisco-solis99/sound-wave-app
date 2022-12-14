@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import '../styles/components/modals.css';
 // import { createGenre } from '../services/genres/genres';
 
-export default function FormNewGenre({ userData, setAlert, setSuccess }) {
+// Display the form for creating a new Genre
+// Handle the POST method to create a new Genre
+export default function FormNewGenre({ setAlert, setSuccess }) {
     const IMAGE_URL_DEFAULT =
         'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
 
@@ -22,6 +24,7 @@ export default function FormNewGenre({ userData, setAlert, setSuccess }) {
 
     return (
         <form onSubmit={handleGenreSubmit}>
+
             <div className='modal-input'>
                 <label className='modal-label' htmlFor='genreName'>
                     Name:
@@ -35,6 +38,7 @@ export default function FormNewGenre({ userData, setAlert, setSuccess }) {
                     ></input>
                 </label>
             </div>
+
             <div className='modal-input'>
                 <label className='modal-label' htmlFor='genreImageURL'>
                     ImageURL:
@@ -47,6 +51,7 @@ export default function FormNewGenre({ userData, setAlert, setSuccess }) {
                     ></input>
                 </label>
             </div>
+
             <input
                 type='submit'
                 value='Submit'

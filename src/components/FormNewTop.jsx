@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import '../styles/components/modals.css';
 // import { createTop } from '../services/tops/tops';
 
-export default function FormNewTop({ userData, setAlert, setSuccess }) {
+// Display the form for creating a new Top
+// Handle the POST method to create a new Top
+export default function FormNewTop({ setAlert, setSuccess }) {
     const [topName, setTopName] = useState('');
     const [topDescription, setTopDescription] = useState('');
 
@@ -18,6 +20,7 @@ export default function FormNewTop({ userData, setAlert, setSuccess }) {
 
     return (
         <form onSubmit={handleTopSubmit}>
+
             <div className='modal-input'>
                 <label className='modal-label' htmlFor='topName'>
                     Name:
@@ -31,6 +34,7 @@ export default function FormNewTop({ userData, setAlert, setSuccess }) {
                     ></input>
                 </label>
             </div>
+
             <div className='modal-input'>
                 <label className='modal-label' htmlFor='topDescription'>
                     Description:

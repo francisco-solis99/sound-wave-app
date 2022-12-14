@@ -3,6 +3,7 @@ import '../styles/components/audio.css';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
 
+// Play and stop songs samples
 export default function Audio({ song, playPause }) {
   const refAudio = useRef();
 
