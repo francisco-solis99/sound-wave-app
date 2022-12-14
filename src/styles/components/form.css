@@ -1,57 +1,15 @@
 .Form {
-    background-color: var(--white);
-    max-width: 286px;
-    padding: 5%;
+    max-width: 370px;
+    min-width: 280px;
+    padding: 1.75em;
     text-align: center;
-    height: 350px;
+    background-color: var(--white);
     box-shadow: 0 4px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.Title {
-    font-family: var(--font-logo);
-    font-size: 2rem;
-    letter-spacing: 0.1rem;
-    background-clip: text;
-    background: linear-gradient(to right, #465263, #9D9D9D);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-}
-
-.Subtitle {
-    font-family: var(--font-text);
-    font-size: 1.5rem;
-    color: #212C3A;
-    margin-top: -3%;
-}
-
-#inicio {
-    color: var(--black);
-}
-
-.Last__line {
-    font-family: var(--font-text);
-    font-size: 1rem;
-    margin-top: .5rem;
-
 }
 
 /* Media Queries */
 @media screen and (min-width: 948px) {
     .Form {
-        max-width: 400px;
-        height: 500px;
-    }
-
-    .Title {
-        font-size: 3rem;
-    }
-
-    .Subtitle {
-        font-size: 2rem;
-    }
-
-    .Last__line {
-        font-size: 1.2rem;
-
+        max-width: 450px;
     }
 }
