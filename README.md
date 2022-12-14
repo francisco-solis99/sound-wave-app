@@ -34,6 +34,8 @@
           <li><a href="#demo">Demo</a></li>
        </ul>
     </li>
+    <li><a href="#contributing">Contributing</a></li>
+    
   </ol>
 </details>
 
@@ -96,6 +98,15 @@ If you want to run the app from your local machine, make sure you have a code ed
 
 ### Demo
 Check the following video to see what features you'll find!
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<div align="center">
+ <h3 align="center">Thanks for visiting! :notes:</h3>
+</div>
+
+## Contributing
+If you want to contribute to the project, follow the guidelines for [Contributing](.github/contributing.md).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
