@@ -21,7 +21,7 @@ export default function SongsList({ songs }) {
   };
 
   return (
-    <section className="SongsList">
+    <section className='SongsList'>
       {
         songsList.map(song => <Song key={song.id} songData={song} playPause={playPause} />)
       }

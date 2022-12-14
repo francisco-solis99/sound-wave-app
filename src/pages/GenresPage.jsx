@@ -34,7 +34,7 @@ export default function GenresPage() {
   };
 
   const renderResults = () => {
-    if (!genres.length) return (<p className="search__no-results">No results for your search</p>);
+    if (!genres.length) return (<p className='search__no-results'>No results for your search</p>);
     return (
       genres.map(genre => <Genre key={genre.id} genreData={genre} />)
     );
@@ -42,19 +42,19 @@ export default function GenresPage() {
 
   return (
     <AnimatedComponent>
-      <div className="searchpage__wrapper">
-        <header className="searchpage__header">
+      <div className='searchpage__wrapper'>
+        <header className='searchpage__header'>
           <nav>
             <Menu />
           </nav>
         </header>
 
-        <div className="searchpage__bar">
-          <SearchBar className="searchpage__bar" searchCallback={search} />
+        <div className='searchpage__bar'>
+          <SearchBar className='searchpage__bar' searchCallback={search} />
         </div>
 
         <main>
-          <div className="container">
+          <div className='container'>
             <section className={`components__container GenresPage__genres ${isLoading ? 'loading' : ''}`} >
               {
                 !isLoading ? renderResults() : <Loader />

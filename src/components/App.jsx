@@ -16,11 +16,11 @@ function App() {
   const location = useLocation();
 
   return (
-    <div className="wrapper">
+    <div className='wrapper'>
       <AnimatePresence mode='wait'>
         <Routes key={location.pathname} location={location} >
           <Route path='/' element={<Home />} />
-          <Route path='/home' element={<Navigate to="/" />} />
+          <Route path='/home' element={<Navigate to='/' />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/songs' element={<SongsPage />} />

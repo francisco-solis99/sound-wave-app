@@ -148,14 +148,14 @@ export default function FormNewSong({ setAlert, setSuccess, message, setMessage 
                     Artist:
                     <input
                         className='modal-input-field'
-                        list="song-artists"
+                        list='song-artists'
                         name='songArtist'
                         id='songArtist'
                         required
                         value={songArtist || ''}
                         onChange={(e) => setSongArtist(e.target.value)}>
                     </input>
-                    <datalist id="song-artists">
+                    <datalist id='song-artists'>
                         {
                             !isLoading && artists.map(artist => <option key={artist.id} value={artist.name} />)
                         }
@@ -168,14 +168,14 @@ export default function FormNewSong({ setAlert, setSuccess, message, setMessage 
                     Genre:
                     <input
                         className='modal-input-field'
-                        list="song-genres"
+                        list='song-genres'
                         name='songGenre'
                         id='songGenre'
                         required
                         value={songGenre || ''}
                         onChange={(e) => setSongGenre(e.target.value)}>
                     </input>
-                    <datalist id="song-genres">
+                    <datalist id='song-genres'>
                         {
                             !isLoading && genres.map(genre => <option key={genre.id} value={genre.name} />)
                         }
@@ -184,7 +184,7 @@ export default function FormNewSong({ setAlert, setSuccess, message, setMessage 
             </div>
 
             {
-                message.length > 0 ? <Alert severity="warning" style={{ margin: '1rem 0' }}> {message} </Alert> : ''
+                message.length > 0 ? <Alert severity='warning' style={{ margin: '1rem 0' }}> {message} </Alert> : ''
             }
 
             <input type='submit' value='Submit' className='btn btn-primary' />

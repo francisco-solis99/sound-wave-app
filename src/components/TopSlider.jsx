@@ -21,7 +21,7 @@ export default function TopSlider({ topData }) {
         <Slider
           color='secondary'
           defaultValue={0}
-          aria-labelledby="discrete-slider-always"
+          aria-labelledby='discrete-slider-always'
           step={1}
           marks={false}
           min={1}

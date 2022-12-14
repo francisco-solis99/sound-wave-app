@@ -31,12 +31,12 @@ export default function Audio({ song, playPause }) {
   }, [managePlayPause]);
 
   return (
-    <div className="Audio">
-      <button className="Audio__button" onClick={() => playPause(song.id)}>
+    <div className='Audio'>
+      <button className='Audio__button' onClick={() => playPause(song.id)}>
         {song.playing ? <StopIcon /> : <PlayArrowIcon />}
       </button>
-      <audio controls className="Audio__sample" ref={refAudio}>
-        <source src={song.sample ?? ''} type="audio/mp3" />
+      <audio controls className='Audio__sample' ref={refAudio}>
+        <source src={song.sample ?? ''} type='audio/mp3' />
       </audio>
     </div>
   );

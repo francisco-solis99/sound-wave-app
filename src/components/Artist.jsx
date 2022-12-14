@@ -11,7 +11,7 @@ export default function Artist({ artistData, setModalArtistData }) {
             maxWidth: '500px'
         }}>
             <h1>{artistData.name}</h1>
-            <button className='btn Artist__btn' data-bs-toggle="modal" data-bs-target="#modalArtist" onClick={() => { setModalArtistData(artistData); }}>More</button>
+            <button className='btn Artist__btn' data-bs-toggle='modal' data-bs-target='#modalArtist' onClick={() => { setModalArtistData(artistData); }}>More</button>
         </div>
     );
 }

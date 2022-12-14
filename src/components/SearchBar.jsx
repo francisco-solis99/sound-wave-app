@@ -13,7 +13,7 @@ export default function SearchBar({ searchCallback }) {
     };
 
     return (
-        <div className="SearchBar">
+        <div className='SearchBar'>
             <input className='SearchBar__input' type='text' placeholder='SEARCH' ref={inputSearch} onKeyUp={(e) => {
                 if (e.key !== 'Enter') return;
                 handlerSearch();

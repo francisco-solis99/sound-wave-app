@@ -34,7 +34,7 @@ export default function ArtistsPage() {
   };
 
   const renderResults = () => {
-    if (!artists.length) return (<p className="search__no-results">No results for your search</p>);
+    if (!artists.length) return (<p className='search__no-results'>No results for your search</p>);
     return (
       artists.map(artist => <Artist key={artist.id} artistData={artist} setModalArtistData={setModalArtistData} />)
     );
@@ -42,19 +42,19 @@ export default function ArtistsPage() {
 
   return (
     <AnimatedComponent>
-      <div className="searchpage__wrapper">
-        <header className="searchpage__header">
+      <div className='searchpage__wrapper'>
+        <header className='searchpage__header'>
           <nav>
             <Menu />
           </nav>
         </header>
 
-        <div className="searchpage__bar">
-          <SearchBar className="searchpage__bar" searchCallback={search} />
+        <div className='searchpage__bar'>
+          <SearchBar className='searchpage__bar' searchCallback={search} />
         </div>
 
-        <main className="searchpage__results">
-          <div className="container">
+        <main className='searchpage__results'>
+          <div className='container'>
             <section className={`components__container ArtistsPage__artists ${isLoading ? 'loading' : ''}`}>
               <ModalArtist artistData={modalArtistData} />
               {

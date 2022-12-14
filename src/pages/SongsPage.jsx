@@ -37,25 +37,25 @@ export default function SongsPage() {
   };
 
   const renderResults = () => {
-    if (!songs.length) return (<p className="search__no-results">No results for your search</p>);
+    if (!songs.length) return (<p className='search__no-results'>No results for your search</p>);
     return <SongsList songs={songs} />;
   };
 
   return (
     <AnimatedComponent>
-      <div className="searchpage__wrapper">
-        <header className="searchpage__header">
+      <div className='searchpage__wrapper'>
+        <header className='searchpage__header'>
           <nav>
             <Menu />
           </nav>
         </header>
 
-        <div className="searchpage__bar">
-          <SearchBar className="searchpage__bar" searchCallback={search} />
+        <div className='searchpage__bar'>
+          <SearchBar className='searchpage__bar' searchCallback={search} />
         </div>
 
-        <main className="searchpage__results">
-          <div className="container">
+        <main className='searchpage__results'>
+          <div className='container'>
             <section className={`components__container SongsPage__songs ${isLoading ? 'loading' : ''}`}>
               {
                 !isLoading ? renderResults() : <Loader />

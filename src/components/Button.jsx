@@ -10,7 +10,7 @@ export default function Button({ type, onClick, children }) {
   };
 
   return (
-    <button className={`Button ${buttonConf.types[type] ?? ''}`} type="button" onClick={onClick}>
+    <button className={`Button ${buttonConf.types[type] ?? ''}`} type='button' onClick={onClick}>
       {children}
     </button>
   );
