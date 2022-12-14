@@ -10,6 +10,6 @@
 @media screen and (min-width: 768px) {
   .SongsList {
     width: fit-content;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 }
