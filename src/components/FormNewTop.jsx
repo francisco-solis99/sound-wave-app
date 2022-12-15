@@ -15,13 +15,15 @@ export default function FormNewTop({ setAlert, setSuccess, handlerChangeUserTops
         createTop(topName, topDescription, userId)
             .then(async (response) => {
                 const { data: newTop } = await response.json();
-                handlerChangeUserTops((prev) => {
-                    return [
-                        ...prev,
-                        newTop
-                    ];
-                });
                 setSuccess(response.ok);
+                if (response.ok) {
+                    handlerChangeUserTops((prev) => {
+                        return [
+                            ...prev,
+                            newTop
+                        ];
+                    });
+                }
             })
             .catch(err => console.log(err))
             .finally(() => {

@@ -15,13 +15,15 @@ export default function FormNewArtist({ userId, setAlert, setSuccess, handlerCha
         createArtist(artistName, artistCountry, artistYoutube, artistImageURL, userId.current)
             .then(async (response) => {
                 const { data: newArtist } = await response.json();
-                handlerChangeUserArtists((prev) => {
-                    return [
-                        ...prev,
-                        newArtist
-                    ];
-                });
                 setSuccess(response.ok);
+                 if (response.ok){
+                    handlerChangeUserArtists((prev) => {
+                        return [
+                            ...prev,
+                            newArtist
+                        ];
+                    });
+                 } 
             })
             .catch(err => console.log(err))
             .finally(() => {

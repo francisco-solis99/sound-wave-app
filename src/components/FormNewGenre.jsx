@@ -13,13 +13,16 @@ export default function FormNewGenre({ userId, setAlert, setSuccess, handlerChan
         createGenre(genreName, genreImageURL, userId.current)
             .then(async (response) => {
                 const { data: newGenre } = await response.json();
-                handlerChangeUserGenres((prev) => {
+                setSuccess(response.ok);
+            
+                if (response.ok) {
+                    handlerChangeUserGenres((prev) => {
                     return [
                         ...prev,
                         newGenre
                     ];
                 });
-                setSuccess(response.ok);
+                }
             })
             .catch(err => console.log(err))
             .finally(() => {

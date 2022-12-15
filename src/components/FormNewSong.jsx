@@ -76,13 +76,15 @@ export default function FormNewSong({ userId, setAlert, setSuccess, message, set
             createSong(songName, songYear, songYoutube, artistId, genreId, userId.current)
                 .then(async (response) => {
                     const { data: newSong } = await response.json();
-                    handlerChangeUserSongs((prev) => {
-                        return [
-                            ...prev,
-                            newSong
-                        ];
-                    });
                     setSuccess(response.ok);
+                    if (response.ok) {
+                        handlerChangeUserSongs((prev) => {
+                            return [
+                                ...prev,
+                                newSong
+                            ];
+                        });
+                    }
                 })
                 .catch((err) => console.log(err))
                 .finally(() => {
