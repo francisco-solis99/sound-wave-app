@@ -244,7 +244,7 @@ export default function Dashboard({ handlerChangeUser }) {
                         artistsUser.map(artist =>
                           <ArtistUser key={crypto.randomUUID()} artist={artist} />
                         ) :
-                        <p>No artists have been created. Please add songs to your tops in order to visualize your artists</p>
+                        <p>No artists have been created.</p>
                   }
                 </div>
               </AnimatedComponent>
@@ -265,7 +265,7 @@ export default function Dashboard({ handlerChangeUser }) {
                         genresUser.map(genre =>
                           <GenreUser key={crypto.randomUUID()} genre={genre} />
                         ) :
-                        <p>No genres have been created. Please add songs to your tops in order to visualize your genres</p>
+                        <p>No genres have been created. </p>
                   }
                 </div>
               </AnimatedComponent>
