@@ -68,7 +68,7 @@ export default function Audio({ song, playPause }) {
         onClose={handleClose}
         message="Not available 😢"
         action={action}
-      />;
+      />
       <button className='Audio__button' onClick={handleClick}>
         {song.playing ? <StopIcon /> : <PlayArrowIcon />}
       </button>
