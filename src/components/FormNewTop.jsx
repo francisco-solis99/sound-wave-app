@@ -12,7 +12,6 @@ export default function FormNewTop({ setAlert, setSuccess, handlerChangeUserTops
     const handleTopSubmit = (e) => {
         e.preventDefault();
         const { userId } = JSON.parse(getUser());
-        console.log(topName, topDescription);
         createTop(topName, topDescription, userId)
             .then(async (response) => {
                 const { data: newTop } = await response.json();
@@ -30,7 +29,6 @@ export default function FormNewTop({ setAlert, setSuccess, handlerChangeUserTops
                 setTopDescription('');
                 setAlert(true);
             });
-
     };
 
     return (
@@ -44,6 +42,7 @@ export default function FormNewTop({ setAlert, setSuccess, handlerChangeUserTops
                         type='text'
                         name='topName'
                         id='topName'
+                        value={topName || ''}
                         required
                         onChange={(e) => setTopName(e.target.value)}
                     ></input>
@@ -58,6 +57,7 @@ export default function FormNewTop({ setAlert, setSuccess, handlerChangeUserTops
                         type='text'
                         name='topDescription'
                         id='topDescription'
+                        value={topDescription || ''}
                         required
                         onChange={(e) => setTopDescription(e.target.value)}
                     ></input>

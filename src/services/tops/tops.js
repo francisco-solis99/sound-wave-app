@@ -23,7 +23,8 @@ export const getTops = async ({ limit }) => {
  */
 export const getTopsByUser = async (userId) => {
   try {
-    const tops = await fetch(`${configAPI.BASE_URL}/tops/user/${userId}`);
+    const url = `${configAPI.BASE_URL}/tops/user/${userId}`;
+    const tops = await fetch(url);
     return await tops.json();
   } catch (err) {
     console.log(err);

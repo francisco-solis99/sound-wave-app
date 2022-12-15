@@ -4,33 +4,30 @@ import { createGenre } from '../services/genres/genres';
 
 // Display the form for creating a new Genre
 // Handle the POST method to create a new Genre
-export default function FormNewGenre({ setAlert, setSuccess, handlerChangeUserGenres }) {
-    const IMAGE_URL_DEFAULT =
-        'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
-
+export default function FormNewGenre({ userId, setAlert, setSuccess, handlerChangeUserGenres }) {
     const [genreName, setGenreName] = useState('');
-    const [genreImageURL, setGenreImageURL] = useState(IMAGE_URL_DEFAULT);
+    const [genreImageURL, setGenreImageURL] = useState('');
 
     const handleGenreSubmit = (e) => {
         e.preventDefault();
-        console.log(genreName, genreImageURL);
-        createGenre(genreName, genreImageURL)
+        createGenre(genreName, genreImageURL, userId.current)
             .then(async (response) => {
-                // const { data: newGenre } = await response.json();
-                // handlerChangeUserGenres((prev) => {
-                //     return [
-                //         ...prev,
-                //         newGenre
-                //     ];
-                // });
+                const { data: newGenre } = await response.json();
+                console.log(newGenre);
+                handlerChangeUserGenres((prev) => {
+                    console.log(prev);
+                    return [
+                        ...prev,
+                        newGenre
+                    ];
+                });
                 setSuccess(response.ok);
             })
             .catch(err => console.log(err))
             .finally(() => {
                 setGenreName('');
-                setGenreImageURL(IMAGE_URL_DEFAULT);
+                setGenreImageURL('');
                 setAlert(true);
-                setSuccess(false);
             });
     };
 
@@ -45,6 +42,7 @@ export default function FormNewGenre({ setAlert, setSuccess, handlerChangeUserGe
                         type='text'
                         name='genreName'
                         id='genreName'
+                        value={genreName || ''}
                         required
                         onChange={(e) => setGenreName(e.target.value)}
                     ></input>
@@ -59,6 +57,7 @@ export default function FormNewGenre({ setAlert, setSuccess, handlerChangeUserGe
                         type='url'
                         name='genreImageURL'
                         id='genreImageURL'
+                        value={genreImageURL || ''}
                         onChange={(e) => setGenreImageURL(e.target.value)}
                     ></input>
                 </label>

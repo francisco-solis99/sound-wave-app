@@ -1,7 +1,5 @@
 import configAPI from '../config';
 import deezerAPI from '../deezer';
-import { getTopsByUser } from '../tops/tops';
-import { getSongsByTop } from '../topSongs/topSongs';
 import { getToken } from '../auth/auth';
 
 /**
@@ -15,7 +13,6 @@ export const getSongs = async ({ limit, id }) => {
   const query = `${idQuery}&&${limitQuery}`;
   try {
     const urlToFetch = `${configAPI.BASE_URL}/songs${query}`;
-    console.log(urlToFetch);
     const response = await fetch(urlToFetch);
     return await response.json();
   } catch (err) {
@@ -29,20 +26,12 @@ export const getSongs = async ({ limit, id }) => {
  * @param   {int}   idUser is of the user logged.
  * @return  {array} list of songs.
  */
-export const getSongsByUser = async (idUser) => {
+export const getSongsByUser = async (id) => {
+  const idQuery = id ? `?id=${id}` : `?id=${null}`;
   try {
-    const tops = await getTopsByUser(idUser);
-    const songsByUserPromises = tops.map(async (top) => {
-      const { data } = await getSongsByTop({ topId: top.id });
-      const listSongs = data.map(item => item.song);
-      return listSongs;
-    });
-    const songsByUser = await Promise.all(songsByUserPromises);
-    const allSongsByUser = songsByUser.flat(Infinity);
-    const allSongsByUserNoRepeated = allSongsByUser.filter((song, index, self) => {
-      return self.map(item => item.name).indexOf(song.name) === index;
-    });
-    return allSongsByUserNoRepeated;
+    const urlToFetch = `${configAPI.BASE_URL}/songs${idQuery}`;
+    const response = await fetch(urlToFetch);
+    return await response.json();
   } catch (err) {
     console.log(err);
     return [];
@@ -101,7 +90,8 @@ export async function getSongsWithSample({ limit, id }) {
  * @param   {string}    genreId   genre unique id
  * @return  {Promise}   response of the request
  */
-export async function createSong(name, year, youtube, artistId, genreId) {
+export async function createSong(name, year, youtube, artistId, genreId, userId) {
+  console.log(name, year, youtube, artistId, genreId, userId)
   try {
     const requestOptions = {
       method: 'POST',
@@ -114,7 +104,8 @@ export async function createSong(name, year, youtube, artistId, genreId) {
         year: year,
         linkYT: youtube,
         artistId: artistId,
-        genreId: genreId
+        genreId: genreId,
+        userId: userId
       })
     };
     return await fetch(`${configAPI.BASE_URL}/songs`, requestOptions);

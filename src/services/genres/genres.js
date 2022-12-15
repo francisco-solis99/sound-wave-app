@@ -1,7 +1,7 @@
 import configAPI from '../config';
-import { getTopsByUser } from '../tops/tops';
-import { getSongsByTop } from '../topSongs/topSongs';
 import { getToken } from '../auth/auth';
+const IMAGE_URL_DEFAULT =
+  'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
 
 /**
  * Get genres with a limit query
@@ -27,20 +27,12 @@ export const getGenres = async ({ limit, id }) => {
  * @param   {int}   idUser is of the user logged.
  * @return  {array} list of genres.
  */
-export const getGenresByUser = async (idUser) => {
+export const getGenresByUser = async (id) => {
+  const idQuery = id ? `?id=${id}` : `?id=${null}`;
   try {
-    const tops = await getTopsByUser(idUser);
-    const genresByUserPromises = tops.map(async (top) => {
-      const { data } = await getSongsByTop({ topId: top.id });
-      const listGenres = data.map(item => item.song.genre);
-      return listGenres;
-    });
-    const genresByUser = await Promise.all(genresByUserPromises);
-    const allGenresByUser = genresByUser.flat(Infinity);
-    const allGenresByUserNoRepeated = allGenresByUser.filter((genre, index, self) => {
-      return self.map(item => item.name).indexOf(genre.name) === index;
-    });
-    return allGenresByUserNoRepeated;
+    const urlToFetch = `${configAPI.BASE_URL}/genres${idQuery}`;
+    const response = await fetch(urlToFetch);
+    return await response.json();
   } catch (err) {
     console.log(err);
     return [];
@@ -53,7 +45,8 @@ export const getGenresByUser = async (idUser) => {
  * @param   {string}    imageURL image url
  * @return  {Promise}   response of the request
  */
-export async function createGenre(name, imageURL) {
+export async function createGenre(name, imageURL, userId) {
+  if (imageURL === '') imageURL = IMAGE_URL_DEFAULT;
   try {
     const requestOptions = {
       method: 'POST',
@@ -63,7 +56,8 @@ export async function createGenre(name, imageURL) {
       },
       body: JSON.stringify({
         name: name,
-        urlImage: imageURL
+        urlImage: imageURL,
+        userId: userId
       })
     };
     return await fetch(`${configAPI.BASE_URL}/genres`, requestOptions);

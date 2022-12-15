@@ -4,27 +4,25 @@ import { createArtist } from '../services/artists/artists';
 
 // Display the form for creating a new Artist
 // Handle the POST method to create a new Artist
-export default function FormNewArtist({ setAlert, setSuccess, handlerChangeUserArtists }) {
-    const IMAGE_URL_DEFAULT =
-        'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
-
+export default function FormNewArtist({ userId, setAlert, setSuccess, handlerChangeUserArtists }) {
     const [artistName, setArtistName] = useState('');
     const [artistCountry, setArtistCountry] = useState('');
     const [artistYoutube, setArtistYoutube] = useState('');
-    const [artistImageURL, setArtistImageURL] = useState(IMAGE_URL_DEFAULT);
+    const [artistImageURL, setArtistImageURL] = useState('');
 
     const handleArtistSubmit = (e) => {
         e.preventDefault();
-        console.log(artistName, artistCountry, artistYoutube, artistImageURL);
-        createArtist(artistName, artistCountry, artistYoutube, artistImageURL)
+        createArtist(artistName, artistCountry, artistYoutube, artistImageURL, userId.current)
             .then(async (response) => {
-                // const { data: newArtist } = await response.json();
-                // handlerChangeUserArtists((prev) => {
-                //     return [
-                //         ...prev,
-                //         newArtist
-                //     ];
-                // });
+                const { data: newArtist } = await response.json();
+                console.log(newArtist);
+                handlerChangeUserArtists((prev) => {
+                    console.log(prev);
+                    return [
+                        ...prev,
+                        newArtist
+                    ];
+                });
                 setSuccess(response.ok);
             })
             .catch(err => console.log(err))
@@ -32,7 +30,7 @@ export default function FormNewArtist({ setAlert, setSuccess, handlerChangeUserA
                 setArtistName('');
                 setArtistCountry('');
                 setArtistYoutube('');
-                setArtistImageURL(IMAGE_URL_DEFAULT);
+                setArtistImageURL('');
                 setAlert(true);
             });
     };
@@ -47,6 +45,7 @@ export default function FormNewArtist({ setAlert, setSuccess, handlerChangeUserA
                         type='text'
                         name='artistName'
                         id='artistName'
+                        value={artistName || ''}
                         required
                         onChange={(e) => setArtistName(e.target.value)}
                     ></input>
@@ -61,6 +60,7 @@ export default function FormNewArtist({ setAlert, setSuccess, handlerChangeUserA
                         type='text'
                         name='artistCountry'
                         id='artistCountry'
+                        value={artistCountry || ''}
                         required
                         onChange={(e) => setArtistCountry(e.target.value)}
                     ></input>
@@ -75,6 +75,7 @@ export default function FormNewArtist({ setAlert, setSuccess, handlerChangeUserA
                         type='url'
                         name='artistYoutube'
                         id='artistYoutube'
+                        value={artistYoutube || ''}
                         required
                         onChange={(e) => setArtistYoutube(e.target.value)}
                     ></input>
@@ -89,6 +90,7 @@ export default function FormNewArtist({ setAlert, setSuccess, handlerChangeUserA
                         type='url'
                         name='artistImageURL'
                         id='artistImageURL'
+                        value={artistImageURL || ''}
                         onChange={(e) => setArtistImageURL(e.target.value)}
                     ></input>
                 </label>

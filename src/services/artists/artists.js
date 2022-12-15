@@ -1,7 +1,7 @@
 import configAPI from '../config';
-import { getTopsByUser } from '../tops/tops';
-import { getSongsByTop } from '../topSongs/topSongs';
 import { getToken } from '../auth/auth';
+const IMAGE_URL_DEFAULT =
+  'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
 
 /**
  * Get artists with a limit query
@@ -27,20 +27,12 @@ export const getArtists = async ({ limit, id }) => {
  * @param   {int}   idUser is of the user logged.
  * @return  {array} list of artists.
  */
-export const getArtistsByUser = async (idUser) => {
+export const getArtistsByUser = async (id) => {
+  const idQuery = id ? `?id=${id}` : `?id=${null}`;
   try {
-    const tops = await getTopsByUser(idUser);
-    const artistsByUserPromises = tops.map(async (top) => {
-      const { data } = await getSongsByTop({ topId: top.id });
-      const listArtists = data.map(item => item.song.artist);
-      return listArtists;
-    });
-    const artistsByUser = await Promise.all(artistsByUserPromises);
-    const allArtistsByUser = artistsByUser.flat(Infinity);
-    const allArtistsByUserNoRepeated = allArtistsByUser.filter((artist, index, self) => {
-      return self.map(item => item.name).indexOf(artist.name) === index;
-    });
-    return allArtistsByUserNoRepeated;
+    const urlToFetch = `${configAPI.BASE_URL}/artists${idQuery}`;
+    const response = await fetch(urlToFetch);
+    return await response.json();
   } catch (err) {
     console.log(err);
     return [];
@@ -55,7 +47,8 @@ export const getArtistsByUser = async (idUser) => {
  * @param   {string}    imageURL image url
  * @return  {Promise}   response of the request
  */
-export async function createArtist(name, country, youtube, imageURL) {
+export async function createArtist(name, country, youtube, imageURL, userId) {
+  if (imageURL === '') imageURL = IMAGE_URL_DEFAULT;
   try {
     const requestOptions = {
       method: 'POST',
@@ -67,7 +60,8 @@ export async function createArtist(name, country, youtube, imageURL) {
         name: name,
         country: country,
         ytchannel: youtube,
-        urlImage: imageURL
+        urlImage: imageURL,
+        userId: userId
       })
     };
     return await fetch(`${configAPI.BASE_URL}/artists`, requestOptions);

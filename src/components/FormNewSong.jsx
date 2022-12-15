@@ -3,20 +3,19 @@ import '../styles/components/modals.css';
 import { Alert } from '@mui/material';
 import { getArtists } from '../services/artists/artists';
 import { getGenres } from '../services/genres/genres';
-import { getArtistsByUser } from '../services/artists/artists';
-import { getGenresByUser } from '../services/genres/genres';
 import { createSong } from '../services/songs/songs';
-import { getUser } from '../services/auth/auth';
 
 // Display the form for creating a new Song
 // Handle the POST method to create a new Song
-export default function FormNewSong({ setAlert, setSuccess, message, setMessage, handlerChangeUserSongs }) {
-    const USER_ID = JSON.parse(getUser()).userId;
-
-
+export default function FormNewSong({ userId, setAlert, setSuccess, message, setMessage, handlerChangeUserSongs }) {
     const [isLoading, setIsLoading] = useState(true);
     const [artists, setArtists] = useState([]);
+    const [artistsUser, setArtistsUser] = useState([]);
+    const [artistsMerge, setArtistsMerge] = useState([]);
+
     const [genres, setGenres] = useState([]);
+    const [genresUser, setGenresUser] = useState([]);
+    const [genresMerge, setGenresMerge] = useState([]);
 
     const [songName, setSongName] = useState('');
     const [songYear, setSongYear] = useState('');
@@ -27,7 +26,7 @@ export default function FormNewSong({ setAlert, setSuccess, message, setMessage,
     useEffect(() => {
         setIsLoading(true);
         setTimeout(() => {
-            getArtists({ limit: null })
+            getArtists({ limit: null, id: null })
                 .then(data => setArtists(data))
                 .catch(err => console.log(err))
                 .finally(() => setIsLoading(false));
@@ -36,8 +35,20 @@ export default function FormNewSong({ setAlert, setSuccess, message, setMessage,
 
     useEffect(() => {
         setIsLoading(true);
+        getArtists({ limit: null, id: userId.current })
+            .then(data => setArtistsUser(data))
+            .catch(err => console.log(err))
+            .finally(() => setIsLoading(false));
+    }, []);
+
+    useEffect(() => {
+        setArtistsMerge([...artists, ...artistsUser]);
+    }, [artists, artistsUser]);
+
+    useEffect(() => {
+        setIsLoading(true);
         setTimeout(() => {
-            getGenres({ limit: null })
+            getGenres({ limit: null, id: null })
                 .then(data => setGenres(data))
                 .catch(err => console.log(err))
                 .finally(() => setIsLoading(false));
@@ -46,24 +57,15 @@ export default function FormNewSong({ setAlert, setSuccess, message, setMessage,
 
     useEffect(() => {
         setIsLoading(true);
-        getArtistsByUser(USER_ID)
-            .then(artistsUser =>
-                artistsUser.map(artistUser =>
-                    artists.indexOf(artistUser) !== -1 ? setArtists(prevArtists => [...prevArtists, artistUser]) : ''))
+        getGenres({ limit: null, id: userId.current })
+            .then(data => setGenresUser(data))
             .catch(err => console.log(err))
             .finally(() => setIsLoading(false));
     }, []);
 
     useEffect(() => {
-        setIsLoading(true);
-        getGenresByUser(USER_ID)
-            .then(genresUser =>
-                // Add unique genres
-                genresUser.map(genreUser =>
-                    genres.indexOf(genreUser) !== -1 ? setGenres(prevGenres => [...prevGenres, genreUser]) : ''))
-            .catch(err => console.log(err))
-            .finally(() => setIsLoading(false));
-    }, []);
+        setGenresMerge([...genres, ...genresUser]);
+    }, [genres, genresUser]);
 
     const handleSongSubmit = (e) => {
         e.preventDefault();
@@ -71,12 +73,10 @@ export default function FormNewSong({ setAlert, setSuccess, message, setMessage,
         const genreId = getGenreId();
 
         if (artistId !== -1 && genreId !== -1) {
-            createSong(songName, songYear, songYoutube, artistId, genreId)
+            createSong(songName, songYear, songYoutube, artistId, genreId, userId.current)
                 .then(async (response) => {
                     const { data: newSong } = await response.json();
-                    console.log(newSong);
                     handlerChangeUserSongs((prev) => {
-                        console.log(prev);
                         return [
                             ...prev,
                             newSong
@@ -95,16 +95,18 @@ export default function FormNewSong({ setAlert, setSuccess, message, setMessage,
                     setSongArtist('');
                     setSongGenre('');
                 });
+        } else {
+            setMessage('Recuerda primero crear el artista / género');
         }
     };
 
     const getArtistId = () => {
-        const res = artists.filter(artist => artist.name.includes(songArtist));
+        const res = artistsMerge.filter(artist => artist.name.includes(songArtist));
         return res.length > 0 ? res[0].id : -1;
     };
 
     const getGenreId = () => {
-        const res = genres.filter(genre => genre.name.includes(songGenre));
+        const res = genresMerge.filter(genre => genre.name.includes(songGenre));
         return res.length > 0 ? res[0].id : -1;
     };
 
@@ -173,7 +175,7 @@ export default function FormNewSong({ setAlert, setSuccess, message, setMessage,
                     </input>
                     <datalist id='song-artists'>
                         {
-                            !isLoading && artists.map(artist => <option key={artist.id} value={artist.name} />)
+                            !isLoading && artistsMerge.map(artist => <option key={artist.id} value={artist.name} />)
                         }
                     </datalist>
                 </label>
@@ -193,7 +195,7 @@ export default function FormNewSong({ setAlert, setSuccess, message, setMessage,
                     </input>
                     <datalist id='song-genres'>
                         {
-                            !isLoading && genres.map(genre => <option key={genre.id} value={genre.name} />)
+                            !isLoading && genresMerge.map(genre => <option key={genre.id} value={genre.name} />)
                         }
                     </datalist>
                 </label>

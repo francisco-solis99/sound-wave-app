@@ -51,9 +51,8 @@ export const getSongsTopByUser = async (idUser) => {
   }
 };
 
-
 // Add a song to a top
-export const createSongTop = async (topId, songId) => {
+export const addSongToTop = async (topId, songId) => {
   try {
     const requestOptions = {
       method: 'POST',
@@ -62,8 +61,8 @@ export const createSongTop = async (topId, songId) => {
         'authorization': getToken()
       },
       body: JSON.stringify({
-        topId,
-        songId
+        topId: topId,
+        songId: songId
       })
     };
     return await fetch(`${configAPI.BASE_URL}/topList`, requestOptions);
