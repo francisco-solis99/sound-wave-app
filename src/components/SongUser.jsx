@@ -11,7 +11,7 @@ export default function SongUser(props) {
       </div>
       <div className='item__info'>
         <p className='Song__name'>{props.songData.name}</p>
-        <p className='Song__name'>{props.songData.year}<AddCircleOutlineRoundedIcon data-bs-toggle='modal' data-bs-target='#modalAddToTop' onClick={ () => props.setSelectedSong(props.songData.id)}/> </p>
+        <p className='Song__name'>{props.songData.artist.name}<AddCircleOutlineRoundedIcon data-bs-toggle='modal' data-bs-target='#modalAddToTop' onClick={() => props.setSelectedSong(props.songData.id)} /> </p>
       </div>
     </div>
   );
