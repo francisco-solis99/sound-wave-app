@@ -19,7 +19,7 @@ import { getSongsTops } from '../services/topSongs/topSongs';
 import { getSongsWithSample } from '../services/songs/songs';
 import { getArtists } from '../services/artists/artists';
 import { getGenres } from '../services/genres/genres';
-// import { getSongsTopByUser } from '../services/topSongs/topSongs';
+import { getSongsTopByUser } from '../services/topSongs/topSongs';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -29,8 +29,9 @@ export default function Home() {
   const [isTopDataLoading, setIsTopDataLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [topSongs, setTopSongs] = useState([]);
-  // const [topsByUser, setTopsByUser] = useState([]);
+  const [topsByUser, setTopsByUser] = useState([]);
   const [songs, setSongs] = useState([]);
+  const [selectedSong, setSelectedSong] = useState([]);
   const [modalArtistData, setModalArtistData] = useState({});
   const [artists, setArtists] = useState([]);
   const [genres, setGenres] = useState([]);
@@ -91,25 +92,27 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const { userId: id } = JSON.parse(getUser());
-    userId.current = id;
-  }, []);
+    if (isLogged) {
+      const { userId: id } = JSON.parse(getUser());
+      userId.current = id;
+    }
+  }, [isLogged]);
 
-  // useEffect(() => {
-  //   if (isLogged) {
-  //     setIsLoading(true);
-  //     setTimeout(() => {
-  //       getSongsTopByUser(userId.current)
-  //         .then(tops => {
-  //           setTopsByUser(tops);
-  //         })
-  //         .catch(err => console.log(err))
-  //         .finally(() => {
-  //           setIsLoading(false);
-  //         });
-  //     }, 200);
-  //   }
-  // }, [isLogged]);
+  useEffect(() => {
+    if (isLogged) {
+      setIsLoading(true);
+      setTimeout(() => {
+        getSongsTopByUser(userId.current)
+          .then(tops => {
+            setTopsByUser(tops);
+          })
+          .catch(err => console.log(err))
+          .finally(() => {
+            setIsLoading(false);
+          });
+      }, 200);
+    }
+  }, [isLogged]);
 
   return (
     <div>
@@ -152,11 +155,11 @@ export default function Home() {
             <div className='container Home__container'>
               <h2 className='Home__title-section'>Songs</h2>
               {
-                isLogged ? <ModalAddToTop topByUser={topSongs} /> : ''
+                isLogged ? <ModalAddToTop topByUser={topsByUser} song={selectedSong} /> : ''
               }
               <div className='Home__songs-list'>
                 {
-                  !isLoading ? <SongsList songs={songs} showAddIcon={isLogged} /> : <Loader />
+                  !isLoading ? <SongsList songs={songs} setSelectedSong={setSelectedSong} showAddIcon={isLogged} /> : <Loader />
                 }
               </div>
               <Link to='/songs' className='Home__more-link'>Ver mas</Link>

@@ -3,7 +3,7 @@ import '../styles/components/songslist.css';
 import Song from './Song';
 
 // Display list of songs and controlle playing and pausing
-export default function SongsList({ songs }) {
+export default function SongsList({ songs, setSelectedSong, showAddIcon }) {
   const [songsList, setSongsList] = useState([]);
 
   useEffect(() => setSongsList(songs), [songs]);
@@ -23,7 +23,7 @@ export default function SongsList({ songs }) {
   return (
     <section className='SongsList'>
       {
-        songsList.map(song => <Song key={song.id} songData={song} playPause={playPause} />)
+        songsList.map(song => <Song key={song.id} songData={song} setSelectedSong={setSelectedSong} playPause={playPause} showAddIcon={showAddIcon} />)
       }
     </section>
   );

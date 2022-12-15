@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Link, useNavigate } from 'react-router-dom';
-
 import '../styles/pages/dashboard.css';
 
 import Loader from '../components/Loader';
@@ -9,6 +8,7 @@ import AnimatedComponent from '../components/AnimatedComponent';
 import ModalTop from '../components/ModalTop';
 import TopUser from '../components/TopUser';
 import SongUser from '../components/SongUser';
+import ModalAddToTop from '../components/ModalAddToTop';
 import ArtistUser from '../components/ArtistUser';
 import GenreUser from '../components/GenreUser';
 import ModalCreate from '../components/ModalCreate';
@@ -19,8 +19,6 @@ import { getArtistsByUser } from '../services/artists/artists';
 import { getGenresByUser } from '../services/genres/genres';
 import { getUser, logout } from '../services/auth/auth';
 
-
-
 export default function Dashboard({ handlerChangeUser }) {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -28,6 +26,7 @@ export default function Dashboard({ handlerChangeUser }) {
   const [songsUser, setSongsUser] = useState([]);
   const [artistsUser, setArtistsUser] = useState([]);
   const [genresUser, setGenresUser] = useState([]);
+  const [selectedSong, setSelectedSong] = useState([]);
   const [modalTopData, setModalTopData] = useState({});
   const userId = useRef(null);
 
@@ -48,7 +47,6 @@ export default function Dashboard({ handlerChangeUser }) {
           setIsLoading(false);
         });
     }, 200);
-
   }, []);
 
   useEffect(() => {
@@ -159,6 +157,7 @@ export default function Dashboard({ handlerChangeUser }) {
 
         <section className='Dashboard__profile'>
           <ModalCreate
+            userId={userId}
             handlerChangeUserTops={setTopsUser}
             handlerChangeUserGenres={setGenresUser}
             handlerChangeUserSongs={setSongsUser}
@@ -213,6 +212,7 @@ export default function Dashboard({ handlerChangeUser }) {
           <div className='container'>
             {isSelected.songs &&
               <AnimatedComponent>
+                <ModalAddToTop topByUser={topsUser} song={selectedSong}/>
                 <div className='Dashboard__list'>
                   {/* If isLoading, show Loader, if not check if songsUser is not empy */}
                   {
@@ -220,7 +220,7 @@ export default function Dashboard({ handlerChangeUser }) {
                       <Loader />
                       : songsUser.length > 0 ?
                         songsUser.map(song =>
-                          <SongUser songData={song} key={song.id} />
+                          <SongUser songData={song} key={song.id} setSelectedSong={setSelectedSong}/>
                         ) :
                         <p>No songs have been created.</p>
                   }

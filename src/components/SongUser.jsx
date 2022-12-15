@@ -1,5 +1,6 @@
 import React from 'react';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
+import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 
 export default function SongUser(props) {
   return (
@@ -9,7 +10,7 @@ export default function SongUser(props) {
       </div>
       <div className='item__info'>
         <p className='Song__name'>{props.songData.name} ({props.songData.year})</p>
-        <p className='Song__name'>{props.songData.artist.name}</p>
+        <p className='Song__name'>{props.songData.artist.name}  <AddCircleOutlineRoundedIcon data-bs-toggle='modal' data-bs-target='#modalAddToTop' onClick={ () => props.setSelectedSong(props.songData.id)}/> </p>
       </div>
     </div>
   );

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import '../styles/components/modals.css';
 import { Alert, AlertTitle } from '@mui/material';
+import Collapse from '@mui/material/Collapse';
 import FormNewTop from './FormNewTop';
 import FormNewArtist from './FormNewArtist';
 import FormNewGenre from './FormNewGenre';
 import FormNewSong from './FormNewSong';
 
 // Bootstrap component modal for displaying create forms
-export default function ModalCreate({ handlerChangeUserTops, handlerChangeUserGenres, handlerChangeUserArtists, handlerChangeUserSongs }) {
+export default function ModalCreate({ userId, handlerChangeUserTops, handlerChangeUserGenres, handlerChangeUserArtists, handlerChangeUserSongs }) {
     const [option, setOption] = useState('');
     const [alert, setAlert] = useState(false);
     const [success, setSuccess] = useState(true);
@@ -23,11 +24,13 @@ export default function ModalCreate({ handlerChangeUserTops, handlerChangeUserGe
             <div className='modal-dialog modal-dialog-scrollable modal-dialog-centered'>
                 <div className='modal-content'>
                     {alert &&
-                        <Alert severity={success ? 'success' : 'error'}>
-                            <AlertTitle>{success ? 'Success' : 'Error'}</AlertTitle>
-                            {success ? <p>New {option} created <strong>successfully</strong>.</p> :
-                                <p>Some error occured when creating new {option}.</p>}
-                        </Alert>
+                        <Collapse in={alert}>
+                            <Alert severity={success ? 'success' : 'error'}>
+                                <AlertTitle>{success ? 'Success' : 'Error'}</AlertTitle>
+                                {success ? <p>New {option} created <strong>successfully</strong>.</p> :
+                                    <p>Some error occured when creating new {option}.</p>}
+                            </Alert>
+                        </Collapse>
                     }
 
                     <div className='modal-header'>
@@ -64,19 +67,19 @@ export default function ModalCreate({ handlerChangeUserTops, handlerChangeUserGe
                         )}
 
                         {option === 'top' && (
-                            <FormNewTop handlerChangeUserTops={handlerChangeUserTops} setAlert={setAlert} setSuccess={setSuccess} />
+                            <FormNewTop userId={userId} handlerChangeUserTops={handlerChangeUserTops} setAlert={setAlert} setSuccess={setSuccess} />
                         )}
 
                         {option === 'song' && (
-                            <FormNewSong handlerChangeUserSongs={handlerChangeUserSongs} setAlert={setAlert} setSuccess={setSuccess} message={message} setMessage={setMessage} />
+                            <FormNewSong userId={userId} handlerChangeUserSongs={handlerChangeUserSongs} setAlert={setAlert} setSuccess={setSuccess} message={message} setMessage={setMessage} />
                         )}
 
                         {option === 'artist' && (
-                            <FormNewArtist handlerChangeUserArtists={handlerChangeUserArtists} setAlert={setAlert} setSuccess={setSuccess} />
+                            <FormNewArtist userId={userId} handlerChangeUserArtists={handlerChangeUserArtists} setAlert={setAlert} setSuccess={setSuccess} />
                         )}
 
                         {option === 'genre' && (
-                            <FormNewGenre handlerChangeUserGenres={handlerChangeUserGenres} setAlert={setAlert} setSuccess={setSuccess} />
+                            <FormNewGenre userId={userId} handlerChangeUserGenres={handlerChangeUserGenres} setAlert={setAlert} setSuccess={setSuccess} />
                         )}
                     </div>
                 </div>

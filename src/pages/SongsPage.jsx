@@ -15,6 +15,7 @@ export default function SongsPage() {
   const [isLogged, setIsLogged] = useState(false);
   const [topsByUser, setTopsByUser] = useState([]);
   const [songs, setSongs] = useState([]);
+  const [selectedSong, setSelectedSong] = useState([]);
   const allSongs = useRef([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -73,7 +74,7 @@ export default function SongsPage() {
 
   const renderResults = () => {
     if (!songs.length) return (<p className='search__no-results'>No results for your search</p>);
-    return <SongsList songs={songs} showAddIcon={isLogged} />;
+    return <SongsList songs={songs} showAddIcon={isLogged} setSelectedSong={setSelectedSong}/>;
   };
 
   return (
@@ -92,7 +93,7 @@ export default function SongsPage() {
         <main className='searchpage__results'>
           <div className='container'>
             {
-              isLogged ? <ModalAddToTop topByUser={topsByUser} /> : ''
+              isLogged ? <ModalAddToTop topByUser={topsByUser} song={selectedSong} /> : ''
             }
             <section className={`components__container SongsPage__songs ${isLoading ? 'loading' : ''}`}>
               {
