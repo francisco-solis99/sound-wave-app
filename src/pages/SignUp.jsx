@@ -41,7 +41,14 @@ export default function SignUp() {
   };
 
   const handlerSignUp = () => {
-    if (password.current.value !== confirmPassword.current.value) return;
+    if (password.current.value !== confirmPassword.current.value) {
+      setAlert(true);
+      setMessage('Password do not match');
+
+      setTimeout(() => {
+        setAlert(false);
+      }, 2000);
+    };
 
     const newUser = {
       name: name.current.value,
@@ -91,12 +98,12 @@ export default function SignUp() {
             <Link to='/'>Soundwave</Link>
           </h1>
           <h2 className="Subtitle">Welcome!</h2>
-          <Input type="text" placeholder="name" ref={name} />
-          <Input type="text" placeholder="surname" ref={surname} />
-          <Input type="text" placeholder="nickname" ref={nickName} />
-          <Input type="email" placeholder='example@gmail.com' ref={email} />
-          <Input type="password" placeholder='password' ref={password} />
-          <Input type="password" placeholder='confirm password' ref={confirmPassword} />
+          <Input type="text" placeholder="name" ref={name} required />
+          <Input type="text" placeholder="surname" ref={surname} required />
+          <Input type="text" placeholder="nickname" ref={nickName} required />
+          <Input type="email" placeholder='example@gmail.com' ref={email} required />
+          <Input type="password" placeholder='password' ref={password} required />
+          <Input type="password" placeholder='confirm password' ref={confirmPassword} required />
           <Button typeStyle="primary" type="submit">SIGN UP</Button>
           <p className="Last__line">
             Already a user?
