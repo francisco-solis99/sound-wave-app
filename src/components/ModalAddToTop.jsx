@@ -3,9 +3,10 @@ import '../styles/components/modals.css';
 import { Alert, AlertTitle } from '@mui/material';
 import { addSongToTop } from '../services/topSongs/topSongs';
 
+const phrases = ['I like this one too.', 'Awesome song!', 'Yep, this songs deserves to be in your tops', 'Great song!', 'Same! very catchy song', 'Curious about which top you will put this song in.', 'Actually, I can\'t stop listening to this song'];
+
 // Bootstrap component modal to add song to a top
-export default function ModalAddToTop({ topByUser, song }) {
-    const phrases = ['I like this one too.', 'Awesome song!', 'Yep, this songs deserves to be in your tops', 'Great song!', 'Same! very catchy song', 'Curious about which top you will put this song in.', "Actually, I can't stop listening to this song"];
+export default function ModalAddToTop({ topByUser, song, handlerTopSongsChange }) {
     const [alert, setAlert] = useState(false);
     const [success, setSuccess] = useState(true);
     const [phrase, setPhrase] = useState(phrases[0]);
@@ -20,8 +21,15 @@ export default function ModalAddToTop({ topByUser, song }) {
 
     const handleAddToTopSubmit = (e) => {
         e.preventDefault();
-        addSongToTop(top, song)
-            .then(response => setSuccess(response.ok))
+        addSongToTop(top, song.id)
+            .then(response => {
+                setSuccess(response.ok);
+                handlerTopSongsChange(prev => {
+                    const prevCopy = { ...prev };
+                    prevCopy.songs.push(song);
+                    return prevCopy;
+                });
+            })
             .catch((err) => console.log(err))
             .finally(() => {
                 setTop('');

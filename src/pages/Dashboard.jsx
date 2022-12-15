@@ -212,7 +212,7 @@ export default function Dashboard({ handlerChangeUser }) {
           <div className='container'>
             {isSelected.songs &&
               <AnimatedComponent>
-                <ModalAddToTop topByUser={topsUser} song={selectedSong}/>
+                <ModalAddToTop topByUser={topsUser} song={selectedSong} handlerTopSongsChange={setModalTopData} />
                 <div className='Dashboard__list'>
                   {/* If isLoading, show Loader, if not check if songsUser is not empy */}
                   {
@@ -220,7 +220,7 @@ export default function Dashboard({ handlerChangeUser }) {
                       <Loader />
                       : songsUser.length > 0 ?
                         songsUser.map(song =>
-                          <SongUser songData={song} key={song.id} setSelectedSong={setSelectedSong}/>
+                          <SongUser songData={song} key={song.id} setSelectedSong={setSelectedSong} />
                         ) :
                         <p>No songs have been created.</p>
                   }
