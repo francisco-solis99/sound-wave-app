@@ -31,8 +31,24 @@
             rgba(33, 43, 56, 0.6)), url(https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=800);
 }
 
+#modalAddToTop .modal-img {
+    min-height: 7rem;
+    background-image: linear-gradient(to left bottom,
+            rgba(154, 0, 162, 0.6),
+            rgba(98, 49, 152, 0.6),
+            rgba(52, 56, 127, 0.6),
+            rgba(30, 52, 93, 0.6),
+            rgba(33, 43, 56, 0.6)), url(https://images.pexels.com/photos/92083/pexels-photo-92083.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+
+}
+
 .modal-top-description {
     text-align: center;
+}
+
+.modal-add-description {
+    font-size: 1.2rem;
+    text-shadow: 0px 1px 2px var(--purple-blue);
 }
 
 /* ARTIST MODAL  */
