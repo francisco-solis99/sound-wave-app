@@ -44,7 +44,7 @@ export default function Login({ handlerChangeUser }) {
         setTimeout(() => {
           setAlert(false);
           setMessage('');
-          setSeverityClass('');
+          setSeverityClass('info');
           navigate('/dashboard');
         }, 1500);
       })
@@ -77,8 +77,8 @@ export default function Login({ handlerChangeUser }) {
             <Link to='/'>Soundwave</Link>
           </h1>
           <h2 className="Subtitle">Welcome back!</h2>
-          <Input type="email" placeholder="example@gmail.com" ref={email}/>
-          <Input type="password" placeholder="password" ref={password}/>
+          <Input type="email" placeholder="example@gmail.com" ref={email} />
+          <Input type="password" placeholder="password" ref={password} />
           <Button typeStyle="primary" type="submit">LOGIN</Button>
           <p className="Last__line">
             New user?
