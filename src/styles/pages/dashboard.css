@@ -39,6 +39,8 @@
 
 .Dashboard__link {
     color: white;
+    cursor: pointer;
+    transition: all ease-in 200ms;
 }
 
 .Dashboard__link:hover {
@@ -126,6 +128,10 @@
 .SongUser {
     min-width: 15em;
     width: 100%;
+}
+
+.Song__add {
+    cursor: pointer;
 }
 
 /* Artists */

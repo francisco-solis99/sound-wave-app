@@ -11,7 +11,7 @@ export default function SongUser(props) {
       <div className='item__info'>
         <p className='Song__name'>{props.songData.name}</p>
         <p className='Song__name'>{props.songData.artist.name}
-          <span>
+          <span className="Song__add">
             <AddCircleOutlineRoundedIcon data-bs-toggle='modal' data-bs-target='#modalAddToTop' onClick={() => props.setSelectedSong(props.songData)} />
           </span>
         </p>
