@@ -13,9 +13,7 @@ export default function FormNewGenre({ userId, setAlert, setSuccess, handlerChan
         createGenre(genreName, genreImageURL, userId.current)
             .then(async (response) => {
                 const { data: newGenre } = await response.json();
-                console.log(newGenre);
                 handlerChangeUserGenres((prev) => {
-                    console.log(prev);
                     return [
                         ...prev,
                         newGenre

@@ -15,9 +15,7 @@ export default function FormNewArtist({ userId, setAlert, setSuccess, handlerCha
         createArtist(artistName, artistCountry, artistYoutube, artistImageURL, userId.current)
             .then(async (response) => {
                 const { data: newArtist } = await response.json();
-                console.log(newArtist);
                 handlerChangeUserArtists((prev) => {
-                    console.log(prev);
                     return [
                         ...prev,
                         newArtist
