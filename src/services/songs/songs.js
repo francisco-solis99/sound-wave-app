@@ -91,7 +91,6 @@ export async function getSongsWithSample({ limit, id }) {
  * @return  {Promise}   response of the request
  */
 export async function createSong(name, year, youtube, artistId, genreId, userId) {
-  console.log(name, year, youtube, artistId, genreId, userId)
   try {
     const requestOptions = {
       method: 'POST',
