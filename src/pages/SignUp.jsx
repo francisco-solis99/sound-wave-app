@@ -48,6 +48,7 @@ export default function SignUp() {
       setTimeout(() => {
         setAlert(false);
       }, 2000);
+      return;
     };
 
     const newUser = {
@@ -98,12 +99,12 @@ export default function SignUp() {
             <Link to='/'>Soundwave</Link>
           </h1>
           <h2 className="Subtitle">Welcome!</h2>
-          <Input type="text" placeholder="name" ref={name} required />
-          <Input type="text" placeholder="surname" ref={surname} required />
-          <Input type="text" placeholder="nickname" ref={nickName} required />
-          <Input type="email" placeholder='example@gmail.com' ref={email} required />
-          <Input type="password" placeholder='password' ref={password} required />
-          <Input type="password" placeholder='confirm password' ref={confirmPassword} required />
+          <Input type="text" placeholder="name" ref={name} />
+          <Input type="text" placeholder="surname" ref={surname} />
+          <Input type="text" placeholder="nickname" ref={nickName} />
+          <Input type="email" placeholder='example@gmail.com' ref={email} />
+          <Input type="password" placeholder='password' ref={password} />
+          <Input type="password" placeholder='confirm password' ref={confirmPassword} />
           <Button typeStyle="primary" type="submit">SIGN UP</Button>
           <p className="Last__line">
             Already a user?
