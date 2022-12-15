@@ -33,7 +33,7 @@ export default function SongsPage() {
       userId.current = id;
     }
   }, [isLogged]);
-  
+
   useEffect(() => {
     if (isLogged) {
       setIsLoading(true);
@@ -51,12 +51,12 @@ export default function SongsPage() {
   }, [isLogged]);
 
   useEffect(() => {
-    setIsLoading(true);
     setTimeout(() => {
       getSongsWithSample({ limit: null, id: null })
         .then(songsData => {
+          setIsLoading(true);
           const songListUI = songsData.map((song) => ({ ...song, playing: false }));
-          allSongs.current.value = songListUI;
+          allSongs.current = songListUI;
           setSongs(songListUI);
         })
         .catch(err => console.log(err))
@@ -69,15 +69,22 @@ export default function SongsPage() {
   const search = (query) => {
     setIsLoading(true);
     const queryLowerCase = query.toLowerCase();
-    const songsSearched = allSongs.current.value.filter(song => song.name.toLowerCase().includes(queryLowerCase));
+    const songsSearched = allSongs.current.filter(song => song.name.toLowerCase().includes(queryLowerCase));
     setSongs(songsSearched);
     setIsLoading(false);
   };
 
   const renderResults = () => {
-    if (!songs.length) return (<p className='search__no-results'>No results for your search</p>);
-    return <SongsList songs={songs} showAddIcon={isLogged} setSelectedSong={setSelectedSong}/>;
+    if (!songs.length) {
+      setTimeout(() => {
+        return (<p className='search__no-results'>No results for your search</p>);
+      }, 500);
+    };
+    return <SongsList songs={songs} showAddIcon={isLogged} setSelectedSong={setSelectedSong} />;
   };
+
+  const backToAllResults = () => setSongs(allSongs.current);
+
 
   return (
     <AnimatedComponent>
@@ -89,7 +96,7 @@ export default function SongsPage() {
         </header>
 
         <div className='searchpage__bar'>
-          <SearchBar className='searchpage__bar' searchCallback={search} />
+          <SearchBar className='searchpage__bar' searchCallback={search} restartCallback={backToAllResults} />
         </div>
 
         <main className='searchpage__results'>

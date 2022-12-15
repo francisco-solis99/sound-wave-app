@@ -3,7 +3,6 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 
 export default function SongUser(props) {
-  console.log(props.songData);
   return (
     <div className='dashboard__item SongUser'>
       <div className='item__icon'>
@@ -11,7 +10,11 @@ export default function SongUser(props) {
       </div>
       <div className='item__info'>
         <p className='Song__name'>{props.songData.name}</p>
-        <p className='Song__name'>{props.songData.year}<AddCircleOutlineRoundedIcon data-bs-toggle='modal' data-bs-target='#modalAddToTop' onClick={ () => props.setSelectedSong(props.songData.id)}/> </p>
+        <p className='Song__name'>{props.songData.artist.name}
+          <span className="Song__add">
+            <AddCircleOutlineRoundedIcon data-bs-toggle='modal' data-bs-target='#modalAddToTop' onClick={() => props.setSelectedSong(props.songData)} />
+          </span>
+        </p>
       </div>
     </div>
   );

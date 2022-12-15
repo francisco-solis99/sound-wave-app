@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/pages/searchpage.css';
 
 import SearchBar from '../components/SearchBar';
@@ -13,12 +13,16 @@ import { searchQuery } from '../services/search/search';
 export default function GenresPage() {
   const [genres, setGenres] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const allInitialGenres = useRef([]);
 
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
       getGenres({ limit: null, id: null })
-        .then(data => setGenres(data))
+        .then(data => {
+          setGenres(data);
+          allInitialGenres.current = data;
+        })
         .catch(err => console.log(err))
         .finally(() => setIsLoading(false));
     }, 200);
@@ -28,7 +32,10 @@ export default function GenresPage() {
     const toSearch = 'genres';
     setIsLoading(true);
     searchQuery({ query, toSearch })
-      .then(data => setGenres(data))
+      .then(data => {
+        const genresBaseFiltered = data.filter(item => item.userId === null);
+        setGenres(genresBaseFiltered);
+      })
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false));
   };
@@ -40,6 +47,9 @@ export default function GenresPage() {
     );
   };
 
+  const backToAllResults = () => setGenres(allInitialGenres.current);
+
+
   return (
     <AnimatedComponent>
       <div className='searchpage__wrapper'>
@@ -50,7 +60,7 @@ export default function GenresPage() {
         </header>
 
         <div className='searchpage__bar'>
-          <SearchBar className='searchpage__bar' searchCallback={search} />
+          <SearchBar className='searchpage__bar' searchCallback={search} restartCallback={backToAllResults} />
         </div>
 
         <main>

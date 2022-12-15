@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/pages/searchpage.css';
 import AnimatedComponent from '../components/AnimatedComponent';
 import SearchBar from '../components/SearchBar';
@@ -13,12 +13,16 @@ export default function ArtistsPage() {
   const [artists, setArtists] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [modalArtistData, setModalArtistData] = useState({});
+  const allInitialArtists = useRef([]);
 
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
       getArtists({ limit: null, id: null })
-        .then(data => setArtists(data))
+        .then(data => {
+          setArtists(data);
+          allInitialArtists.current = data;
+        })
         .catch(err => console.log(err))
         .finally(() => setIsLoading(false));
     }, 100);
@@ -28,10 +32,15 @@ export default function ArtistsPage() {
     const toSearch = 'artists';
     setIsLoading(true);
     searchQuery({ query, toSearch })
-      .then(data => setArtists(data))
+      .then(data => {
+        const artistsBaseFiltered = data.filter(item => item.userId === null);
+        setArtists(artistsBaseFiltered);
+      })
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false));
   };
+
+  const backToAllResults = () => setArtists(allInitialArtists.current);
 
   const renderResults = () => {
     if (!artists.length) return (<p className='search__no-results'>No results for your search</p>);
@@ -50,7 +59,7 @@ export default function ArtistsPage() {
         </header>
 
         <div className='searchpage__bar'>
-          <SearchBar className='searchpage__bar' searchCallback={search} />
+          <SearchBar className='searchpage__bar' searchCallback={search} restartCallback={backToAllResults} />
         </div>
 
         <main className='searchpage__results'>
