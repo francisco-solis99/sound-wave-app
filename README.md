@@ -13,29 +13,15 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#about-the-project">About the project</a>
+    <li><a href="#about-the-project">About the project</a></li>
+    <li><a href="#what-you-can-do">What you can do?</a>
        <ul>
-          <li><a href="#what-you-can-do">What you can do?</a></li>
-          <li><a href="#built-with">Built With</a></li>
-       </ul>
-    </li>
-    <li><a href="#meet-the-team">Meet the team</a></li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a>
-       <ul>
-          <li><a href="#local">Local</a></li>
-          <li><a href="#link">Link</a></li>
           <li><a href="#demo">Demo</a></li>
        </ul>
     </li>
+    <li><a href="#built-with">Built With</a></li>
+    <li><a href="#meet-the-team">Meet the team</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    
   </ol>
 </details>
 
@@ -43,11 +29,19 @@
 ## About the project
 Soundwave is a place where you can see some of the most important music tops in history, as well as search for artists, genres and songs. But the best thing is that you can create your own music tops with your own definitive list of songs.
 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## What you can do?
 - Create an account with an email and password
 - Search songs, artists, genres
 - When you're logged, create your own tops, songs, artists and genres.
 - Add songs to your tops
+
+### Demo
+Check the following [video](https://youtu.be/DV8vgc2VKXg) to see what features you'll find!
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Built with
 * [![JavaScript][JavaScript.js]][JavaScript-url]
@@ -62,43 +56,6 @@ Soundwave is a place where you can see some of the most important music tops in 
 - [Francisco Solís](https://github.com/francisco-solis99)
 - [Marcela Contreras](https://github.com/proxyz100/)
 - [Maribel Melendez](https://github.com/marmelendez)
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Getting started
-### Prerequisites
-If you want to run the app from your local machine, make sure you have a code editor (we recommend Visual Studio Code), Nodejs and NPM installed.
-> [Install Nodejs and NPM](https://radixweb.com/blog/installing-npm-and-nodejs-on-windows-and-mac)
-
-### Installation 
-#### Local
-1. Clone the repo `https://github.com/francisco-solis99/sound-wave-app`
-2. Move to directory `cd sound-wave-app`
-3. Install npm packages `npm i`
-5. Open the sound-wave-app repo folder (we recommend using VScode).
-8. Run the app with `npm start`
-
-> Check this [tutorial](https://youtu.be/0xsLNWVsxHs) to run the app in your local machine!
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Usage
-
-### Local
-1. After running the app, navigate through the site and try the different functionalities!
-
-### Link
-1. Enter the Soundwave page.
-2. Navigate through the different pages.
-3. Try the different functionalities:
-    - Create an account
-    - Search songs, artists, genres
-    - Create your own tops, songs, artists, genres
-    - Add songs to own tops
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Demo
-Check the following video to see what features you'll find!
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contributing
