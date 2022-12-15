@@ -8,13 +8,14 @@ import { getToken } from '../auth/auth';
  * @param   {int}   limit number of genres to fetch, if null gets all.
  * @return  {array} list of genres.
  */
-export const getGenres = async ({ limit }) => {
-  const limitQuery = limit ? `?limit=${limit}` : '';
+export const getGenres = async ({ limit, id }) => {
+  const idQuery = id ? `?id=${id}` : `?id=${null}`;
+  const limitQuery = limit ? `limit=${limit}` : '';
+  const query = `${idQuery}&&${limitQuery}`;
   try {
-    const urlToFetch = `${configAPI.BASE_URL}/genres${limitQuery}`;
+    const urlToFetch = `${configAPI.BASE_URL}/genres${query}`;
     const response = await fetch(urlToFetch);
-    const { rows } = await response.json();
-    return rows;
+    return await response.json();
   } catch (err) {
     console.log(err);
     return [];

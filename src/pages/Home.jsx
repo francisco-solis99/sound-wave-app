@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { getUser } from '../services/auth/auth';
 
 import '../styles/pages/home.css';
 import videoMobile from '../assets/soundwave-middle.mp4';
@@ -8,6 +9,7 @@ import videoDesktop from '../assets/soundwave-full.mp4';
 import Loader from '../components/Loader';
 import Button from '../components/Button';
 import TopSlider from '../components/TopSlider';
+import ModalAddToTop from '../components/ModalAddToTop';
 import SongsList from '../components/SongsList';
 import ModalArtist from '../components/ModalArtist';
 import ArtistSlider from '../components/ArtistSlider';
@@ -17,13 +19,17 @@ import { getSongsTops } from '../services/topSongs/topSongs';
 import { getSongsWithSample } from '../services/songs/songs';
 import { getArtists } from '../services/artists/artists';
 import { getGenres } from '../services/genres/genres';
+// import { getSongsTopByUser } from '../services/topSongs/topSongs';
 
 export default function Home() {
   const navigate = useNavigate();
 
+  const userId = useRef(null);
+  const [isLogged, setIsLogged] = useState(false);
   const [isTopDataLoading, setIsTopDataLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [topSongs, setTopSongs] = useState([]);
+  // const [topsByUser, setTopsByUser] = useState([]);
   const [songs, setSongs] = useState([]);
   const [modalArtistData, setModalArtistData] = useState({});
   const [artists, setArtists] = useState([]);
@@ -32,6 +38,14 @@ export default function Home() {
   const handleClickStarted = () => {
     navigate('/dashboard');
   };
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedSoundwaveApp');
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      setIsLogged(user || getUser());
+    }
+  }, []);
 
   useEffect(() => {
     setIsTopDataLoading(true);
@@ -46,7 +60,7 @@ export default function Home() {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      getSongsWithSample({ limit: 6 })
+      getSongsWithSample({ limit: 6, id: null })
         .then(songsData => {
           const songListUI = songsData.map((song) => ({ ...song, playing: false }));
           setSongs(songListUI);
@@ -59,7 +73,7 @@ export default function Home() {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      getArtists({ limit: 8 })
+      getArtists({ limit: 8, id: null })
         .then(data => setArtists(data))
         .catch(err => console.log(err))
         .finally(() => setIsLoading(false));
@@ -69,12 +83,33 @@ export default function Home() {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      getGenres({ limit: 10 })
+      getGenres({ limit: 10, id: null })
         .then(data => setGenres(data))
         .catch(err => console.log(err))
         .finally(() => setIsLoading(false));
     }, 100);
   }, []);
+
+  useEffect(() => {
+    const { userId: id } = JSON.parse(getUser());
+    userId.current = id;
+  }, []);
+
+  // useEffect(() => {
+  //   if (isLogged) {
+  //     setIsLoading(true);
+  //     setTimeout(() => {
+  //       getSongsTopByUser(userId.current)
+  //         .then(tops => {
+  //           setTopsByUser(tops);
+  //         })
+  //         .catch(err => console.log(err))
+  //         .finally(() => {
+  //           setIsLoading(false);
+  //         });
+  //     }, 200);
+  //   }
+  // }, [isLogged]);
 
   return (
     <div>
@@ -116,9 +151,12 @@ export default function Home() {
           <section className='section Home__songs' id='songs'>
             <div className='container Home__container'>
               <h2 className='Home__title-section'>Songs</h2>
+              {
+                isLogged ? <ModalAddToTop topByUser={topSongs} /> : ''
+              }
               <div className='Home__songs-list'>
                 {
-                  !isLoading ? <SongsList songs={songs} /> : <Loader />
+                  !isLoading ? <SongsList songs={songs} showAddIcon={isLogged} /> : <Loader />
                 }
               </div>
               <Link to='/songs' className='Home__more-link'>Ver mas</Link>

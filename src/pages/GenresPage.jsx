@@ -17,7 +17,7 @@ export default function GenresPage() {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      getGenres({ limit: null })
+      getGenres({ limit: null, id: null })
         .then(data => setGenres(data))
         .catch(err => console.log(err))
         .finally(() => setIsLoading(false));

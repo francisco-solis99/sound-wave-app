@@ -9,10 +9,13 @@ import { getToken } from '../auth/auth';
  * @param   {int}   limit number of songs to fetch, if null gets all.
  * @return  {array} list of songs.
  */
-export const getSongs = async ({ limit }) => {
-  const limitQuery = limit ? `?limit=${limit}` : '';
+export const getSongs = async ({ limit, id }) => {
+  const idQuery = id ? `?id=${id}` : `?id=${null}`;
+  const limitQuery = limit ? `limit=${limit}` : '';
+  const query = `${idQuery}&&${limitQuery}`;
   try {
-    const urlToFetch = `${configAPI.BASE_URL}/songs${limitQuery}`;
+    const urlToFetch = `${configAPI.BASE_URL}/songs${query}`;
+    console.log(urlToFetch);
     const response = await fetch(urlToFetch);
     return await response.json();
   } catch (err) {
@@ -67,9 +70,9 @@ export async function getSampleSong(nameSong) {
  * @param   {int}   limit number of songs to fetch, if null gets all.
  * @return  {Promise}
  */
-export async function getSongsWithSample({ limit }) {
+export async function getSongsWithSample({ limit, id }) {
   try {
-    const { rows: songs } = await getSongs({ limit });
+    const songs = await getSongs({ limit, id });
     const songsWithSample = songs.map(async (song) => {
       const { data } = await getSampleSong(song.name);
       if (!data.length) return song;

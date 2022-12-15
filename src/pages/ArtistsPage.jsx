@@ -17,7 +17,7 @@ export default function ArtistsPage() {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-      getArtists({ limit: null })
+      getArtists({ limit: null, id: null })
         .then(data => setArtists(data))
         .catch(err => console.log(err))
         .finally(() => setIsLoading(false));

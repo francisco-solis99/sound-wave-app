@@ -8,13 +8,14 @@ import { getToken } from '../auth/auth';
  * @param   {int}   limit number of artists to fetch, if null gets all.
  * @return  {array} list of artists.
  */
-export const getArtists = async ({ limit }) => {
-  const limitQuery = limit ? `?limit=${limit}` : '';
+export const getArtists = async ({ limit, id }) => {
+  const idQuery = id ? `?id=${id}` : `?id=${null}`;
+  const limitQuery = limit ? `limit=${limit}` : '';
+  const query = `${idQuery}&&${limitQuery}`;
   try {
-    const urlToFetch = `${configAPI.BASE_URL}/artists${limitQuery}`;
+    const urlToFetch = `${configAPI.BASE_URL}/artists${query}`;
     const response = await fetch(urlToFetch);
-    const { rows } = await response.json();
-    return rows;
+    return await response.json();
   } catch (err) {
     console.log(err);
     return [];
