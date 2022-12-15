@@ -28,10 +28,12 @@ export default function SongsPage() {
   }, []);
 
   useEffect(() => {
-    const { userId: id } = JSON.parse(getUser());
-    userId.current = id;
-  }, []);
-
+    if (isLogged) {
+      const { userId: id } = JSON.parse(getUser());
+      userId.current = id;
+    }
+  }, [isLogged]);
+  
   useEffect(() => {
     if (isLogged) {
       setIsLoading(true);
