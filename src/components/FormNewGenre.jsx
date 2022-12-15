@@ -26,6 +26,9 @@ export default function FormNewGenre({ userId, setAlert, setSuccess, handlerChan
                 setGenreName('');
                 setGenreImageURL('');
                 setAlert(true);
+                setTimeout(() => {
+                    setAlert(false);
+                }, 2000);
             });
     };
 

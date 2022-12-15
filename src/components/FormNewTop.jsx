@@ -28,6 +28,9 @@ export default function FormNewTop({ setAlert, setSuccess, handlerChangeUserTops
                 setTopName('');
                 setTopDescription('');
                 setAlert(true);
+                setTimeout(() => {
+                    setAlert(false);
+                }, 2000);
             });
     };
 

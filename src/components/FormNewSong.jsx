@@ -86,14 +86,16 @@ export default function FormNewSong({ userId, setAlert, setSuccess, message, set
                 })
                 .catch((err) => console.log(err))
                 .finally(() => {
-                    setAlert(true);
-                    setSuccess(true);
                     setMessage('');
                     setSongName('');
                     setSongYear('');
                     setSongYoutube('');
                     setSongArtist('');
                     setSongGenre('');
+                    setAlert(true);
+                    setTimeout(() => {
+                        setAlert(false);
+                    }, 2000);
                 });
         } else {
             setMessage('Recuerda primero crear el artista / género');

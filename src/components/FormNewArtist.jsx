@@ -30,6 +30,9 @@ export default function FormNewArtist({ userId, setAlert, setSuccess, handlerCha
                 setArtistYoutube('');
                 setArtistImageURL('');
                 setAlert(true);
+                setTimeout(() => {
+                    setAlert(false);
+                }, 2000);
             });
     };
 
