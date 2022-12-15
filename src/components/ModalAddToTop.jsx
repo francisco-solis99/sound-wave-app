@@ -5,7 +5,7 @@ import { addSongToTop } from '../services/topSongs/topSongs';
 
 // Bootstrap component modal to add song to a top
 export default function ModalAddToTop({ topByUser, song }) {
-    const phrases = ['I like this one too.', 'Awesome song', 'Yep, this songs deserves to be in your tops', 'Great song!', 'Wow! very catchy song', 'Song 100/10'];
+    const phrases = ['I like this one too.', 'Awesome song!', 'Yep, this songs deserves to be in your tops', 'Great song!', 'Same! very catchy song', 'Curious about which top you will put this song in.', "Actually, I can't stop listening to this song"];
     const [alert, setAlert] = useState(false);
     const [success, setSuccess] = useState(true);
     const [phrase, setPhrase] = useState(phrases[0]);
